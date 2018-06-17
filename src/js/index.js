@@ -8,6 +8,7 @@ import '../scss/index.scss'
 
 import App from './App'
 
+// polyfill for promise
 promisePolyfill()
 
 const element = document.getElementById('content')
