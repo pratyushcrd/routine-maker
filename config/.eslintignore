@@ -1,5 +1,0 @@
-dist
-node_modules
-webpack.config.*
-dist-server/**
-coverage/**
