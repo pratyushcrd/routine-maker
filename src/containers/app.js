@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { loadApp } from 'actions/app';
-import styles from './app.css';
+import React, { Component, } from 'react'
+import { connect, } from 'react-redux'
+import { loadApp, } from 'actions/app'
+import styles from './app.css'
 
 type Props = {
   dispatch: () => void,
@@ -10,26 +10,26 @@ type Props = {
 
 export class AppContainer extends Component {
   componentDidMount() {
-    this.props.dispatch(loadApp());
+    this.props.dispatch(loadApp())
   }
 
   props: Props;
 
   render() {
     if (!this.props.loaded) {
-      return null;
+      return null
     }
 
     return (
       <div className={styles.container} >
         Hello World!
       </div>
-    );
+    )
   }
 }
 
 function mapStateToProperties(state) {
-  return Object.assign({}, state.app);
+  return Object.assign({}, state.app)
 }
 
-export default connect(mapStateToProperties)(AppContainer);
+export default connect(mapStateToProperties)(AppContainer)

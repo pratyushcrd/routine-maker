@@ -1,10 +1,10 @@
-import React from 'react';
+import React from 'react'
 
 type Props = {
   children: any
 }
 
 const Layout = (props: Props) =>
-  <div>{props.children}</div>;
+  <div>{props.children}</div>
 
-export default Layout;
+export default Layout
