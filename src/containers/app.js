@@ -2,6 +2,7 @@ import React, { Component, } from 'react'
 import { connect, } from 'react-redux'
 import { loadApp, } from 'actions/app'
 import styles from './app.css'
+import Days from './Days'
 
 type Props = {
   dispatch: () => void,
@@ -22,7 +23,7 @@ export class AppContainer extends Component {
 
     return (
       <div className={styles.container} >
-        Hello World!
+        <Days />
       </div>
     )
   }
