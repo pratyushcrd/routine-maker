@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { connect, } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
@@ -23,7 +24,6 @@ const styles = theme => ({
 
 function CSSGrid(props) {
   const { classes } = props
-
   return (
     <div>
       <Typography variant="caption" align="center" gutterBottom>
@@ -45,4 +45,9 @@ CSSGrid.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
 }
 
-export default withStyles(styles)(CSSGrid)
+
+function mapStateToProperties(state) {
+  return Object.assign({}, state.input)
+}
+
+export default connect(mapStateToProperties)(withStyles(styles)(CSSGrid))

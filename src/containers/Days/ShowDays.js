@@ -1,6 +1,7 @@
 import React from 'react'
 // import PropTypes from 'prop-types'
 import PropTypes from 'prop-types'
+import { connect, } from 'react-redux'
 import Table from '@material-ui/core/Table'
 import { withStyles } from '@material-ui/core/styles'
 import TableBody from '@material-ui/core/TableBody'
@@ -10,11 +11,6 @@ import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
 
 const styles = theme => ({
-  container: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(12, 1fr)',
-    gridGap: `${theme.spacing.unit * 3}px`,
-  },
   paper: {
     padding: theme.spacing.unit,
     textAlign: 'center',
@@ -24,10 +20,11 @@ const styles = theme => ({
   },
 })
 
-function ShowDays({ classes }) {
+function ShowDays(props) {
+  const { classes, days = {} } = props
   return (
     <Paper className={classes.paper}>
-      <Table className={classes.table}>
+      <Table>
         <TableHead>
           <TableRow>
             <TableCell>Day</TableCell>
@@ -35,18 +32,12 @@ function ShowDays({ classes }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          <TableRow>
-            <TableCell>Monday</TableCell>
-            <TableCell>8</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Tuesday</TableCell>
-            <TableCell>8</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Wednesday</TableCell>
-            <TableCell>8</TableCell>
-          </TableRow>
+          { days.map((day) => (
+            <TableRow key={day.day}>
+              <TableCell>{day.day}</TableCell>
+              <TableCell>{day.periods}</TableCell>
+            </TableRow>
+          )) }
         </TableBody>
       </Table>
     </Paper>
@@ -55,6 +46,11 @@ function ShowDays({ classes }) {
 
 ShowDays.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  days: PropTypes.arrayOf(PropTypes.object).isRequired,
 }
 
-export default withStyles(styles)(ShowDays)
+function mapStateToProperties(state) {
+  return state.input
+}
+
+export default connect(mapStateToProperties)(withStyles(styles)(ShowDays))
