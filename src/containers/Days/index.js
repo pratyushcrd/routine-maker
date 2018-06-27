@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
 import ShowDays from './ShowDays'
+import AddDay from './AddDay'
 
 const styles = theme => ({
   container: {
@@ -34,7 +35,7 @@ function CSSGrid(props) {
           <ShowDays />
         </Grid>
         <Grid item xs={4}>
-          <Paper className={classes.paper}>xs=4</Paper>
+          <AddDay />
         </Grid>
       </Grid>
     </div>
