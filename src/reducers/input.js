@@ -30,6 +30,7 @@ import {
   DELETE_SUBJECT
 } from 'constants/action-types'
 import { createReducer } from './utils'
+import { days } from '../constants/index'
 
 const initialState = {
   days: [{
@@ -77,7 +78,7 @@ const handlers = {
     days: uniqueBy({ day: 1 }, [{
       day: action.day,
       periods: action.periods
-    }, ...state.days])
+    }, ...state.days].sort((a, b) => days.indexOf(a.day) - days.indexOf(b.day)))
   }),
   [ADD_CLASS]: (state, action) => ({
     classList: [action.className, ...state.classList]

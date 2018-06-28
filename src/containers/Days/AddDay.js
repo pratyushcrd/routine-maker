@@ -9,6 +9,7 @@ import Select from '@material-ui/core/Select'
 import Paper from '@material-ui/core/Paper'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
+import { days } from '../../constants/index'
 
 const styles = theme => ({
   button: {
@@ -16,6 +17,7 @@ const styles = theme => ({
     marginBottom: theme.spacing.unit,
     textAlign: 'center',
     minWidth: '90%',
+    marginLeft: '3%'
   },
   formControl: {
     margin: theme.spacing.unit,
@@ -23,27 +25,19 @@ const styles = theme => ({
   },
   paper: {
     padding: theme.spacing.unit,
-    textAlign: 'center',
+    textAlign: 'start',
     color: theme.palette.text.secondary,
     whiteSpace: 'nowrap',
     marginBottom: theme.spacing.unit,
   },
   textField: {
     minWidth: '90%',
+    textAlign: 'center',
+    marginLeft: '3%'
   }
 })
 
-const days = [
-  'Sunday',
-  'Monday',
-  'Tuesday',
-  'Wednesday',
-  'Thursday',
-  'Friday',
-  'Saturday',
-]
-
-class ControlledOpenSelect extends React.Component {
+class AddDay extends React.Component {
   state = {
     day: '',
     periods: 6,
@@ -132,7 +126,7 @@ class ControlledOpenSelect extends React.Component {
   }
 }
 
-ControlledOpenSelect.propTypes = {
+AddDay.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
   dispatch: PropTypes.func.isRequired,
 }
@@ -141,4 +135,4 @@ function mapStateToProperties(state) {
   return Object.assign({}, state.input)
 }
 
-export default connect(mapStateToProperties)(withStyles(styles)(ControlledOpenSelect))
+export default connect(mapStateToProperties)(withStyles(styles)(AddDay))

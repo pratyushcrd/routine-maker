@@ -1,9 +1,7 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { connect, } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
-import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
 import ShowDays from './ShowDays'
 import AddDay from './AddDay'
@@ -23,11 +21,10 @@ const styles = theme => ({
   },
 })
 
-function CSSGrid(props) {
-  const { classes } = props
+function Days() {
   return (
     <div>
-      <Typography variant="caption" align="center" gutterBottom>
+      <Typography variant="caption" align="left" gutterBottom>
         Enter Working School Days
       </Typography>
       <Grid container spacing={24}>
@@ -42,8 +39,7 @@ function CSSGrid(props) {
   )
 }
 
-CSSGrid.propTypes = {
-  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+Days.propTypes = {
 }
 
 
@@ -51,4 +47,4 @@ function mapStateToProperties(state) {
   return Object.assign({}, state.input)
 }
 
-export default connect(mapStateToProperties)(withStyles(styles)(CSSGrid))
+export default connect(mapStateToProperties)(withStyles(styles)(Days))
