@@ -14,6 +14,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import { navListItems, } from './NavListItems'
 import routes from './routes'
+import { nextScreen, previousScreen, } from 'actions/app'
 
 const drawerWidth = 240
 
@@ -94,6 +95,10 @@ class MiniDrawer extends React.Component {
   handleDrawerClose = () => {
     this.setState({ open: false, })
   };
+
+  nextPage = () => {this.props.dispatch(nextScreen())}
+
+  previousPge = () => {this.props.dispatch(previousScreen())}
 
   render() {
     const { classes, theme, } = this.props

@@ -21,5 +21,8 @@ export const DELETE_CLASS = 'DELETE_CLASS'
 export const DELETE_SECTION = 'DELETE_SECTION'
 export const DELETE_SUBJECT = 'DELETE_SUBJECT'
 
+// screen navigation
+export const NEXT_SCREEN = 'NEXT_SCREEN' 
+export const PREVIOUS_SCREEN = 'PREVIOUS_SCREEN' 
 
 export default { APP_LOAD, }
