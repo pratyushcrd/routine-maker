@@ -12,7 +12,7 @@ import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
-import { mailFolderListItems, otherMailFolderListItems, } from './NavListItems'
+import { navListItems, } from './NavListItems'
 import routes from './routes'
 
 const drawerWidth = 240
@@ -114,7 +114,7 @@ class MiniDrawer extends React.Component {
               <MenuIcon />
             </IconButton>
             <Typography variant="title" color="inherit" noWrap>
-              Mini variant drawer
+              Routine Maker
             </Typography>
           </Toolbar>
         </AppBar>
@@ -131,9 +131,8 @@ class MiniDrawer extends React.Component {
             </IconButton>
           </div>
           <Divider />
-          <List>{mailFolderListItems}</List>
-          <Divider />
-          <List>{otherMailFolderListItems}</List>
+          <List>{navListItems}</List>
+          
         </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />
