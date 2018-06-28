@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect, } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
-import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 import ShowDays from './ShowDays'
 import AddDay from './AddDay'
@@ -24,9 +23,6 @@ const styles = theme => ({
 function Days() {
   return (
     <div>
-      <Typography variant="caption" align="left" gutterBottom>
-        Enter Working School Days
-      </Typography>
       <Grid container spacing={24}>
         <Grid item xs={8}>
           <ShowDays />

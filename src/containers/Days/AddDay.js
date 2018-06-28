@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import InputLabel from '@material-ui/core/InputLabel'
 import MenuItem from '@material-ui/core/MenuItem'
+import Typography from '@material-ui/core/Typography'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 import Paper from '@material-ui/core/Paper'
@@ -20,6 +21,7 @@ const styles = theme => ({
     marginLeft: '3%'
   },
   formControl: {
+    marginTop: theme.spacing.unit,
     margin: theme.spacing.unit,
     minWidth: '90%',
   },
@@ -32,7 +34,7 @@ const styles = theme => ({
   },
   textField: {
     minWidth: '90%',
-    textAlign: 'center',
+    textAlign: 'start',
     marginLeft: '3%'
   }
 })
@@ -71,6 +73,9 @@ class AddDay extends React.Component {
     const { classes } = this.props
     return (
       <Paper className={classes.paper}>
+        <Typography variant="caption" align="left" gutterBottom className={classes.textField}>
+          Add or update working school days
+        </Typography>
         <form autoComplete="off">
           <FormControl className={classes.formControl}>
             <InputLabel htmlFor="demo-controlled-open-select">Day</InputLabel>
