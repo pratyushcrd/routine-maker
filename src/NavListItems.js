@@ -9,7 +9,7 @@ import PersonIcon from '@material-ui/icons/Person'
 import ClassIcon from '@material-ui/icons/AccountBalance'
 import Divider from '@material-ui/core/Divider'
 
-export const navListItems = (
+const navListItems = (
   <div>
     <ListItem button>
       <ListItemIcon>
@@ -35,3 +35,4 @@ export const navListItems = (
   </div>
 )
 
+export { navListItems as default }
