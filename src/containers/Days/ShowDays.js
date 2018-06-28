@@ -20,6 +20,19 @@ const styles = theme => ({
   },
 })
 
+const dummyDay = {
+  key: 'none',
+  day: 'No days added',
+  period: '',
+}
+
+function getTableEntries(day) {
+  return (<TableRow key={day.day}>
+    <TableCell>{day.day}</TableCell>
+    <TableCell>{day.periods}</TableCell>
+  </TableRow>)
+}
+
 function ShowDays(props) {
   const { classes, days = {} } = props
   return (
@@ -32,12 +45,8 @@ function ShowDays(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          { days.map((day) => (
-            <TableRow key={day.day}>
-              <TableCell>{day.day}</TableCell>
-              <TableCell>{day.periods}</TableCell>
-            </TableRow>
-          )) }
+          { days.map(getTableEntries) }
+          { !days.length && getTableEntries(dummyDay) }
         </TableBody>
       </Table>
     </Paper>

@@ -33,10 +33,7 @@ import { createReducer } from './utils'
 import { days } from '../constants/index'
 
 const initialState = {
-  days: [{
-    day: 'Monday',
-    periods: 6
-  }],
+  days: [],
   teachers: [],
   classList: [],
   sections: [],
