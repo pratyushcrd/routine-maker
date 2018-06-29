@@ -8,24 +8,27 @@ import DaysIcon from '@material-ui/icons/Today'
 import PersonIcon from '@material-ui/icons/Person'
 import ClassIcon from '@material-ui/icons/AccountBalance'
 import Divider from '@material-ui/core/Divider'
+import { setScreen } from './actions/app'
 
-const navListItems = (
+const changeScreen = (props, screenIndex) => () => props.dispatch(setScreen(screenIndex))
+
+const navListItems = (props) => (
   <div>
-    <ListItem button>
+    <ListItem button onClick={changeScreen(props, 0)}>
       <ListItemIcon>
         <DaysIcon />
       </ListItemIcon>
       <ListItemText primary="Days" />
     </ListItem>
     <Divider />
-    <ListItem button>
+    <ListItem button onClick={changeScreen(props, 1)}>
       <ListItemIcon>
         <PersonIcon />
       </ListItemIcon>
       <ListItemText primary="Teachers" />
     </ListItem>
     <Divider />
-    <ListItem button>
+    <ListItem button onClick={changeScreen(props, 2)}>
       <ListItemIcon>
         <ClassIcon />
       </ListItemIcon>

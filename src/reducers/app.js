@@ -1,19 +1,23 @@
-import { APP_LOAD, NEXT_SCREEN, PREVIOUS_SCREEN, } from 'constants/action-types'
+import { APP_LOAD, NEXT_SCREEN, PREVIOUS_SCREEN, SET_SCREEN, } from 'constants/action-types'
+import pages from 'constants/app-pages'
+import { createReducer } from './utils'
 
 const initialState = {
   loaded: false,
   currentScreen: 0,
 }
 
-export default function app(state = initialState, action) {
-  switch (action.type) {
-  case APP_LOAD:
-    return { ...state, loaded: true, }
-  case NEXT_SCREEN:
-    return { ...state, currentScreen: (state.currentScreen >= 0 ? state.currentScreen  + 1 : 0), }
-  case PREVIOUS_SCREEN:
-    return { ...state, currentScreen: (state.currentScreen >= 0 ? state.currentScreen  - 1 : 0), }
-  default:
-    return state
-  }
+const handler = {
+  [APP_LOAD]: () => ({ loaded: true, }),
+  [NEXT_SCREEN]: (state) => (
+    { currentScreen: (state.currentScreen + (1 + pages.length)) % pages.length }
+  ),
+  [PREVIOUS_SCREEN]: (state) => (
+    { currentScreen: (state.currentScreen - (1 + pages.length)) % pages.length }
+  ),
+  [SET_SCREEN]: (state, action) => {
+    return { currentScreen: action.screen }
+  },
 }
+
+export default createReducer(initialState, handler)

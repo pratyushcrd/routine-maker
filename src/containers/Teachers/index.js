@@ -1,9 +1,8 @@
-function Teachers() {
-  console.log('teachers');
-  return (
-    <div>
+import React from 'react'
 
-    </div>
+function Teachers() {
+  return (
+    <div> Teacher&apos;s Page </div>
   )
 }
 

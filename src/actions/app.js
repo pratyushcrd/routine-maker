@@ -1,4 +1,4 @@
-import { APP_LOAD, NEXT_SCREEN, PREVIOUS_SCREEN, } from 'constants/action-types'
+import { APP_LOAD, NEXT_SCREEN, PREVIOUS_SCREEN, SET_SCREEN } from 'constants/action-types'
 
 export function loadApp() {
   return {
@@ -18,4 +18,9 @@ export function previousScreen() {
   }
 }
 
-export default { loadApp, nextScreen, previousScreen}
+export function setScreen(screen) {
+  return {
+    type: SET_SCREEN,
+    screen,
+  }
+}

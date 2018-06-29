@@ -11,6 +11,7 @@ import Divider from '@material-ui/core/Divider'
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
+import { connect, } from 'react-redux'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import navListItems from './NavListItems'
 import routes from './routes'
@@ -136,7 +137,7 @@ class MiniDrawer extends React.Component {
             </IconButton>
           </div>
           <Divider />
-          <List>{navListItems}</List>
+          <List>{navListItems(this.props)}</List>
           
         </Drawer>
         <main className={classes.content}>
@@ -153,4 +154,8 @@ MiniDrawer.propTypes = {
   theme: PropTypes.object.isRequired,
 }
 
-export default withStyles(styles, { withTheme: true, })(MiniDrawer)
+function mapStateToProperties(state) {
+  return Object.assign({}, state.input)
+}
+
+export default connect(mapStateToProperties)(withStyles(styles, { withTheme: true, })(MiniDrawer))

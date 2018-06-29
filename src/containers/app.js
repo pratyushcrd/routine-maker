@@ -3,9 +3,7 @@ import { connect, } from 'react-redux'
 import { loadApp, } from 'actions/app'
 import PropTypes from 'prop-types'
 import styles from './app.css'
-import Days from './Days/index'
-import Classes from './Classes/index'
-import Teachers from './Teachers/index'
+import pages from '../constants/app-pages'
 
 export class AppContainer extends Component {
   componentDidMount() {
@@ -13,20 +11,14 @@ export class AppContainer extends Component {
   }
 
   render() {
-    let displayedPage = <Classes />;
-    if(this.props.currentScreen == 2){
-      displayedPage = <Days />;
-    }
-    else if(this.props.currentScreen == 0){
-      displayedPage = <Teachers />;
-    }
+    const DisplayedPage = pages.pages[this.props.currentScreen]
     if (!this.props.loaded) {
       return null
     }
 
     return (
       <div className={styles.container} >
-        {displayedPage}
+        <DisplayedPage />
       </div>
     )
   }
@@ -39,6 +31,7 @@ function mapStateToProperties(state) {
 AppContainer.propTypes = {
   dispatch: PropTypes.func.isRequired,
   loaded: PropTypes.bool.isRequired,
+  currentScreen: PropTypes.number.isRequired,
 }
 
 export default connect(mapStateToProperties)(AppContainer)

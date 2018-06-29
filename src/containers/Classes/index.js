@@ -1,8 +1,9 @@
+import React from 'react'
+
 function Classes() {
-  console.log('class');
   return (
     <div>
-
+      Classes Page
     </div>
   )
 }
