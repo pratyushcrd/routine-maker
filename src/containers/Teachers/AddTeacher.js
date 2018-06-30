@@ -43,7 +43,6 @@ class AddTeacher extends React.Component {
     snackOpen: false,
     snackVariant: '',
     snackMessage: '',
-    snackId: -1,
   }
 
   handleChange = name => event => {
@@ -60,40 +59,23 @@ class AddTeacher extends React.Component {
     this.setState({ snackOpen: false })
   }
 
-  createSnackCloser = (ms = 2000) => {
-    const snackId = setTimeout(() => {
-      if (this.state.snackId === snackId) {
-        this.setState({
-          snackOpen: false
-        })
-      }
-    }, ms)
-    return snackId
-  }
-
-
   addTeachers = () => {
-    let snackId
     const tid = this.state.tid
     const teacher = this.state.teacher.replace(/^\s+/, '')
     if (!tid || !teacher) {
-      snackId = this.createSnackCloser()
       this.setState({
         snackOpen: true,
         snackMessage: 'Fields cannot be blank',
         snackVariant: 'warning',
-        snackId,
       })
       return
     }
     const existingTeacher = this.props.teachers.find(teacherOb => teacherOb.id === tid)
     if (existingTeacher) {
-      snackId = this.createSnackCloser()
       this.setState({
         snackOpen: true,
         snackMessage: `${existingTeacher.name} has same id '${existingTeacher.id}'`,
         snackVariant: 'warning',
-        snackId,
       })
       return
     }
@@ -114,7 +96,7 @@ class AddTeacher extends React.Component {
             horizontal: 'left',
           }}
           open={this.state.snackOpen}
-          autoHideDuration={6000}
+          autoHideDuration={2500}
           onClose={this.handleClose}
         >
           <MySnackbarContentWrapper
