@@ -75,7 +75,7 @@ class AddTeacher extends React.Component {
   addTeachers = () => {
     let snackId
     const tid = this.state.tid
-    const teacher = this.state.teacher
+    const teacher = this.state.teacher.replace(/^\s+/, '')
     if (!tid || !teacher) {
       snackId = this.createSnackCloser()
       this.setState({

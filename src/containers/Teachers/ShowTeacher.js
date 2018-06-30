@@ -26,8 +26,9 @@ const dummyDay = {
   id: '',
 }
 
-function getTableEntries(teacher) {
+function getTableEntries(teacher, index) {
   return (<TableRow key={teacher.id}>
+    <TableCell>{(index + 1) || 'NA'}</TableCell>
     <TableCell>{teacher.name}</TableCell>
     <TableCell>{teacher.id}</TableCell>
   </TableRow>)
@@ -40,13 +41,14 @@ function ShowTeacher(props) {
       <Table>
         <TableHead>
           <TableRow>
+            <TableCell>S.No</TableCell>
             <TableCell>Teacher Name</TableCell>
             <TableCell>ID</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           { teachers.map(getTableEntries) }
-          { !teachers.length && getTableEntries(dummyDay) }
+          { !teachers.length && getTableEntries(dummyDay, -1) }
         </TableBody>
       </Table>
     </Paper>
