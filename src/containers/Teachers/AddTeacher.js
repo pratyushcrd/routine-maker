@@ -47,8 +47,10 @@ class AddTeacher extends React.Component {
 
   handleChange = name => event => {
     let value = event.target.value
-    if (typeof value === 'string') {
-      value = value.trim()
+    if (name === 'teacher') {
+      value = value.replace(/^\s+/, '')
+    } else if (name === 'tid') {
+      value = value.replace(/\s+/g, '')
     }
     this.setState({
       [name]: value,
@@ -61,7 +63,7 @@ class AddTeacher extends React.Component {
 
   addTeachers = () => {
     const tid = this.state.tid
-    const teacher = this.state.teacher.replace(/^\s+/, '')
+    const teacher = this.state.teacher
     if (!tid || !teacher) {
       this.setState({
         snackOpen: true,
