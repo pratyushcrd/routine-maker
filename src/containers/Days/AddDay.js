@@ -50,6 +50,10 @@ class AddDay extends React.Component {
     this.setState({ [event.target.name]: event.target.value })
   }
 
+  handleChangePeriods = event => {
+    this.setState({ [event.target.name]: Math.max(1, +event.target.value) })
+  }
+
   handleClose = () => {
     this.setState({ open: false })
   }
@@ -100,7 +104,7 @@ class AddDay extends React.Component {
           id="number"
           label="Number"
           value={this.state.periods}
-          onChange={this.handleChange}
+          onChange={this.handleChangePeriods}
           type="number"
           className={classes.textField}
           InputLabelProps={{
