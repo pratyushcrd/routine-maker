@@ -34,6 +34,21 @@ module.exports = {
       name: 'Kiran Rao',
     }
   ],
+  classes1: [
+    {
+      className: '1',
+      sections: [{
+        name: 'A',
+        teacher: 'mh3124'
+      }, {
+        name: 'B',
+        teacher: 'mh3125'
+      }, {
+        name: 'C',
+        teacher: 'mh3126'
+      }]
+    },
+  ],
   classes: [{
     className: '1',
     section: 'A',

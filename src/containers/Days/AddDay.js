@@ -93,6 +93,9 @@ class AddDay extends React.Component {
                 name: 'day',
               }}
             >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
               {days.map(day => (
                 <MenuItem key={day} value={day}>{day}</MenuItem>
               ))}
