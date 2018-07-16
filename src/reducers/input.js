@@ -27,7 +27,8 @@ import {
   DELETE_TEACHER,
   DELETE_CLASS,
   DELETE_SECTION,
-  DELETE_SUBJECT
+  DELETE_SUBJECT,
+  UPDATE_CLASS_SECTION,
 } from 'constants/action-types'
 import { createReducer } from './utils'
 import { days } from '../constants/index'
@@ -138,6 +139,23 @@ const handlers = {
     subjects: state.subjects.filter(subjectInfo => (action.className !== subjectInfo.className) &&
       (action.subject !== subjectInfo.subject))
   }),
+  [UPDATE_CLASS_SECTION]: (state, action) => {
+    const classIndex = state.classList.findIndex(x => x.className === action.className)
+    if (classIndex > -1) {
+      return {
+        classList: [{
+          className: action.className,
+          section: action.section,
+        }, ...state.sections]
+      }
+    }
+    const classList = state.classList.array.slice()
+    classList[classIndex] = {
+      className: action.className,
+      section: action.section,
+    }
+    return classList
+  }
 }
 
 export default createReducer(initialState, handlers)

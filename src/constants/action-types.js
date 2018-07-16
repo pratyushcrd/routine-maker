@@ -26,4 +26,6 @@ export const NEXT_SCREEN = 'NEXT_SCREEN'
 export const PREVIOUS_SCREEN = 'PREVIOUS_SCREEN'
 export const SET_SCREEN = 'SET_SCREEN'
 
+export const UPDATE_CLASS_SECTION = 'UPDATE_CLASS_SECTION'
+
 export default { APP_LOAD, }

@@ -80,7 +80,6 @@ class AddClass extends React.Component {
   }
 
   changeTeacher = value => {
-    console.log(value)
     this.setState({
       sectionTeacher: value
     })
@@ -104,6 +103,14 @@ class AddClass extends React.Component {
     }
     this.setState({
       sections
+    })
+  }
+
+  updateClassAndSection = () => {
+    this.props.dispatch({
+      type: 'UPDATE_CLASS_SECTION',
+      className: this.state.className,
+      sections: this.state.sections,
     })
   }
 
@@ -205,6 +212,7 @@ AddClass.defaultProps = {
 
 AddClass.propTypes = {
   classes: PropTypes.shape({}),
+  dispatch: PropTypes.func.isRequired,
 }
 
 export default withStyles(styles)(AddClass)
