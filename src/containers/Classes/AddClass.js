@@ -142,7 +142,7 @@ class AddClass extends React.Component {
             <Grid
               container
               spacing={24}
-              key={`${section.name}${section.teacher}`}
+              key={['sectionsgrid', index].join('_')}
             >
               <Grid item xs={4}>
                 <TextField
