@@ -63,6 +63,9 @@ const styles = theme => ({
   }
 })
 
+/**
+ * Component to render Add View for classes
+ */
 class AddClass extends React.Component {
   state = {
     classTeacher: null,
@@ -73,19 +76,20 @@ class AddClass extends React.Component {
     }]
   }
 
+  /**
+   * Handle change in inputs
+   */
   handleChange = name => event => {
     this.setState({
       [name]: event.target.value,
     })
   }
 
-  changeTeacher = value => {
-    console.log(value)
-    this.setState({
-      sectionTeacher: value
-    })
-  }
-
+  /**
+   * Handle change in sections field
+   * @param {Number} index Index of object in sections array
+   * @param {string} attr Attribute to be altered
+   */
   handleSection = (index, attr) => value => {
     const sections = this.state.sections.slice()
     const currentSection = sections[index]
