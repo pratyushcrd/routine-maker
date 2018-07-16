@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect, } from 'react-redux'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import Input from '@material-ui/core/Input'
@@ -11,18 +12,24 @@ import Grid from '@material-ui/core/Grid'
 
 import SelectWrapped from '../common/SelectWrapped'
 
-const suggestions = [
-  {
-    value: 'mh123',
-    label: 'Rakesh Kumar',
-  }, {
-    value: 'mh124',
-    label: 'Byomkesh Kumar',
-  }, {
-    value: 'mh125',
-    label: 'Mahesh Kumar',
+/**
+ * A function to conver teacher object to suggestion
+ * @param {Object} param0 teacher object
+ */
+function teacherObToSuggestionOb({ name, id }) {
+  return {
+    label: name,
+    value: id,
   }
-]
+}
+
+/**
+ * A function make teachers array compatible with suggestions
+ * @param {Array} teachers teachers array
+ */
+function teachersToSuggestions(teachers) {
+  return teachers.map(teacherObToSuggestionOb)
+}
 
 const styles = theme => ({
   button: {
@@ -121,6 +128,8 @@ class AddClass extends React.Component {
 
   render() {
     const { classes } = this.props
+    const suggestions = teachersToSuggestions(this.props.teachers)
+
     return (
       <Paper className={classes.paper}>
         <div className={classes.container}>
@@ -159,7 +168,7 @@ class AddClass extends React.Component {
               spacing={24}
               key={['sectionsgrid', index].join('_')}
             >
-              <Grid item xs={4}>
+              <Grid item xs={3}>
                 <TextField
                   placeholder="section"
                   value={section.name}
@@ -172,7 +181,7 @@ class AddClass extends React.Component {
                   margin="normal"
                 />
               </Grid>
-              <Grid item xs={8}>
+              <Grid item xs={9}>
                 <div className={classes.teacherField}>
                   <Input
                     fullWidth
@@ -220,7 +229,16 @@ AddClass.defaultProps = {
 
 AddClass.propTypes = {
   classes: PropTypes.shape({}),
+  teachers: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired
+  })).isRequired,
   dispatch: PropTypes.func.isRequired,
 }
 
-export default withStyles(styles)(AddClass)
+function mapStateToProperties(state) {
+  return Object.assign({}, state.input)
+}
+
+export default connect(mapStateToProperties)(withStyles(styles)(AddClass))
+
