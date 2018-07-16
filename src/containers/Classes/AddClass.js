@@ -120,6 +120,9 @@ class AddClass extends React.Component {
           Add class details
           </Typography>
 
+          { /* A new line if class name is present */ }
+          { this.state.className && <br /> }
+
           <TextField
             label="class name"
             value={this.state.className}
