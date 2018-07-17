@@ -158,4 +158,14 @@ const handlers = {
   }
 }
 
-export default createReducer(initialState, handlers)
+const storedState = localStorage.inputState
+const inputReducer = createReducer(
+  (storedState && JSON.parse(storedState)) || initialState,
+  handlers,
+)
+
+export default function (state, action) {
+  const resState = inputReducer(state, action)
+  localStorage.inputState = JSON.stringify(resState)
+  return resState
+}
