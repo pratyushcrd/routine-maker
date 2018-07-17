@@ -37,12 +37,34 @@ const styles = theme => ({
 })
 
 class AddTeacher extends React.Component {
+  constructor() {
+    super()
+    this.teacherName = React.createRef()
+    this.teacherId = React.createRef()
+  }
+
   state = {
     teacher: '',
     tid: '',
     snackOpen: false,
     snackVariant: '',
     snackMessage: '',
+  }
+
+  setInputFocus() {
+    // Focus on the ID if value not present & name is provided
+    if (this.state.teacher && !this.state.tid) {
+      return this.teacherId.current.querySelector('input').focus()
+    }
+    // Focus on the name otherwise
+    this.teacherName.current.querySelector('input').focus()
+  }
+
+
+  addTeacherByEnter = (event) => {
+    if (event.key === 'Enter') {
+      this.addTeachers()
+    }
   }
 
   handleChange = name => event => {
@@ -62,6 +84,8 @@ class AddTeacher extends React.Component {
   }
 
   addTeachers = () => {
+    // set focus to name input element for form input loop
+    this.setInputFocus()
     const tid = this.state.tid
     const teacher = this.state.teacher
     if (!tid || !teacher) {
@@ -81,10 +105,16 @@ class AddTeacher extends React.Component {
       })
       return
     }
+    // Dispatch action to save teacher
     this.props.dispatch({
       type: 'ADD_TEACHER',
       name: this.state.teacher,
       id: this.state.tid,
+    })
+    // Clear teachers name and id
+    this.setState({
+      teacher: '',
+      tid: '',
     })
   }
 
@@ -112,25 +142,31 @@ class AddTeacher extends React.Component {
         </Typography>
         <form autoComplete="off">
           <FormControl className={classes.formControl}>
-            <TextField
-              id="teacher"
-              label="Name"
-              className={classes.textField}
-              value={this.state.teacher}
-              onChange={this.handleChange('teacher')}
-              margin="normal"
-            />
+            <div ref={this.teacherName}>
+              <TextField
+                id="teacher"
+                label="Name"
+                className={classes.textField}
+                value={this.state.teacher}
+                onChange={this.handleChange('teacher')}
+                margin="normal"
+                onKeyPress={this.addTeacherByEnter}
+              />
+            </div>
           </FormControl>
           <br />
           <FormControl className={classes.formControl}>
-            <TextField
-              id="tid"
-              label="Teacher ID"
-              className={classes.textField}
-              value={this.state.tid}
-              onChange={this.handleChange('tid')}
-              margin="normal"
-            />
+            <div ref={this.teacherId}>
+              <TextField
+                id="tid"
+                label="Teacher ID"
+                className={classes.textField}
+                value={this.state.tid}
+                onChange={this.handleChange('tid')}
+                margin="normal"
+                onKeyPress={this.addTeacherByEnter}
+              />
+            </div>
           </FormControl>
         </form>
 
