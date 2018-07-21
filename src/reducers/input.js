@@ -19,6 +19,7 @@ import {
   ADD_CLASS,
   ADD_SECTION,
   ADD_SUBJECT,
+  ADD_COMMON_AREA,
   EDIT_DAY,
   EDIT_TEACHER,
   EDIT_SECTION,
@@ -39,6 +40,7 @@ const initialState = {
   classList: [],
   sections: [],
   subjects: [],
+  commonAreas: []
 }
 
 function pick(options) {
@@ -94,6 +96,12 @@ const handlers = {
       subject: action.subject,
       periodsPerWeek: action.periodsPerWeek,
     }, ...state.subjects]
+  }),
+  [ADD_COMMON_AREA]: (state, action) => ({
+    commonAreas: [{
+      name: action.name,
+      count: action.count,
+    }, ...state.commonAreas]
   }),
   [EDIT_DAY]: (state, action) => ({
     days: state.days.map(day => ({

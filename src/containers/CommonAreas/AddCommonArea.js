@@ -63,7 +63,7 @@ class AddCommonArea extends React.Component {
 
   addCommonAreaByEnter = (event) => {
     if (event.key === 'Enter') {
-      this.addTeachers()
+      this.addCommonAreas()
     }
   }
 
@@ -83,7 +83,7 @@ class AddCommonArea extends React.Component {
     this.setState({ snackOpen: false })
   }
 
-  addTeachers = () => {
+  addCommonAreas = () => {
     // set focus to name input element for form input loop
     this.setInputFocus()
     const count = this.state.count
@@ -98,7 +98,7 @@ class AddCommonArea extends React.Component {
     }
     // Dispatch action to save common area
     this.props.dispatch({
-      type: 'ADD_Common_Area',
+      type: 'ADD_COMMON_AREA',
       name: this.state.name,
       count: this.state.count,
     })
@@ -129,16 +129,16 @@ class AddCommonArea extends React.Component {
           />
         </Snackbar>
         <Typography variant="caption" align="left" gutterBottom className={classes.textField}>
-          Add teachers
+          Add Common Area
         </Typography>
         <form autoComplete="off">
           <FormControl className={classes.formControl}>
-            <div ref={this.teacherName}>
+            <div ref={this.commonAreaName}>
               <TextField
                 id="name"
                 label="Name"
                 className={classes.textField}
-                value={this.state.teacher}
+                value={this.state.name}
                 onChange={this.handleChange('name')}
                 margin="normal"
                 onKeyPress={this.addCommonAreaByEnter}
@@ -147,7 +147,7 @@ class AddCommonArea extends React.Component {
           </FormControl>
           <br />
           <FormControl className={classes.formControl}>
-            <div ref={this.teacherId}>
+            <div ref={this.commonAreaCount}>
               <TextField
                 id="count"
                 label="Count"
@@ -167,7 +167,7 @@ class AddCommonArea extends React.Component {
             mini
             color="primary"
             aria-label="add"
-            onClick={this.addTeachers}
+            onClick={this.addCommonAreas}
             className={classes.button}
           >
             Add
