@@ -102,6 +102,7 @@ class AddCommonArea extends React.Component {
         <Typography variant="caption" align="left" gutterBottom className={classes.textField}>
           Add Common Area
         </Typography>
+        <form autoComplete="off">
           <FormControl className={classes.formControl}>
             <div ref={this.commonAreaName}>
               <TextField
@@ -111,11 +112,12 @@ class AddCommonArea extends React.Component {
                 value={this.state.name}
                 onChange={this.handleChange('name')}
                 margin="normal"
-                onKeyPress={(event) =>{event.key === 'Enter' && this.addCommonAreas()}}
+                onKeyPress={(event) =>{if(event.key === 'Enter'){this.addCommonAreas(); event.preventDefault()}}}
               />
             </div>
           </FormControl>
           <br />
+        </form>
         <div>
           <Button
             variant="contained"
