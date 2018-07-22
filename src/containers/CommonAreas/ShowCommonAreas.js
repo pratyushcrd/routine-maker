@@ -27,14 +27,14 @@ const dummyDay = {
 }
 
 function getTableEntries(commonArea, index) {
-  return (<TableRow key={commonArea.id}>
+  return (<TableRow key={index + 1}>
     <TableCell>{(index + 1) || 'NA'}</TableCell>
     <TableCell>{commonArea.name}</TableCell>
     <TableCell>{commonArea.count}</TableCell>
   </TableRow>)
 }
 
-function ShowTeacher(props) {
+function ShowCommonAreas(props) {
   const { classes, commonAreas = {} } = props
   return (
     <Paper className={classes.paper}>
@@ -57,7 +57,7 @@ function ShowTeacher(props) {
 
 ShowCommonAreas.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
-  teachers: PropTypes.arrayOf(PropTypes.object).isRequired,
+  commonAreas: PropTypes.arrayOf(PropTypes.object).isRequired,
 }
 
 function mapStateToProperties(state) {

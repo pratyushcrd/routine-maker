@@ -152,7 +152,7 @@ class AddCommonArea extends React.Component {
                 id="count"
                 label="Count"
                 className={classes.textField}
-                value={this.state.tid}
+                value={this.state.count}
                 onChange={this.handleChange('count')}
                 margin="normal"
                 onKeyPress={this.addCommonAreaByEnter}
