@@ -35,6 +35,13 @@ const navListItems = (props) => (
       <ListItemText primary="Classes" />
     </ListItem>
     <Divider />
+    <ListItem button onClick={changeScreen(props, 3)}>
+      <ListItemIcon>
+        <ClassIcon />
+      </ListItemIcon>
+      <ListItemText primary="Common Areas" />
+    </ListItem>
+    <Divider />
   </div>
 )
 
