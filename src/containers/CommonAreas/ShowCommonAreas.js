@@ -20,17 +20,14 @@ const styles = theme => ({
   },
 })
 
-const dummyDay = {
-  key: 'none',
+const dummyCommonArea = {
   name: 'No common area added',
-  id: '',
 }
 
 function getTableEntries(commonArea, index) {
   return (<TableRow key={index + 1}>
     <TableCell>{(index + 1) || 'NA'}</TableCell>
     <TableCell>{commonArea.name}</TableCell>
-    <TableCell>{commonArea.count}</TableCell>
   </TableRow>)
 }
 
@@ -43,12 +40,11 @@ function ShowCommonAreas(props) {
           <TableRow>
             <TableCell>S.No</TableCell>
             <TableCell>Common Area</TableCell>
-            <TableCell>Count</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           { commonAreas.map(getTableEntries) }
-          { !commonAreas.length && getTableEntries(dummyDay, -1) }
+          { !commonAreas.length && getTableEntries(dummyCommonArea, -1) }
         </TableBody>
       </Table>
     </Paper>

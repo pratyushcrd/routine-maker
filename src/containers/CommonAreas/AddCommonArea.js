@@ -39,41 +39,17 @@ const styles = theme => ({
 class AddCommonArea extends React.Component {
   constructor() {
     super()
-    this.commonAreaName = React.createRef()
-    this.commonAreaCount = React.createRef()
-  }
-
-  state = {
-    name: '',
-    count: '',
-    snackOpen: false,
-    snackVariant: '',
-    snackMessage: '',
-  }
-
-  setInputFocus() {
-    // Focus on the count if value not present & name is provided
-    if (this.state.name && !this.state.count) {
-      return this.commonAreaCount.current.querySelector('input').focus()
-    }
-    // Focus on the name otherwise
-    this.commonAreaName.current.querySelector('input').focus()
-  }
-
-
-  addCommonAreaByEnter = (event) => {
-    if (event.key === 'Enter') {
-      this.addCommonAreas()
+    this.state = {
+      name: '',
+      snackOpen: false,
+      snackVariant: '',
+      snackMessage: '',
     }
   }
 
   handleChange = name => event => {
     let value = event.target.value
-    if (name === 'name') {
-      value = value.replace(/^\s+/, '')
-    } else if (name === 'count') {
-      value = value.replace(/\s+/g, '')
-    }
+    value = value.replace(/^\s+/, '')
     this.setState({
       [name]: value,
     })
@@ -84,11 +60,8 @@ class AddCommonArea extends React.Component {
   }
 
   addCommonAreas = () => {
-    // set focus to name input element for form input loop
-    this.setInputFocus()
-    const count = this.state.count
     const name = this.state.name
-    if (!count || !name) {
+    if (!name) {
       this.setState({
         snackOpen: true,
         snackMessage: 'Fields cannot be blank',
@@ -100,12 +73,10 @@ class AddCommonArea extends React.Component {
     this.props.dispatch({
       type: 'ADD_COMMON_AREA',
       name: this.state.name,
-      count: this.state.count,
     })
     // Clear common area name and count
     this.setState({
       name: '',
-      count: '',
     })
   }
 
@@ -131,7 +102,6 @@ class AddCommonArea extends React.Component {
         <Typography variant="caption" align="left" gutterBottom className={classes.textField}>
           Add Common Area
         </Typography>
-        <form autoComplete="off">
           <FormControl className={classes.formControl}>
             <div ref={this.commonAreaName}>
               <TextField
@@ -141,26 +111,11 @@ class AddCommonArea extends React.Component {
                 value={this.state.name}
                 onChange={this.handleChange('name')}
                 margin="normal"
-                onKeyPress={this.addCommonAreaByEnter}
+                onKeyPress={(event) =>{event.key === 'Enter' && this.addCommonAreas()}}
               />
             </div>
           </FormControl>
           <br />
-          <FormControl className={classes.formControl}>
-            <div ref={this.commonAreaCount}>
-              <TextField
-                id="count"
-                label="Count"
-                className={classes.textField}
-                value={this.state.count}
-                onChange={this.handleChange('count')}
-                margin="normal"
-                onKeyPress={this.addCommonAreaByEnter}
-              />
-            </div>
-          </FormControl>
-        </form>
-
         <div>
           <Button
             variant="contained"
@@ -183,7 +138,6 @@ AddCommonArea.propTypes = {
   dispatch: PropTypes.func.isRequired,
   commonAreas: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
-    count: PropTypes.string.isRequired,
   })).isRequired
 }
 

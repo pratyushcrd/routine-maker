@@ -100,7 +100,6 @@ const handlers = {
   [ADD_COMMON_AREA]: (state, action) => ({
     commonAreas: [{
       name: action.name,
-      count: action.count,
     }, ...state.commonAreas]
   }),
   [EDIT_DAY]: (state, action) => ({
