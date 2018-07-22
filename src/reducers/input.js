@@ -81,7 +81,11 @@ const handlers = {
     }, ...state.days].sort((a, b) => days.indexOf(a.day) - days.indexOf(b.day)))
   }),
   [ADD_CLASS]: (state, action) => ({
-    classList: [action.className, ...state.classList]
+    classList: [{
+      className: action.className,
+      subjects: action.subjects,
+      sections: action.sections,
+    }, ...state.classList]
   }),
   [ADD_SECTION]: (state, action) => ({
     sections: [{

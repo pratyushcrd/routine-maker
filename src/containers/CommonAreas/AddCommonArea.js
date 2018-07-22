@@ -69,6 +69,14 @@ class AddCommonArea extends React.Component {
       })
       return
     }
+    if(this.props.commonAreas.some((commonArea)=> commonArea.name.toLowerCase() === name.toLowerCase())){
+      this.setState({
+        snackOpen: true,
+        snackMessage: "'" + name + "' is already present",
+        snackVariant: 'warning',
+      })
+      return
+    }
     // Dispatch action to save common area
     this.props.dispatch({
       type: 'ADD_COMMON_AREA',
