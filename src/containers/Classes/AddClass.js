@@ -11,6 +11,7 @@ import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 import Snackbar from '@material-ui/core/Snackbar'
 import MySnackbarContentWrapper from '../common/SnackBarContent'
+import Chip from '@material-ui/core/Chip';
 
 const styles = theme => ({
   button: {
@@ -18,10 +19,6 @@ const styles = theme => ({
     marginBottom: theme.spacing.unit,
     textAlign: 'center',
     minWidth: '100%',
-  },
-  formControl: {
-    marginTop: theme.spacing.unit,
-    minWidth: '90%',
   },
   paper: {
     padding: theme.spacing.unit,
@@ -33,10 +30,6 @@ const styles = theme => ({
   textField: {
     textAlign: 'start',
     width: '100%',
-  },
-  teacherField: {
-    textAlign: 'start',
-    marginTop: theme.spacing.unit * 0.85,
   },
   container: {
     width: '90%',
@@ -51,6 +44,8 @@ const styles = theme => ({
   }
 })
 
+const inputSeperator = ['Enter', ',']
+
 /**
  * Component to render Add View for classes
  */
@@ -59,19 +54,14 @@ class AddClass extends React.Component {
     super()
     this.state = {
     className: '',
-    sections: [{
-      name: '',
-    }],
-    subjects: [{
-      name: '',
-    }],
+    subjectInput: '',
+    sectionInput: '',
+    sections: [],
+    subjects: [],
     snackOpen: false,
     snackVariant: '',
     snackMessage: '',
     }
-
-  this.sectionsRef = [React.createRef()]
-  this.subjectsRef = [React.createRef()]
   }
 
 
@@ -84,73 +74,53 @@ class AddClass extends React.Component {
   handleChange = name => event => {
     let value = event.target.value
     value = value.replace(/^\s+/, '')
-    this.setState({
-      [name]: value,
-    })
+    inputSeperator.some((sep)=> value.substr(-1) === sep) || this.setState({[name]: value})
   }
 
-  /**
-   * Handle change in sections field
-   * @param {Number} index Index of object in sections array
-   */
-  handleSection = (index) => value => {
-    const sections = this.state.sections.slice()
-    const currentSection = sections[index]
-    currentSection.name = value.target.value
-    // Add another entry if last entry is done
-    if ((index === sections.length - 1) && currentSection.name) {
-      sections.push({
-        name: '',
-      })
-      this.sectionsRef.push(React.createRef());
-    }
-    this.setState({
-      sections
-    })
-  }
+  removeItem = (type,index) => (() =>{
+    let temp = this.state[type].slice()
+    temp.splice(index, 1)
+    this.setState({[type]: temp})
+  })
 
-    /**
-   * Handle change in sections field
-   * @param {Number} index Index of object in sections array
-   */
-  handleSubject = (index) => value => {
-    const subjects = this.state.subjects.slice()
-    const currentSubject = subjects[index]
-    currentSubject.name = value.target.value
-    // Add another entry if last entry is done
-    if ((index === subjects.length - 1) && currentSubject.name) {
-      subjects.push({
-        name: '',
-      })
-      this.subjectsRef.push(React.createRef());
-    }
-    this.setState({
-      subjects
-    })
-  }
-
-  shiftFocus = (from, index)=>{
-    if(from === 'className'){
-      this.state.className.trim() ?
-      this.subjectsRef[0].current.querySelector('input').focus() : this.displayWarning('Clas name is mandatory')
-    }
-    else if(from === 'subjects'){
-      if(this.state.subjects[index].name.trim()){
-        this.subjectsRef[index + 1].current.querySelector('input').focus()
+  addSubject = value => {
+    const input = this.state.subjectInput.trim();
+    if(input){
+      if(this.state.subjects.some(sub => sub.name === input)){
+        this.displayWarning("Subject '" + input.toUpperCase() + "' is added more than once. Please remove extras.") 
       }
       else{
-        index === 0 ? this.displayWarning('Enter at least one subject') : this.sectionsRef[0].current.querySelector('input').focus();
+        const subjects = this.state.subjects.slice()
+        subjects.push({name: input})
+        this.setState({
+          subjects,
+          subjectInput: '',
+        })
       }
     }
-    else if(from === 'sections'){
-      if(this.state.sections[index].name.trim()){
-        this.sectionsRef[index + 1].current.querySelector('input').focus()
+    else{
+      this.displayWarning('Enter at least one subject') 
+    }
+  }
+
+  addSection = value => {
+    const input = this.state.sectionInput.trim();
+    if(input){
+      if(this.state.sections.some(sec => sec.name === input)){
+        this.displayWarning("Section '" + input.toUpperCase() + "' is added more than once. Please remove extras.") 
       }
       else{
-        index === 0 ? this.displayWarning('Enter at least one section') : this.updateClassAndSection();
+        const sections = this.state.sections.slice()
+        sections.push({name: input})
+        this.setState({
+          sections,
+          sectionInput: '',
+        })
       }
     }
-
+    else{
+      this.displayWarning('Enter at least one section') 
+    }
   }
 
   displayWarning = (message) => {
@@ -162,15 +132,16 @@ class AddClass extends React.Component {
   }
 
   validateAndSaveClass = () =>{
+    console.log(this.props.classList);
     if(!this.state.className.trim()){
       this.displayWarning('Clas name is mandatory')
       return
     }
-    if(this.state.subjects.filter((sub) => sub.name).length < 1){
+    if(this.state.subjects.length < 1){
       this.displayWarning('Enter at least one subject')
       return
     }
-    if(this.state.sections.filter((sec) => sec.name).length < 1){
+    if(this.state.sections.length < 1){
       this.displayWarning('Enter at least one section')
       return
     }
@@ -186,23 +157,18 @@ class AddClass extends React.Component {
     this.props.dispatch({
       type: 'ADD_CLASS',
       className: this.state.className.trim(),
-      subjects: this.state.subjects.filter((sub) => sub.name).map((sub) => ({name: sub.name.trim()})),
-      sections: this.state.sections.filter((sec) => sec.name).map((sec) => ({name: sec.name.trim()})),
+      subjects: this.state.subjects,
+      sections: this.state.sections,
     })
     // Clear common area name and count
     this.setState({
       className: '',
-      sections: [{
-        name: '',
-      }],
-      subjects: [{
-        name: '',
-      }],
+      sections: [],
+      subjects: [],
       snackOpen: false,
       snackVariant: '',
       snackMessage: '',
       })
-      console.log(this.props.classList);
   }
 
   render() {
@@ -237,7 +203,6 @@ class AddClass extends React.Component {
             type="text"
             className={classes.textField}
             margin="none"
-            onKeyPress={(event) =>{event.key === 'Enter' && this.shiftFocus('className')}}
           />
           <Grid container spacing={24} className={classes.sectionsGrid}>
             <Grid item xs={6}>
@@ -246,30 +211,35 @@ class AddClass extends React.Component {
               </Typography>
             </Grid>
           </Grid>
-          {this.state.subjects.map((subject, index) => (
-            <Grid
-              container
-              spacing={24}
-              key={['subjectsgrid', index].join('_')}
-            >
-              <Grid item xs={12}>
-              <div ref={this.subjectsRef[index]}>
-                <TextField
-                  placeholder={"subject " + (index + 1)}
-                  value={subject.name}
-                  onChange={this.handleSubject(index)}
+
+          <TextField
+                  placeholder={"subject"}
+                  value={this.state.subjectInput}
+                  onChange={this.handleChange('subjectInput')}
                   type="text"
                   className={classes.textField}
                   InputLabelProps={{
                     shrink: true,
                   }}
                   margin="normal"
-                  onKeyPress={(event) =>{event.key === 'Enter' && this.shiftFocus('subjects', index)}}
-                />
-                </div>
-              </Grid>
-            </Grid>
+                  onKeyPress={(event) =>{inputSeperator.some((sep)=>event.key === sep) && this.addSubject()}}
+          />
+
+          <Grid container spacing = {8}>
+          
+          {this.state.subjects.map((subject, index) => (
+            <Grid item key={['subjectsgrid', index].join('_')} >
+              <Chip
+        label= {subject.name}
+        onDelete={this.removeItem('subjects', index)}
+        className={classes.chip}
+        
+      />
+      </Grid>
           ))}
+          
+        </Grid>
+          
 
           <Grid container spacing={24} className={classes.sectionsGrid}>
             <Grid item xs={6}>
@@ -279,33 +249,36 @@ class AddClass extends React.Component {
             </Grid>
           </Grid>
 
-          {this.state.sections.map((section, index) => (
-            <Grid
-              container
-              spacing={24}
-              key={['sectionsgrid', index].join('_')}
-            >
-              <Grid item xs={12}>
-              <div ref={this.sectionsRef[index]}>
-                <TextField
-                  placeholder={"section " + (index + 1)}
-                  value={section.name}
-                  onChange={this.handleSection(index)}
+          <TextField
+                  placeholder={"section "}
+                  value={this.state.sectionInput}
+                  onChange={this.handleChange('sectionInput')}
                   type="text"
                   className={classes.textField}
                   InputLabelProps={{
                     shrink: true,
                   }}
                   margin="normal"
-                  onKeyPress={(event) =>{event.key === 'Enter' && this.shiftFocus('sections', index)}}
-                />
-              </div>
-              </Grid>
-            </Grid>
+                  onKeyPress={(event) =>{inputSeperator.some((sep)=>event.key === sep) && this.addSection()}}
+          />
+
+          <Grid container spacing = {8}>
+          
+          {this.state.sections.map((section, index) => (
+            <Grid item key={['sectionsgrid', index].join('_')} >
+              <Chip
+        label={section.name}
+        onDelete={this.removeItem('sections', index)}
+        className={classes.chip}
+        
+      />
+      </Grid>
           ))}
+          
+        </Grid>
 
+          
           <br />
-
           <div>
             <Button
               variant="contained"
