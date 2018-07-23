@@ -35,18 +35,22 @@ class ShowClasses extends React.Component {
       hovered: -1
     }
     this.hideIds = {}
+    this.showIds = {}
   }
 
   onHover = (index) => () => {
     // hideId is set by onHoverOut
     clearTimeout(this.hideIds[index])
-    this.setState({
-      [`showButtonsFor${index}`]: true,
-      hovered: index
-    })
+    this.showIds[index] = setTimeout(() => {
+      this.setState({
+        [`showButtonsFor${index}`]: true,
+        hovered: index
+      })
+    }, FADE_TIMEOUT / 4)
   }
 
   onHoverOut = (index) => () => {
+    clearTimeout(this.showIds[index])
     if (this.state.hovered === index) {
       this.setState({
         hovered: -1
@@ -84,7 +88,11 @@ class ShowClasses extends React.Component {
                 {className}
               </Typography>
               {
-                this.state[`showButtonsFor${index}`] && <Fade timeout={FADE_TIMEOUT} in={hovered === index}>
+                this.state[`showButtonsFor${index}`] &&
+                <Fade
+                  timeout={FADE_TIMEOUT}
+                  in={this.state[`showButtonsFor${index}`]}
+                >
                   <Grid container alignItems={'flex-start'} justify={'flex-start'} >
                     <Grid item xs={5} >
                       <IconButton
