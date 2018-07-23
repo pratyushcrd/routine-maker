@@ -2,13 +2,11 @@ import React from 'react'
 // import PropTypes from 'prop-types'
 import PropTypes from 'prop-types'
 import { connect, } from 'react-redux'
-import Table from '@material-ui/core/Table'
 import { withStyles } from '@material-ui/core/styles'
-import TableBody from '@material-ui/core/TableBody'
-import TableCell from '@material-ui/core/TableCell'
-import TableHead from '@material-ui/core/TableHead'
-import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
+import Typography from '@material-ui/core/Typography'
+import Grid from '@material-ui/core/Grid'
+import Chip from '@material-ui/core/Chip'
 
 const styles = theme => ({
   paper: {
@@ -20,46 +18,75 @@ const styles = theme => ({
   },
 })
 
-const dummyDay = {
-  key: 'none',
-  day: 'No days added',
-  period: '',
-}
-
-function getTableEntries(day) {
-  return (<TableRow key={day.day}>
-    <TableCell>{day.day}</TableCell>
-    <TableCell>{day.periods}</TableCell>
-  </TableRow>)
-}
-
-function ShowDays(props) {
-  const { classes, days = {} } = props
-  return (
-    <Paper className={classes.paper}>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>Day</TableCell>
-            <TableCell>Periods</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          { days.map(getTableEntries) }
-          { !days.length && getTableEntries(dummyDay) }
-        </TableBody>
-      </Table>
+const getSingleClass = (classes) => ({ className, subjects, sections }) => (
+  <Grid item xs={6} key={`classList@@${className}`} >
+    <Paper className={classes.paper} >
+      <Grid container alignItems={'center'} spacing={16} >
+        <Grid item xs={3} align={'center'} >
+          <Typography variant="caption" gutterBottom align="center">
+            Class Name
+          </Typography>
+          <Typography variant="display2" gutterBottom align="center">
+            {className}
+          </Typography>
+        </Grid>
+        <Grid item xs={1} align={'center'} >
+          {''}
+        </Grid>
+        <Grid item xs={8} align={'start'} >
+          <Typography variant="caption" gutterBottom align="left">
+            Subjects
+          </Typography>
+          <Grid container spacing={8}>
+            { subjects.map(({ name }) => (
+              <Grid item key={`${className}@@${name}`} >
+                <Chip label={name} className={classes.chip} />
+              </Grid>
+            )) }
+          </Grid>
+          <br />
+          <Typography variant="caption" gutterBottom align="left">
+            Sections
+          </Typography>
+          <Grid container spacing={8}>
+            { sections.map(({ name }) => (
+              <Grid item key={`${className}@@${name}`} >
+                <Chip label={name} className={classes.chip} />
+              </Grid>
+            )) }
+          </Grid>
+        </Grid>
+      </Grid>
     </Paper>
+  </Grid>
+)
+
+function ShowClasses(props) {
+  const { classes, classList = {} } = props
+  return (
+    <Grid container spacing={24}>
+      {
+        classList.map(getSingleClass(classes))
+      }
+    </Grid>
   )
 }
 
-ShowDays.propTypes = {
+ShowClasses.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
-  days: PropTypes.arrayOf(PropTypes.object).isRequired,
+  classList: PropTypes.arrayOf(PropTypes.shape({
+    className: PropTypes.string,
+    sections: PropTypes.arrayOf(PropTypes.shape({
+      name: PropTypes.string
+    })),
+    subjects1: PropTypes.arrayOf(PropTypes.shape({
+      name: PropTypes.string
+    }))
+  })).isRequired,
 }
 
 function mapStateToProperties(state) {
   return state.input
 }
 
-export default connect(mapStateToProperties)(withStyles(styles)(ShowDays))
+export default connect(mapStateToProperties)(withStyles(styles)(ShowClasses))
