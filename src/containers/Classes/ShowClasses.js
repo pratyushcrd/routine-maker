@@ -35,10 +35,10 @@ const getSingleClass = (classes) => ({ className, subjects, sections }) => (
         </Grid>
         <Grid item xs={8} align={'start'} >
           <Typography variant="caption" gutterBottom align="left">
-            Subjects
+            Sections
           </Typography>
           <Grid container spacing={8}>
-            { subjects.map(({ name }) => (
+            { sections.map(({ name }) => (
               <Grid item key={`${className}@@${name}`} >
                 <Chip label={name} className={classes.chip} />
               </Grid>
@@ -46,10 +46,10 @@ const getSingleClass = (classes) => ({ className, subjects, sections }) => (
           </Grid>
           <br />
           <Typography variant="caption" gutterBottom align="left">
-            Sections
+            Subjects
           </Typography>
           <Grid container spacing={8}>
-            { sections.map(({ name }) => (
+            { subjects.map(({ name }) => (
               <Grid item key={`${className}@@${name}`} >
                 <Chip label={name} className={classes.chip} />
               </Grid>
