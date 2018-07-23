@@ -7,6 +7,12 @@ import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 import Chip from '@material-ui/core/Chip'
+import Fade from '@material-ui/core/Fade'
+import IconButton from '@material-ui/core/IconButton'
+import DeleteIcon from '@material-ui/icons/Delete'
+import EditIcon from '@material-ui/icons/Edit'
+
+const FADE_TIMEOUT = 200
 
 const styles = theme => ({
   paper: {
@@ -16,60 +22,135 @@ const styles = theme => ({
     whiteSpace: 'nowrap',
     marginBottom: theme.spacing.unit,
   },
+  button: {
+    margin: theme.spacing.unit,
+  },
 })
 
-/* eslint-disable react/prop-types */
-const getSingleClass = (classes) => ({ className, subjects, sections }) => (
-  <Grid item xs={6} key={`classList@@${className}`} >
-    <Paper className={classes.paper} >
-      <Grid container alignItems={'center'} spacing={16} >
-        <Grid item xs={3} align={'center'} >
-          <Typography variant="caption" gutterBottom align="center">
-            Class
-          </Typography>
-          <Typography variant="display2" gutterBottom align="center">
-            {className}
-          </Typography>
-        </Grid>
-        <Grid item xs={9} align={'start'} >
-          <Typography variant="caption" gutterBottom align="left">
-            Sections
-          </Typography>
-          <Grid container spacing={8}>
-            { sections.map(({ name }) => (
-              <Grid item key={`${className}@@${name}`} >
-                <Chip label={name} className={classes.chip} />
-              </Grid>
-            )) }
-          </Grid>
-          <br />
-          <Typography variant="caption" gutterBottom align="left">
-            Subjects
-          </Typography>
-          <Grid container spacing={8}>
-            { subjects.map(({ name }) => (
-              <Grid item key={`${className}@@${name}`} >
-                <Chip label={name} className={classes.chip} />
-              </Grid>
-            )) }
-          </Grid>
-        </Grid>
-      </Grid>
-    </Paper>
-  </Grid>
-)
-/* eslint-enable */
 
-function ShowClasses(props) {
-  const { classes, classList = {} } = props
-  return (
-    <Grid container spacing={24}>
-      {
-        classList.map(getSingleClass(classes))
+class ShowClasses extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      hovered: -1
+    }
+    this.hideIds = {}
+  }
+
+  onHover = (index) => () => {
+    // hideId is set by onHoverOut
+    clearTimeout(this.hideIds[index])
+    this.setState({
+      [`showButtonsFor${index}`]: true,
+      hovered: index
+    })
+  }
+
+  onHoverOut = (index) => () => {
+    this.hideIds[index] = setTimeout(() => {
+      if (this.state.hovered === index) {
+        this.setState({
+          hovered: -1
+        })
       }
-    </Grid>
-  )
+      this.setState({
+        [`showButtonsFor${index}`]: false,
+      })
+    }, FADE_TIMEOUT)
+  }
+
+  /* eslint-disable react/prop-types */
+  /**
+   * Function to get view of a single class
+   */
+  getSingleClass = ({ className, subjects, sections }, index) => {
+    const { classes } = this.props
+    const hovered = this.state.hovered
+    return (
+      <Grid
+        item
+        xs={6}
+        key={`classList@@${className}`}
+        onMouseOver={this.onHover(index)}
+        onMouseOut={this.onHoverOut(index)}
+      >
+        <Paper className={classes.paper} >
+          <Grid container alignItems={'center'} spacing={16} >
+            <Grid item xs={3} align={'center'} >
+              <Typography variant="caption" align="center">
+              Class
+              </Typography>
+              <Typography variant="display2" align="center">
+                {className}
+              </Typography>
+              {
+                this.state[`showButtonsFor${index}`] && <Fade timeout={FADE_TIMEOUT} in={hovered === index}>
+                  <Grid container alignItems={'flex-start'} justify={'flex-start'} >
+                    <Grid item xs={5} >
+                      <IconButton
+                        style={{ width: 36, height: 36 }}
+                        className={classes.button}
+                        aria-label="Edit"
+                      >
+                        <EditIcon style={{ fontSize: 18 }} />
+                      </IconButton>
+                    </Grid>
+                    <Grid item xs={5} >
+                      <IconButton
+                        style={{ width: 36, height: 36 }}
+                        className={classes.button}
+                        aria-label="Delete"
+                      >
+                        <DeleteIcon style={{ fontSize: 18 }} />
+                      </IconButton>
+                    </Grid>
+                  </Grid>
+                </Fade>
+              }
+
+            </Grid>
+            <Grid item xs={9} align={'start'} >
+              <Typography variant="caption" gutterBottom align="left">
+              Sections
+              </Typography>
+              <Grid container spacing={8}>
+                { sections.map(({ name }) => (
+                  <Grid item key={`${className}@@${name}`} >
+                    <Chip label={name} className={classes.chip} />
+                  </Grid>
+                )) }
+              </Grid>
+              <br />
+              <Typography variant="caption" gutterBottom align="left">
+              Subjects
+              </Typography>
+              <Grid container spacing={8}>
+                { subjects.map(({ name }) => (
+                  <Grid item key={`${className}@@${name}`} >
+                    <Chip label={name} className={classes.chip} />
+                  </Grid>
+                )) }
+              </Grid>
+            </Grid>
+          </Grid>
+        </Paper>
+      </Grid>
+    )
+  }
+  /* eslint-enable */
+
+  render() {
+    const { classList } = this.props
+    return (
+      <Grid container spacing={24}>
+        {
+          classList.map(this.getSingleClass)
+        }
+      </Grid>
+    )
+  }
 }
+
 
 ShowClasses.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
