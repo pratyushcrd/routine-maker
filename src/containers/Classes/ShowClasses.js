@@ -18,22 +18,20 @@ const styles = theme => ({
   },
 })
 
+/* eslint-disable react/prop-types */
 const getSingleClass = (classes) => ({ className, subjects, sections }) => (
   <Grid item xs={6} key={`classList@@${className}`} >
     <Paper className={classes.paper} >
       <Grid container alignItems={'center'} spacing={16} >
         <Grid item xs={3} align={'center'} >
           <Typography variant="caption" gutterBottom align="center">
-            Class Name
+            Class
           </Typography>
           <Typography variant="display2" gutterBottom align="center">
             {className}
           </Typography>
         </Grid>
-        <Grid item xs={1} align={'center'} >
-          {''}
-        </Grid>
-        <Grid item xs={8} align={'start'} >
+        <Grid item xs={9} align={'start'} >
           <Typography variant="caption" gutterBottom align="left">
             Sections
           </Typography>
@@ -60,6 +58,7 @@ const getSingleClass = (classes) => ({ className, subjects, sections }) => (
     </Paper>
   </Grid>
 )
+/* eslint-enable */
 
 function ShowClasses(props) {
   const { classes, classList = {} } = props
@@ -79,9 +78,6 @@ ShowClasses.propTypes = {
     sections: PropTypes.arrayOf(PropTypes.shape({
       name: PropTypes.string
     })),
-    subjects1: PropTypes.arrayOf(PropTypes.shape({
-      name: PropTypes.string
-    }))
   })).isRequired,
 }
 
