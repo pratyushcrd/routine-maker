@@ -47,12 +47,12 @@ class ShowClasses extends React.Component {
   }
 
   onHoverOut = (index) => () => {
+    if (this.state.hovered === index) {
+      this.setState({
+        hovered: -1
+      })
+    }
     this.hideIds[index] = setTimeout(() => {
-      if (this.state.hovered === index) {
-        this.setState({
-          hovered: -1
-        })
-      }
       this.setState({
         [`showButtonsFor${index}`]: false,
       })
