@@ -3,6 +3,7 @@ import { connect, } from 'react-redux'
 import Grid from '@material-ui/core/Grid'
 import { withStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
+import ChipsList from './ChipsList'
 
 const styles = theme => ({
   details: {
@@ -10,24 +11,42 @@ const styles = theme => ({
   },
 })
 
-function Home(props) {
-  return (
-    <Grid container spacing={24} >
-      <Grid item xs={9}>
-        <Grid container>
-          <Grid item xs={12} >
-            Chips
-          </Grid>
-          <Grid item xs={12} className={props.classes.details} >
-            Details
+class Home extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      screen: -1
+    }
+  }
+
+  changeScreen = (index) => {
+    this.setState({
+      screen: index - 1
+    })
+  }
+
+  render() {
+    const classes = this.props.classes
+    const changeScreen = this.changeScreen
+
+    return (
+      <Grid container spacing={24} >
+        <Grid item xs={9}>
+          <Grid container>
+            <Grid item xs={12} >
+              <ChipsList changeScreen={changeScreen} />
+            </Grid>
+            <Grid item xs={12} className={classes.details} >
+              Details
+            </Grid>
           </Grid>
         </Grid>
+        <Grid item xs={3} >
+          Teachers Panel
+        </Grid>
       </Grid>
-      <Grid item xs={3} >
-        Teachers Panel
-      </Grid>
-    </Grid>
-  )
+    )
+  }
 }
 
 Home.propTypes = {
