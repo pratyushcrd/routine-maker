@@ -17,6 +17,8 @@ const styles = theme => ({
   }
 })
 
+
+
 class Chips extends React.Component {
   constructor(props) {
     super(props)
@@ -38,8 +40,8 @@ class Chips extends React.Component {
 
   render() {
     const classesList = this.getList()
-      .map(name => ({ name: `Class ${name}`, type: 'class' }))
-    const school = { name: 'School', type: 'school' }
+      .map(name => ({ name: `Class ${name}` }))
+    const school = { name: 'School' }
     const details = [school, ...classesList]
     const classes = this.props.classes
 
