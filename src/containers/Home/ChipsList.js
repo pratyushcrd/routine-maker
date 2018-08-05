@@ -55,7 +55,7 @@ class Chips extends React.Component {
       <Grid container spacing={24} >
         <Grid item xs={12} >
           <Typography variant="subheading" gutterBottom>
-            Edit details:
+            Select an item to edit:
           </Typography>
         </Grid>
         <Grid item xs={12} >
