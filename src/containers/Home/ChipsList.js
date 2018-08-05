@@ -37,9 +37,11 @@ class Chips extends React.Component {
   }
 
   render() {
-    const names = this.getList()
+    const classesList = this.getList()
+      .map(name => ({ name: `Class ${name}`, type: 'class' }))
+    const school = { name: 'School', type: 'school' }
+    const details = [school, ...classesList]
     const classes = this.props.classes
-    console.log(this.state, 'state')
 
     return (
       <Grid container spacing={24} >
@@ -49,10 +51,10 @@ class Chips extends React.Component {
           </Typography>
         </Grid>
         <Grid item xs={12} className={classes.chipsContainer} >
-          {names.map((name, index) => (
+          {details.map((detail, index) => (
             <Chip
-              key={`@@homechips#${name}`}
-              label={`Class ${name}`}
+              key={`@@homechips#${detail.name}`}
+              label={detail.name}
               onClick={this.handleClick(index)}
               className={classes.chip}
             />
