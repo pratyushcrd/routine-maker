@@ -31,7 +31,7 @@ class Home extends React.Component {
 
     return (
       <Grid container spacing={24} >
-        <Grid item xs={9}>
+        <Grid item xs={8}>
           <Grid container>
             <Grid item xs={12} >
               <ChipsList changeScreen={changeScreen} />
@@ -41,7 +41,7 @@ class Home extends React.Component {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={3} >
+        <Grid item xs={4} >
           Teachers Panel
         </Grid>
       </Grid>

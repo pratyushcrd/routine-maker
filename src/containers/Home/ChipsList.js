@@ -2,21 +2,27 @@ import React from 'react'
 import { connect, } from 'react-redux'
 import Grid from '@material-ui/core/Grid'
 import Chip from '@material-ui/core/Chip'
+import Paper from '@material-ui/core/Paper'
+import Avatar from '@material-ui/core/Avatar'
 import Typography from '@material-ui/core/Typography'
 import { withStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
 
 const styles = theme => ({
+  root: {
+    display: 'flex-root',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+    padding: theme.spacing.unit / 2,
+    margin: theme.spacing.unit,
+    marginTop: 0
+  },
   chip: {
     margin: theme.spacing.unit,
-    marginTop: 0,
+    // border: 'solid 1px #0000004d',
+    // backgroundColor: theme.palette.secondary.main
   },
-  chipsContainer: {
-    margin: theme.spacing.unit,
-    marginTop: 0,
-  }
 })
-
 
 
 class Chips extends React.Component {
@@ -40,8 +46,8 @@ class Chips extends React.Component {
 
   render() {
     const classesList = this.getList()
-      .map(name => ({ name: `Class ${name}` }))
-    const school = { name: 'School' }
+      .map(name => ({ name, avatar: 'Cl' }))
+    const school = { name: 'School', avatar: 'S' }
     const details = [school, ...classesList]
     const classes = this.props.classes
 
@@ -49,18 +55,22 @@ class Chips extends React.Component {
       <Grid container spacing={24} >
         <Grid item xs={12} >
           <Typography variant="subheading" gutterBottom>
-            Select a school or class:
+            Edit details:
           </Typography>
         </Grid>
-        <Grid item xs={12} className={classes.chipsContainer} >
-          {details.map((detail, index) => (
-            <Chip
-              key={`@@homechips#${detail.name}`}
-              label={detail.name}
-              onClick={this.handleClick(index)}
-              className={classes.chip}
-            />
-          ))}
+        <Grid item xs={12} >
+          <Paper className={classes.root}>
+            {details.map((detail, index) => (
+              <Chip
+                key={`@@homechips#${detail.name}`}
+                label={detail.name}
+                onClick={this.handleClick(index)}
+                color="primary"
+                avatar={<Avatar>{detail.avatar}</Avatar>}
+                className={classes.chip}
+              />
+            ))}
+          </Paper>
         </Grid>
       </Grid>
     )
