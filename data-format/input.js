@@ -52,8 +52,25 @@ module.exports = {
       ]
     },
   ],
-  sections: [],
-  subjects: [],
+  sections: [{
+    class: '1',
+    section: 'A'
+  }, {
+    class: '1',
+    section: 'B'
+  }, {
+    class: '2',
+    section: 'A'
+  }],
+  subjects: [{
+    class: '1',
+    section: 'A',
+    subject: 'English'
+  }, {
+    class: '1',
+    section: 'A',
+    subject: 'Maths'
+  }],
   commonAreas: [
     {
       name: 'Junior Section Library'
