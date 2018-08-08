@@ -25,14 +25,15 @@ class Home extends React.Component {
    */
   getClassList = () => {
     const classes = this.props.classList
-      .map(({ className }) => ({ name: className }))
+      .map(({ className }) => ({ className }))
       .sort((a, b) => (a > b ? -1 : 1))
     return classes
   }
 
   selectClass = (obj) => {
+    console.log('selectClass', obj)
     this.setState({
-      selectedClass: obj.name
+      selectedClass: obj.className
     })
   }
 

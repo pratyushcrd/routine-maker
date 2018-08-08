@@ -43,8 +43,8 @@ function Chips(props) {
         <Paper className={classes.root}>
           {classesList.map(detail => (
             <Chip
-              key={`@@homechips#${detail.name}`}
-              label={detail.name}
+              key={`@@homechips#${detail.className}`}
+              label={detail.className}
               onClick={onSelect(detail)}
               color="primary"
               avatar={<Avatar>CL</Avatar>}
@@ -60,7 +60,7 @@ function Chips(props) {
 Chips.propTypes = {
   classesList: PropTypes.arrayOf(
     PropTypes.shape({
-      name: PropTypes.string.isRequired
+      className: PropTypes.string.isRequired
     })
   ).isRequired,
   classes: PropTypes.shape({
