@@ -14,15 +14,25 @@ const styles = theme => ({
 class Home extends React.Component {
   constructor(props) {
     super(props)
+    const firstClass = this.props.classList[0]
     this.state = {
-      screen: -1
+      selectedClass: firstClass && firstClass.className
     }
   }
 
+  /**
+   * Get classes list in format: [{ name: '1' }]
+   */
+  getClassList = () => {
+    const classes = this.props.classList
+      .map(({ className }) => ({ name: className }))
+      .sort((a, b) => (a > b ? -1 : 1))
+    return classes
+  }
+
   selectClass = (obj) => {
-    console.log('Selecting', obj.name)
     this.setState({
-      screen: obj.name
+      selectedClass: obj.name
     })
   }
 
@@ -35,7 +45,7 @@ class Home extends React.Component {
         <Grid item xs={8}>
           <Grid container>
             <Grid item xs={12} >
-              <ChipsList selectClass={selectClass} />
+              <ChipsList selectClass={selectClass} classesList={this.getClassList()} />
             </Grid>
             <Grid item xs={12} className={classes.details} >
               Details
@@ -53,7 +63,10 @@ class Home extends React.Component {
 Home.propTypes = {
   classes: PropTypes.shape({
     details: PropTypes.string.isRequired
-  }).isRequired
+  }).isRequired,
+  classList: PropTypes.arrayOf(PropTypes.shape({
+    className: PropTypes.string.isRequired,
+  })).isRequired
 }
 
 

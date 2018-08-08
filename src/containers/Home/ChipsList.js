@@ -31,16 +31,8 @@ class Chips extends React.Component {
     this.state = {}
   }
 
-  getList() {
-    const classes = this.props.classList
-      .map(({ className }) => className)
-    return classes
-  }
-
   render() {
-    const classesList = this.getList()
-      .map(name => ({ name, avatar: 'Cl' }))
-    const school = { name: 'School', avatar: 'S' }
+    const classesList = this.props.classesList
     const classes = this.props.classes
 
     return (
@@ -58,7 +50,7 @@ class Chips extends React.Component {
                 label={detail.name}
                 onClick={() => this.props.selectClass(detail)}
                 color="primary"
-                avatar={<Avatar>{detail.avatar}</Avatar>}
+                avatar={<Avatar>CL</Avatar>}
                 className={classes.chip}
               />
             ))}
@@ -70,8 +62,10 @@ class Chips extends React.Component {
 }
 
 Chips.propTypes = {
-  classList: PropTypes.arrayOf(
-    PropTypes.shape({ className: PropTypes.string.isRequired })
+  classesList: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired
+    })
   ).isRequired,
   classes: PropTypes.shape({
     chip: PropTypes.string.isRequired
