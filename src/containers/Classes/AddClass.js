@@ -153,6 +153,21 @@ class AddClass extends React.Component {
       this.displayWarning("Class: '" + this.state.className + "' is already present")
       return
     }
+    //creating data for subjects
+    ([].concat(...this.state.sections.map(
+      section => this.state.subjects.map(
+        subject => ({className: this.state.className.trim(), 
+          section: section.name, 
+          subject: subject.name
+        })
+      )
+    ))).forEach(subjectObj => this.props.dispatch({
+      type: 'ADD_SUBJECT',
+      className: subjectObj.className,
+      subject: subjectObj.subject,
+      section: subjectObj.section,
+    }))
+
     // Dispatch action to save common area
     this.props.dispatch({
       type: 'ADD_CLASS',
