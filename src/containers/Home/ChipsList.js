@@ -31,7 +31,6 @@ function Chips(props) {
   const classesList = props.classesList
   const classes = props.classes
   const onSelect = detail => () => props.selectClass(detail)
-
   return (
     <Grid container spacing={24} >
       <Grid item xs={12} >
