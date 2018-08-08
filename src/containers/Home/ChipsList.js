@@ -37,18 +37,10 @@ class Chips extends React.Component {
     return classes
   }
 
-  handleClick = (index) => {
-    const handler = this.props.changeScreen
-    return function () {
-      handler(index)
-    }
-  }
-
   render() {
     const classesList = this.getList()
       .map(name => ({ name, avatar: 'Cl' }))
     const school = { name: 'School', avatar: 'S' }
-    const details = [school, ...classesList]
     const classes = this.props.classes
 
     return (
@@ -60,11 +52,11 @@ class Chips extends React.Component {
         </Grid>
         <Grid item xs={12} >
           <Paper className={classes.root}>
-            {details.map((detail, index) => (
+            {classesList.map(detail => (
               <Chip
                 key={`@@homechips#${detail.name}`}
                 label={detail.name}
-                onClick={this.handleClick(index)}
+                onClick={() => this.props.selectClass(detail)}
                 color="primary"
                 avatar={<Avatar>{detail.avatar}</Avatar>}
                 className={classes.chip}
@@ -84,7 +76,7 @@ Chips.propTypes = {
   classes: PropTypes.shape({
     chip: PropTypes.string.isRequired
   }).isRequired,
-  changeScreen: PropTypes.func.isRequired
+  selectClass: PropTypes.func.isRequired
 }
 
 

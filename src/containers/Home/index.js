@@ -19,22 +19,23 @@ class Home extends React.Component {
     }
   }
 
-  changeScreen = (index) => {
+  selectClass = (obj) => {
+    console.log('Selecting', obj.name)
     this.setState({
-      screen: index - 1
+      screen: obj.name
     })
   }
 
   render() {
     const classes = this.props.classes
-    const changeScreen = this.changeScreen
+    const selectClass = this.selectClass
 
     return (
       <Grid container spacing={24} >
         <Grid item xs={8}>
           <Grid container>
             <Grid item xs={12} >
-              <ChipsList changeScreen={changeScreen} />
+              <ChipsList selectClass={selectClass} />
             </Grid>
             <Grid item xs={12} className={classes.details} >
               Details
