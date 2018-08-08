@@ -5,6 +5,8 @@ import Typography from '@material-ui/core/Typography'
 import { withStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
 
+import SectionCard from './Card'
+
 const styles = theme => ({
   root: {
     display: 'flex-root',
@@ -28,8 +30,14 @@ class Sections extends React.Component {
   render() {
     const props = this.props
     const classes = props.classes
+    const sections = this.props.sections
+    const activeClass = this.props.activeClass
 
-    // const classesList = props.classesList
+    if (!sections.length) {
+      sections.push({
+        section: 'None'
+      })
+    }
 
     return (
       <Grid container spacing={24} >
@@ -39,14 +47,18 @@ class Sections extends React.Component {
           </Typography>
         </Grid>
         <Grid item xs={12} >
-          <Paper className={classes.root}>
             Active Class <br />
-            {this.props.activeClass}<br />
-            Sections <br />
-            {JSON.stringify(this.props.sections)}<br />
-            Subjects <br />
-            {JSON.stringify(this.props.subjects)}
-          </Paper>
+          {activeClass}<br />
+          {sections.map(section => (
+            <SectionCard
+              key={`class@@section@card@@${activeClass + section}`}
+              classes={classes}
+              section={section}
+              subjects={this.props.subjects[section.name] || [{
+                subject: 'None'
+              }]}
+            />
+          ))}
         </Grid>
       </Grid>
     )
