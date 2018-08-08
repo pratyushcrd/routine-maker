@@ -24,41 +24,37 @@ const styles = theme => ({
   },
 })
 
+/**
+ * Component to render Classes & School's Chips
+ */
+function Chips(props) {
+  const classesList = props.classesList
+  const classes = props.classes
+  const onSelect = detail => () => props.selectClass(detail)
 
-class Chips extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {}
-  }
-
-  render() {
-    const classesList = this.props.classesList
-    const classes = this.props.classes
-
-    return (
-      <Grid container spacing={24} >
-        <Grid item xs={12} >
-          <Typography variant="subheading" gutterBottom>
+  return (
+    <Grid container spacing={24} >
+      <Grid item xs={12} >
+        <Typography variant="subheading" gutterBottom>
             Select an item to edit:
-          </Typography>
-        </Grid>
-        <Grid item xs={12} >
-          <Paper className={classes.root}>
-            {classesList.map(detail => (
-              <Chip
-                key={`@@homechips#${detail.name}`}
-                label={detail.name}
-                onClick={() => this.props.selectClass(detail)}
-                color="primary"
-                avatar={<Avatar>CL</Avatar>}
-                className={classes.chip}
-              />
-            ))}
-          </Paper>
-        </Grid>
+        </Typography>
       </Grid>
-    )
-  }
+      <Grid item xs={12} >
+        <Paper className={classes.root}>
+          {classesList.map(detail => (
+            <Chip
+              key={`@@homechips#${detail.name}`}
+              label={detail.name}
+              onClick={onSelect(detail)}
+              color="primary"
+              avatar={<Avatar>CL</Avatar>}
+              className={classes.chip}
+            />
+          ))}
+        </Paper>
+      </Grid>
+    </Grid>
+  )
 }
 
 Chips.propTypes = {
