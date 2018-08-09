@@ -1,13 +1,17 @@
 import React from 'react'
 import Grid from '@material-ui/core/Grid'
-import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import { withStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
+import Button from '@material-ui/core/Button'
+import AddIcon from '@material-ui/icons/Add'
 
 import SectionCard from './Card'
 
 const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit,
+  },
   root: {
     display: 'flex-root',
     justifyContent: 'center',
@@ -47,18 +51,24 @@ class Sections extends React.Component {
           </Typography>
         </Grid>
         <Grid item xs={12} >
-            Active Class <br />
-          {activeClass}<br />
-          {sections.map(section => (
+          Active Class <br />
+          {activeClass}
+        </Grid>
+        {sections.map(section => (
+          <Grid item xs={6} key={`class@@section@card@@${activeClass + section}`} >
             <SectionCard
-              key={`class@@section@card@@${activeClass + section}`}
               classes={classes}
               section={section}
               subjects={this.props.subjects[section.name] || [{
                 subject: 'None'
               }]}
             />
-          ))}
+          </Grid>
+        ))}
+        <Grid item xs={12} >
+          <Button variant="fab" color="primary" aria-label="Add" className={classes.button}>
+            <AddIcon />
+          </Button>
         </Grid>
       </Grid>
     )
