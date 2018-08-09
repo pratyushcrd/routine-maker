@@ -176,27 +176,18 @@ class AddClass extends React.Component {
 
     // creating data for subjects
     const allSections = [];
-    const allSubjects = [];
-
-    ([].concat(...this.state.sections.map(
-      section => this.state.subjects.map(
+    const allSubjects = ([].concat(...this.state.sections.map(
+      section => {
+        allSections.push({className: this.state.className.trim(),
+          section: section.name,
+        })
+        return this.state.subjects.map(
         subject => ({ className: this.state.className.trim(),
           section: section.name,
           subject: subject.name
         })
-      )
+      )}
     )))
-    .forEach(data => {
-      allSections.push({[data.className + '|' + data.section]: {
-        className: data.className,
-        section: data.section,
-      }})
-      allSubjects.push({[data.className + '|' + data.section + '|' + data.subject]: {
-        className: data.className,
-        section: data.section,
-        subject: data.subject
-      }})
-    })
 
     // Dispatch action to save class
     this.props.addClass({
