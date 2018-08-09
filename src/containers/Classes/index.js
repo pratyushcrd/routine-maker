@@ -48,7 +48,7 @@ class Classes extends React.Component {
 }
 
 Classes.propTypes = {
-  dispatch: PropTypes.function.isRequired,
+  dispatch: PropTypes.func.isRequired,
 }
 
 
