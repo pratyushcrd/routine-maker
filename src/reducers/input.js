@@ -97,6 +97,7 @@ const handlers = {
   [ADD_SUBJECT]: (state, action) => ({
     subjects: [{
       className: action.className,
+      section: action.section,
       subject: action.subject,
       periodsPerWeek: action.periodsPerWeek,
     }, ...state.subjects]

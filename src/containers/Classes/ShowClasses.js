@@ -74,7 +74,7 @@ class ShowClasses extends React.Component {
       <Grid
         item
         xs={6}
-        key={`classList@@${className}`}
+        key={`classList@@${index}`}
         onMouseOver={this.onHover(index)}
         onMouseOut={this.onHoverOut(index)}
       >
@@ -148,6 +148,7 @@ class ShowClasses extends React.Component {
   /* eslint-enable */
 
   render() {
+    console.log(this.props.subjects)
     const { classList } = this.props
     return (
       <Grid container spacing={24}>
