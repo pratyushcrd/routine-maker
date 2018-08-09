@@ -13,6 +13,8 @@ import Chip from '@material-ui/core/Chip'
 
 import MySnackbarContentWrapper from '../common/SnackBarContent'
 
+const flattenArray = (a, b) => a.concat(b)
+
 const styles = theme => ({
   button: {
     marginTop: theme.spacing.unit * 2,
@@ -170,30 +172,31 @@ class AddClass extends React.Component {
       return
     }
 
-    const sections = this.state.sections
-    const subjects = this.state.subjects
     const className = this.state.className.trim()
+    const classSections = this.state.sections
+    const classSubjects = this.state.subjects
 
-    // creating data for subjects
-    const allSections = [];
-    const allSubjects = ([].concat(...this.state.sections.map(
-      section => {
-        allSections.push({className: this.state.className.trim(),
-          section: section.name,
-        })
-        return this.state.subjects.map(
-        subject => ({ className: this.state.className.trim(),
-          section: section.name,
-          subject: subject.name
-        })
-      )}
-    )))
+    // get all sections in proper format
+    const sections = this.state.sections.map(({ name: section }) => ({
+      className,
+      section
+    }))
+    // get all sections in proper format
+    const subjects = sections.map(({ section }) =>
+      this.state.subjects.map(({ name: subject }) => ({
+        className,
+        section,
+        subject
+      }))
+    ).reduce(flattenArray, [])
 
     // Dispatch action to save class
     this.props.addClass({
       className,
       sections,
-      subjects
+      subjects,
+      classSections,
+      classSubjects,
     })
     // Clear common area name and count
     this.setState({
