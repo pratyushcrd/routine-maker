@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import ShowClasses from './ShowClasses'
 import AddClass from './AddClass'
+import PropTypes from 'prop-types'
 
 const styles = theme => ({
   container: {
@@ -22,20 +23,13 @@ const styles = theme => ({
 
 class Classes extends React.Component {
 
-  dispatchAddClass = (obj) => this.props.dispatch({
+  addClass = ({ className, sections = [], subjects = [] }) => this.props.dispatch({
     type: 'ADD_CLASS',
-    ...obj
+    className,
+    sections,
+    subjects,
   })
 
-  dispatchAllSubjects = (obj) => this.props.dispatch({
-    type: 'ADD_MULTIPLE_SUBJECTS',
-    subjects: obj
-  })
-
-  dispatchAllSections = (obj) => this.props.dispatch({
-    type: 'ADD_MULTIPLE_SECTIONS',
-    sections: obj
-  })
 
   render() {
     return (
@@ -45,10 +39,7 @@ class Classes extends React.Component {
             <ShowClasses />
           </Grid>
           <Grid item xs={4}>
-            <AddClass dispatchAddClass = {this.dispatchAddClass}
-            dispatchAllSubjects = {this.dispatchAllSubjects}
-            dispatchAllSections = {this.dispatchAllSections}
-            />
+            <AddClass addClass={this.addClass} />
           </Grid>
         </Grid>
       </div>
@@ -56,9 +47,8 @@ class Classes extends React.Component {
   }
 }
 
-
-
 Classes.propTypes = {
+  dispatch: PropTypes.function.isRequired,
 }
 
 
