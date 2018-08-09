@@ -23,11 +23,15 @@ const styles = theme => ({
 
 class Classes extends React.Component {
 
-  addClass = ({ className, sections = [], subjects = [] }) => this.props.dispatch({
+  addClass = ({
+    className, sections = [], subjects = [], classSections = [], classSubjects = []
+  }) => this.props.dispatch({
     type: 'ADD_CLASS',
     className,
     sections,
     subjects,
+    classSections,
+    classSubjects,
   })
 
 
