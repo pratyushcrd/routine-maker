@@ -35,6 +35,7 @@ class Sections extends React.Component {
     const props = this.props
     const classes = props.classes
     const sections = this.props.sections
+    const subjects = this.props.subjects
     const activeClass = this.props.activeClass
 
     if (!sections.length) {
@@ -61,7 +62,7 @@ class Sections extends React.Component {
             <SectionCard
               classes={classes}
               section={section}
-              subjects={this.props.subjects[section.name] || [{
+              subjects={subjects[section.section] || [{
                 subject: 'None'
               }]}
             />
