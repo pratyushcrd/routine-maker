@@ -191,7 +191,7 @@ class AddClass extends React.Component {
 
     // Dispatch action to save class
     this.props.dispatch({
-      type: 'ADD_WHOLE_CLASS',
+      type: 'ADD_CLASS',
       className,
       sections,
       subjects
