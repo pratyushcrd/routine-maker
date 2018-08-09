@@ -78,12 +78,21 @@ class Sections extends React.Component {
   }
 }
 
+Sections.defaultProps = {
+  activeClass: '',
+}
+
 Sections.propTypes = {
-  activeClass: PropTypes.string.isRequired,
+  activeClass: PropTypes.string,
   sections: PropTypes.arrayOf(PropTypes.shape({
-    section: PropTypes.string.isRequired,
+    className: PropTypes.string,
+    section: PropTypes.string,
   })).isRequired,
-  subjects: PropTypes.objectOf(PropTypes.shape({})).isRequired,
+  subjects: PropTypes.objectOf(PropTypes.shape({
+    className: PropTypes.string,
+    section: PropTypes.string,
+    subject: PropTypes.string,
+  })).isRequired,
 }
 
 export default withStyles(styles)(Sections)

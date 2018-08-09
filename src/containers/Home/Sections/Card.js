@@ -20,10 +20,13 @@ function Sections({ classes, section, subjects }) {
 Sections.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   section: PropTypes.shape({
-    section: PropTypes.string.isRequired,
+    className: PropTypes.string,
+    section: PropTypes.string,
   }).isRequired,
   subjects: PropTypes.arrayOf(PropTypes.shape({
-    subject: PropTypes.string.isRequired,
+    className: PropTypes.string,
+    section: PropTypes.string,
+    subject: PropTypes.string,
   })).isRequired
 }
 
