@@ -2,9 +2,9 @@ import React from 'react'
 import { connect, } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
+import PropTypes from 'prop-types'
 import ShowClasses from './ShowClasses'
 import AddClass from './AddClass'
-import PropTypes from 'prop-types'
 
 const styles = theme => ({
   container: {

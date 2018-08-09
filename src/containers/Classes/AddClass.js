@@ -199,9 +199,11 @@ class AddClass extends React.Component {
     })
 
     // Dispatch action to save class
-    this.props.dispatchAddClass({className, sections, subjects,})
-    this.props.dispatchAllSubjects(allSubjects)
-    this.props.dispatchAllSections(allSections)
+    this.props.addClass({
+      className,
+      sections,
+      subjects
+    })
     // Clear common area name and count
     this.setState({
       className: '',
@@ -348,7 +350,7 @@ AddClass.propTypes = {
     subjects: PropTypes.arrayOf(PropTypes.shape({})),
     sections: PropTypes.arrayOf(PropTypes.shape({})),
   })).isRequired,
-  dispatch: PropTypes.func.isRequired,
+  addClass: PropTypes.func.isRequired,
 }
 
 function mapStateToProperties(state) {
