@@ -30,8 +30,6 @@ import {
   DELETE_SECTION,
   DELETE_SUBJECT,
   UPDATE_CLASS_SECTION,
-  ADD_MULTIPLE_SUBJECTS,
-  ADD_MULTIPLE_SECTIONS
 } from 'constants/action-types'
 import { createReducer } from './utils'
 import { days } from '../constants/index'
@@ -85,15 +83,11 @@ const handlers = {
   [ADD_CLASS]: (state, action) => ({
     classList: [{
       className: action.className,
-      subjects: action.subjects,
-      sections: action.sections,
-    }, ...state.classList]
-  }),
-  [ADD_MULTIPLE_SUBJECTS]: (state, action) => ({
-    subjects: [...state.subjects, ...action.subjects]
-  }),
-  [ADD_MULTIPLE_SECTIONS]: (state, action) => ({
-    subjects: [...state.sections, ...action.sections]
+      subjects: action.classSubjects,
+      sections: action.classSections,
+    }, ...state.classList],
+    sections: state.sections.concat(action.sections),
+    subjects: state.subjects.concat(action.subjects)
   }),
   [ADD_SECTION]: (state, action) => ({
     sections: [{
