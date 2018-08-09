@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography'
 import { withStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
 import Button from '@material-ui/core/Button'
+import Paper from '@material-ui/core/Paper'
 import AddIcon from '@material-ui/icons/Add'
 
 import SectionCard from './Card'
@@ -16,9 +17,8 @@ const styles = theme => ({
     display: 'flex-root',
     justifyContent: 'center',
     flexWrap: 'wrap',
-    padding: theme.spacing.unit / 2,
-    margin: theme.spacing.unit,
-    marginTop: 0
+    padding: theme.spacing.unit,
+    margin: theme.spacing.unit
   },
 })
 
@@ -51,8 +51,10 @@ class Sections extends React.Component {
           </Typography>
         </Grid>
         <Grid item xs={12} >
-          Active Class <br />
-          {activeClass}
+          <Paper className={classes.root}>
+            <Typography variant="subheading" gutterBottom> Details </Typography>
+            <Typography> Class Name: {activeClass} </Typography>
+          </Paper>
         </Grid>
         {sections.map(section => (
           <Grid item xs={6} key={`class@@section@card@@${activeClass + section}`} >
