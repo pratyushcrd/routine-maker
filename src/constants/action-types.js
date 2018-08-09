@@ -7,6 +7,8 @@ export const ADD_CLASS = 'ADD_CLASS'
 export const ADD_SECTION = 'ADD_SECTION'
 export const ADD_SUBJECT = 'ADD_SUBJECT'
 export const ADD_COMMON_AREA = 'ADD_COMMON_AREA'
+export const ADD_MULTIPLE_SECTIONS = 'ADD_MULTIPLE_SECTIONS'
+export const ADD_MULTIPLE_SUBJECTS = 'ADD_MULTIPLE_SUBJECTS'
 
 // Edit inputs
 export const EDIT_DAY = 'EDIT_DAY'

@@ -175,33 +175,33 @@ class AddClass extends React.Component {
     const className = this.state.className.trim()
 
     // creating data for subjects
-    // ([].concat(...this.state.sections.map(
-    //   section => this.state.subjects.map(
-    //     subject => ({ className: this.state.className.trim(),
-    //       section: section.name,
-    //       subject: subject.name
-    //     })
-    //   )
-    // ))).forEach(subjectObj => this.props.dispatch({
-    //   type: 'ADD_SUBJECT',
-    //   className: subjectObj.className,
-    //   subject: subjectObj.subject,
-    //   section: subjectObj.section,
-    // }))
+    const allSections = [];
+    const allSubjects = [];
+
+    ([].concat(...this.state.sections.map(
+      section => this.state.subjects.map(
+        subject => ({ className: this.state.className.trim(),
+          section: section.name,
+          subject: subject.name
+        })
+      )
+    )))
+    .forEach(data => {
+      allSections.push({[data.className + '|' + data.section]: {
+        className: data.className,
+        section: data.section,
+      }})
+      allSubjects.push({[data.className + '|' + data.section + '|' + data.subject]: {
+        className: data.className,
+        section: data.section,
+        subject: data.subject
+      }})
+    })
 
     // Dispatch action to save class
-    this.props.dispatch({
-      type: 'ADD_CLASS',
-      className,
-      sections,
-      subjects
-    })
-    // this.props.dispatch({
-    //   type: 'ADD_CLASS',
-    //   className: this.state.className.trim(),
-    //   subjects: this.state.subjects,
-    //   sections: this.state.sections,
-    // })
+    this.props.dispatchAddClass({className, sections, subjects,})
+    this.props.dispatchAllSubjects(allSubjects)
+    this.props.dispatchAllSections(allSections)
     // Clear common area name and count
     this.setState({
       className: '',

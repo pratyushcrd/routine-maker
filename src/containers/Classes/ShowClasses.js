@@ -148,7 +148,7 @@ class ShowClasses extends React.Component {
   /* eslint-enable */
 
   render() {
-    console.log(this.props.subjects)
+    console.log(this.props)
     const { classList } = this.props
     return (
       <Grid container spacing={24}>

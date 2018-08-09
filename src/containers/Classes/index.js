@@ -20,20 +20,43 @@ const styles = theme => ({
   },
 })
 
-function Classes() {
-  return (
-    <div>
-      <Grid container spacing={24}>
-        <Grid item xs={8}>
-          <ShowClasses />
+class Classes extends React.Component {
+
+  dispatchAddClass = (obj) => this.props.dispatch({
+    type: 'ADD_CLASS',
+    ...obj
+  })
+
+  dispatchAllSubjects = (obj) => this.props.dispatch({
+    type: 'ADD_MULTIPLE_SUBJECTS',
+    subjects: obj
+  })
+
+  dispatchAllSections = (obj) => this.props.dispatch({
+    type: 'ADD_MULTIPLE_SECTIONS',
+    sections: obj
+  })
+
+  render() {
+    return (
+      <div>
+        <Grid container spacing={24}>
+          <Grid item xs={8}>
+            <ShowClasses />
+          </Grid>
+          <Grid item xs={4}>
+            <AddClass dispatchAddClass = {this.dispatchAddClass}
+            dispatchAllSubjects = {this.dispatchAllSubjects}
+            dispatchAllSections = {this.dispatchAllSections}
+            />
+          </Grid>
         </Grid>
-        <Grid item xs={4}>
-          <AddClass />
-        </Grid>
-      </Grid>
-    </div>
-  )
+      </div>
+    )
+  }
 }
+
+
 
 Classes.propTypes = {
 }
