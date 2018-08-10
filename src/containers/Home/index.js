@@ -15,7 +15,7 @@ const styles = theme => ({
 class Home extends React.Component {
   constructor(props) {
     super(props)
-    const firstClass = this.props.classList[0]
+    const firstClass = this.getClassList()[0]
     this.state = {
       selectedClass: firstClass && firstClass.className
     }
@@ -26,8 +26,7 @@ class Home extends React.Component {
    */
   getClassList = () => {
     const classes = this.props.classList
-      .map(({ className }) => ({ className }))
-      .sort((a, b) => (a > b ? -1 : 1))
+      .sort((a, b) => (a.className > b.className ? 1 : -1))
     return classes
   }
 
