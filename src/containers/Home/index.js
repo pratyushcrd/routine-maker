@@ -42,11 +42,6 @@ class Home extends React.Component {
       .filter(ob => (
         ob.className === selectedClass
       ))
-      .reduce((acc, val) => {
-        acc[val.section] = acc[val.section] || []
-        acc[val.section].push(val.subject)
-        return acc
-      }, {})
     return subjects
   }
 

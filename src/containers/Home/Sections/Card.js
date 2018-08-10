@@ -1,18 +1,19 @@
 import React from 'react'
 import Paper from '@material-ui/core/Paper'
+import Typography from '@material-ui/core/Typography'
 import PropTypes from 'prop-types'
 
 /**
- * Component to render Classes & School's Chips
+ * Component to render SectionCard
  */
 function Sections({ classes, section, subjects }) {
   // const classesList = props.classesList
   return (
     <Paper className={classes.root}>
-      Section <br />
-      {section.section} <br />
-      Subjects <br />
-      {JSON.stringify(subjects)}
+      <Typography variant="subheading"> Section </Typography>
+      <Typography> {section.section} </Typography>
+      <Typography variant="subheading"> Subjects </Typography>
+      <Typography> {subjects.map(ob => ob.subject).join(', ')} </Typography>
     </Paper>
   )
 }

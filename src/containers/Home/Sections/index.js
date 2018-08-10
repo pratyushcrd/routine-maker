@@ -9,6 +9,11 @@ import AddIcon from '@material-ui/icons/Add'
 
 import SectionCard from './Card'
 
+function filterSubjectsBySection(subjects, sectionName) {
+  return subjects
+    .filter(({ section }) => sectionName === section)
+}
+
 const styles = theme => ({
   button: {
     margin: theme.spacing.unit,
@@ -58,13 +63,11 @@ class Sections extends React.Component {
           </Paper>
         </Grid>
         {sections.map(section => (
-          <Grid item xs={6} key={`class@@section@card@@${activeClass + section}`} >
+          <Grid item xs={6} key={`class@@section@card@@${activeClass + section.section}`} >
             <SectionCard
               classes={classes}
               section={section}
-              subjects={subjects[section.section] || [{
-                subject: 'None'
-              }]}
+              subjects={filterSubjectsBySection(subjects, section.section)}
             />
           </Grid>
         ))}
@@ -88,7 +91,7 @@ Sections.propTypes = {
     className: PropTypes.string,
     section: PropTypes.string,
   })).isRequired,
-  subjects: PropTypes.objectOf(PropTypes.shape({
+  subjects: PropTypes.arrayOf(PropTypes.shape({
     className: PropTypes.string,
     section: PropTypes.string,
     subject: PropTypes.string,
