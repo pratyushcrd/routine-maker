@@ -1,14 +1,20 @@
 import React from 'react'
 import { connect, } from 'react-redux'
 import Grid from '@material-ui/core/Grid'
+import Button from '@material-ui/core/Button'
 import { withStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
 import ChipsList from './ChipsList'
 import Sections from './Sections'
+import AddClassDialog from './Dialogs/AddClassDialog'
 
 const styles = theme => ({
   details: {
     marginTop: `${theme.spacing.unit * 4}px`,
+  },
+  button: {
+    margin: theme.spacing.unit,
+    float: 'right'
   },
 })
 
@@ -17,7 +23,9 @@ class Home extends React.Component {
     super(props)
     const firstClass = this.getClassList()[0]
     this.state = {
-      selectedClass: firstClass && firstClass.className
+      selectedClass: firstClass && firstClass.className,
+      addClassDialogOpen: false,
+      addSectionDialogOpen: false,
     }
   }
 
@@ -63,6 +71,23 @@ class Home extends React.Component {
     })
   }
 
+  handleClassDialog = (val) => () => {
+    this.setState({
+      addClassDialogOpen: !!val
+    })
+  }
+
+  addClass = ({
+    className, sections = [], subjects = [], classSections = [], classSubjects = []
+  }) => this.props.dispatch({
+    type: 'ADD_CLASS',
+    className,
+    sections,
+    subjects,
+    classSections,
+    classSubjects,
+  })
+
   render() {
     const classes = this.props.classes
 
@@ -73,10 +98,24 @@ class Home extends React.Component {
 
     return (
       <Grid container spacing={24} >
+        <AddClassDialog
+          open={this.state.addClassDialogOpen}
+          onClose={this.handleClassDialog(false)}
+          addClass={this.addClass}
+          classList={this.getClassList()}
+        />
         <Grid item xs={8}>
           <Grid container>
             <Grid item xs={12} >
               <ChipsList selectClass={selectClass} classesList={this.getClassList()} />
+              <Button
+                variant="contained"
+                color="primary"
+                className={classes.button}
+                onClick={this.handleClassDialog(true)}
+              >
+                Add Class
+              </Button>
             </Grid>
             <Grid item xs={12} className={classes.details} >
               <Sections
@@ -110,7 +149,8 @@ Home.propTypes = {
     className: PropTypes.string.isRequired,
     section: PropTypes.string.isRequired,
     subject: PropTypes.string.isRequired,
-  })).isRequired
+  })).isRequired,
+  dispatch: PropTypes.func.isRequired,
 }
 
 
