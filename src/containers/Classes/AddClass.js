@@ -69,6 +69,8 @@ function callIfSeparator(callback) {
 class AddClass extends React.Component {
   constructor() {
     super()
+    this.subjectInputField = React.createRef()
+    this.periodsPerWeekInputField = React.createRef()
     this.state = {
       className: '',
       subjectInput: '',
@@ -78,6 +80,7 @@ class AddClass extends React.Component {
       snackOpen: false,
       snackVariant: '',
       snackMessage: '',
+      periodsPerWeek: '',
     }
   }
 
@@ -106,21 +109,32 @@ class AddClass extends React.Component {
     this.setState({ [type]: temp })
   })
 
+  highlightPeriodsPerWeek = () => {
+    this.periodsPerWeekInputField.current.querySelector('input').focus()
+  }
+
   addSubject = () => {
-    const input = this.state.subjectInput.trim()
-    if (input) {
-      if (this.state.subjects.some(sub => sub.name === input)) {
-        this.displayWarning(`Subject '${input.toUpperCase()}' is added more than once. Please remove extras.`)
+    const inputSub = this.state.subjectInput.trim()
+    const inputPeriodsPerWeek = Number(this.state.periodsPerWeek.trim())
+    if (inputSub && inputPeriodsPerWeek) {
+      if (this.state.subjects.some(sub => sub.name === inputSub)) {
+        this.displayWarning(`Subject '${inputSub.toUpperCase()}' is added more than once. Please remove extras.`)
       } else {
         const subjects = this.state.subjects.slice()
-        subjects.push({ name: input })
+        subjects.push({ name: inputSub, periodsPerWeek: inputPeriodsPerWeek })
         this.setState({
           subjects,
           subjectInput: '',
-        })
+          periodsPerWeek: '',
+        }, () => this.subjectInputField.current.querySelector('input').focus())
       }
     } else {
-      this.displayWarning('Enter at least one subject')
+      if(!inputSub){
+        this.displayWarning('Enter at least one subject')
+      }
+      if(!inputPeriodsPerWeek){
+        this.displayWarning('Enter periods / week. You can change that for every section later')
+      }
     }
   }
 
@@ -183,10 +197,11 @@ class AddClass extends React.Component {
     }))
     // get all sections in proper format
     const subjects = sections.map(({ section }) =>
-      this.state.subjects.map(({ name: subject }) => ({
+      this.state.subjects.map(({ name: subject, periodsPerWeek }) => ({
         className,
         section,
-        subject
+        subject,
+        periodsPerWeek
       }))
     ).reduce(flattenArray, [])
 
@@ -249,26 +264,47 @@ class AddClass extends React.Component {
               </Typography>
             </Grid>
           </Grid>
-
-          <TextField
-            placeholder={'subject'}
-            value={this.state.subjectInput}
-            onChange={this.handleChange('subjectInput')}
-            type="text"
-            className={classes.textField}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            margin="normal"
-            onKeyPress={callIfSeparator(this.addSubject)}
-          />
-
+          <div ref={this.subjectInputField}>
+            <TextField
+              placeholder={'subject'}
+              value={this.state.subjectInput}
+              onChange={this.handleChange('subjectInput')}
+              type="text"
+              className={classes.textField}
+              InputLabelProps={{
+                shrink: true,
+              }}
+              margin="normal"
+              onKeyPress={callIfSeparator(this.highlightPeriodsPerWeek)}
+            />
+          </div>
+          <Grid container spacing={24} className={classes.sectionsGrid}>
+            <Grid item xs={6}>
+              <Typography variant="caption" xs={6} className={classes.sectionHeading} >
+                Periods / Week
+              </Typography>
+            </Grid>
+          </Grid>
+          <div ref={this.periodsPerWeekInputField}>
+            <TextField
+              placeholder={'Periods / Week of ' + (this.state.subjectInput || 'subject')}
+              value={this.state.periodsPerWeek}
+              onChange={this.handleChange('periodsPerWeek')}
+              type="number"
+              className={classes.textField}
+              InputLabelProps={{
+                shrink: true,
+              }}
+              margin="normal"
+              onKeyPress={callIfSeparator(this.addSubject)}
+            />
+          </div>
           <Grid container spacing={8}>
 
             {this.state.subjects.map((subject, index) => (
               <Grid item key={['subjectsgrid', index].join('_')} >
                 <Chip
-                  label={subject.name}
+                  label={subject.name + ' / ' + subject.periodsPerWeek }
                   onDelete={this.removeItem('subjects', index)}
                   className={classes.chip}
                 />
