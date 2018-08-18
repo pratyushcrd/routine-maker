@@ -119,17 +119,6 @@ class ShowClasses extends React.Component {
             </Grid>
             <Grid item xs={9} align={'start'} >
               <Typography variant="caption" gutterBottom align="left">
-                Subjects
-              </Typography>
-              <Grid container spacing={8}>
-                { subjects.map(({ name, periodsPerWeek }) => (
-                  <Grid item key={`${className}@@${name}`} >
-                    <Chip label={name + (periodsPerWeek ? ' / ' + periodsPerWeek : '')} className={classes.chip} />
-                  </Grid>
-                )) }
-              </Grid>
-              <br />
-              <Typography variant="caption" gutterBottom align="left">
               Sections
               </Typography>
               <Grid container spacing={8}>
@@ -139,8 +128,17 @@ class ShowClasses extends React.Component {
                   </Grid>
                 )) }
               </Grid>
-              
-              
+              <br />
+              <Typography variant="caption" gutterBottom align="left">
+                Subjects
+              </Typography>
+              <Grid container spacing={8}>
+                { subjects.map(({ name, periodsPerWeek }) => (
+                  <Grid item key={`${className}@@${name}`} >
+                    <Chip label={name + (periodsPerWeek ? ' / ' + periodsPerWeek : '')} className={classes.chip} />
+                  </Grid>
+                )) }
+              </Grid>
             </Grid>
           </Grid>
         </Paper>

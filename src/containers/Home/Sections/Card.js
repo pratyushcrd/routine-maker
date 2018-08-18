@@ -30,7 +30,7 @@ function Sections({ classes, section, subjects }) {
       </Grid>
       <br />
       <Typography variant="subheading"> Subjects </Typography>
-      <Typography> {subjects.map(ob => ob.subject).join(', ')} </Typography>
+      <Typography> {subjects.map(ob => ob.subject + (ob.periodsPerWeek ? ' / ' + ob.periodsPerWeek : '')).join(', ')} </Typography>
     </Paper>
   )
 }

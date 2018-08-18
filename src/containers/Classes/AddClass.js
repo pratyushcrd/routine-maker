@@ -257,6 +257,42 @@ class AddClass extends React.Component {
             className={classes.textField}
             margin="none"
           />
+
+          <Grid container spacing={24} className={classes.sectionsGrid}>
+            <Grid item xs={6}>
+              <Typography variant="caption" xs={6} className={classes.sectionHeading} >
+                Section(s)
+              </Typography>
+            </Grid>
+          </Grid>
+
+          <TextField
+            placeholder={'section '}
+            value={this.state.sectionInput}
+            onChange={this.handleChange('sectionInput')}
+            type="text"
+            className={classes.textField}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            margin="normal"
+            onKeyPress={callIfSeparator(this.addSection)}
+          />
+
+          <Grid container spacing={8}>
+
+            {this.state.sections.map((section, index) => (
+              <Grid item key={['sectionsgrid', index].join('_')} >
+                <Chip
+                  label={section.name}
+                  onDelete={this.removeItem('sections', index)}
+                  className={classes.chip}
+                />
+              </Grid>
+            ))}
+
+          </Grid>
+
           <Grid container spacing={24} className={classes.sectionsGrid}>
             <Grid item xs={6}>
               <Typography variant="caption" xs={6} className={classes.sectionHeading} >
@@ -312,44 +348,6 @@ class AddClass extends React.Component {
             ))}
 
           </Grid>
-
-
-          <Grid container spacing={24} className={classes.sectionsGrid}>
-            <Grid item xs={6}>
-              <Typography variant="caption" xs={6} className={classes.sectionHeading} >
-                Section(s)
-              </Typography>
-            </Grid>
-          </Grid>
-
-          <TextField
-            placeholder={'section '}
-            value={this.state.sectionInput}
-            onChange={this.handleChange('sectionInput')}
-            type="text"
-            className={classes.textField}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            margin="normal"
-            onKeyPress={callIfSeparator(this.addSection)}
-          />
-
-          <Grid container spacing={8}>
-
-            {this.state.sections.map((section, index) => (
-              <Grid item key={['sectionsgrid', index].join('_')} >
-                <Chip
-                  label={section.name}
-                  onDelete={this.removeItem('sections', index)}
-                  className={classes.chip}
-                />
-              </Grid>
-            ))}
-
-          </Grid>
-
-
           <br />
           <div>
             <Button
