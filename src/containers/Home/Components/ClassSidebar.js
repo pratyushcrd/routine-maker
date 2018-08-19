@@ -14,63 +14,64 @@ import ListItemText from '@material-ui/core/ListItemText'
 import Divider from '@material-ui/core/Divider'
 
 const styles = theme => ({
-    
+
 })
 
 const ClassSideBar = (props) => {
-    const classesList = props.classesList
-    const classes = props.classes
-    const onSelect = detail => () => props.selectClass(detail)
-    return (<Grid container>
+  const classesList = props.classesList
+  const classes = props.classes
+  const onSelect = detail => () => props.selectClass(detail)
+  return (<Grid container>
     <Grid item xs={12} >
-        <Grid container spacing={24} >
-            <Grid item xs={12} >
-                <Typography variant="subheading" gutterBottom>
+      <Grid container spacing={24} >
+        <Grid item xs={12} >
+          <Typography variant="subheading" gutterBottom>
                     School
-                </Typography>
-            
-                <Button
-                variant="contained"
-                color="primary"
-                className={classes.button}
-                onClick={props.addClass}
-                >
-                    Add Class
-                </Button>
-                {classesList.map(detail => (
-                    <div
-                    key={`@@homechips#${detail.className}`}
-                    >
-                    <ListItem button onClick={onSelect(detail)}
-                        
-                    >
-                        <ListItemText primary={detail.className} />
-                    </ListItem>
-                    <Divider />
-                    </div>
-                    
-                ))}
-            </Grid>
+          </Typography>
+
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.button}
+            onClick={props.addClass}
+          >
+            Add Class
+          </Button>
+          {classesList.map(detail => (
+            <div
+              key={`@@homechips#${detail.className}`}
+            >
+              <ListItem
+                button
+                onClick={onSelect(detail)}
+              >
+                <ListItemText primary={`Class ${detail.className}`} />
+              </ListItem>
+              <Divider />
+            </div>
+          ))}
         </Grid>
+      </Grid>
 
     </Grid>
-  </Grid>)}
+  </Grid>)
+}
 
 ClassSideBar.propTypes = {
-    classesList: PropTypes.arrayOf(
-      PropTypes.shape({
-        className: PropTypes.string.isRequired
-      })
-    ).isRequired,
-    classes: PropTypes.shape({
-      chip: PropTypes.string.isRequired
-    }).isRequired,
-    selectClass: PropTypes.func.isRequired,
-    addClass: PropTypes.func.isRequired
+  classesList: PropTypes.arrayOf(
+    PropTypes.shape({
+      className: PropTypes.string.isRequired
+    })
+  ).isRequired,
+  classes: PropTypes.shape({
+    chip: PropTypes.string.isRequired
+  }).isRequired,
+  selectClass: PropTypes.func.isRequired,
+  addClass: PropTypes.func.isRequired
 }
 
 function mapStateToProperties(state) {
-    return Object.assign({}, state.input)
-  }
-  
-  export default connect(mapStateToProperties)(withStyles(styles)(ClassSideBar))
+  return Object.assign({}, state.input)
+}
+
+export default connect(mapStateToProperties)(withStyles(styles)(ClassSideBar))

@@ -106,11 +106,11 @@ class Home extends React.Component {
           classList={this.getClassList()}
         />
         <Grid item xs={2} >
-          <ClassSidebar 
-            selectClass={selectClass} 
+          <ClassSidebar
+            selectClass={selectClass}
             classesList={this.getClassList()}
             addClass={this.handleClassDialog(true)}
-            />
+          />
         </Grid>
         <Grid item xs={7}>
           <Grid container>
