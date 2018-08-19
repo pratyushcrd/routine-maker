@@ -14,19 +14,7 @@ import ListItemText from '@material-ui/core/ListItemText'
 import Divider from '@material-ui/core/Divider'
 
 const styles = theme => ({
-    root: {
-      display: 'flex-root',
-      justifyContent: 'center',
-      flexWrap: 'wrap',
-      padding: theme.spacing.unit / 2,
-      margin: theme.spacing.unit,
-      marginTop: 0
-    },
-    chip: {
-      margin: theme.spacing.unit,
-      // border: 'solid 1px #0000004d',
-      // backgroundColor: theme.palette.secondary.main
-    },
+    
 })
 
 const ClassSideBar = (props) => {
@@ -40,9 +28,7 @@ const ClassSideBar = (props) => {
                 <Typography variant="subheading" gutterBottom>
                     School
                 </Typography>
-            </Grid>
             
-            <Grid item xs={12} >
                 <Button
                 variant="contained"
                 color="primary"
