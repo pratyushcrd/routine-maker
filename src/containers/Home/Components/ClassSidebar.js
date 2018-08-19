@@ -36,34 +36,35 @@ const ClassSideBar = (props) => {
     return (<Grid container>
     <Grid item xs={12} >
         <Grid container spacing={24} >
-        <Grid item xs={12} >
-            <Typography variant="subheading" gutterBottom>
-                School
-            </Typography>
-        </Grid>
-        <Button
-        variant="contained"
-        color="primary"
-        className={classes.button}
-        onClick={props.addClass}
-        >
-            Add Class
-        </Button>
-        <Grid item xs={12} >
-            {classesList.map(detail => (
-                <div
-                key={`@@homechips#${detail.className}`}
+            <Grid item xs={12} >
+                <Typography variant="subheading" gutterBottom>
+                    School
+                </Typography>
+            </Grid>
+            
+            <Grid item xs={12} >
+                <Button
+                variant="contained"
+                color="primary"
+                className={classes.button}
+                onClick={props.addClass}
                 >
-                <ListItem button onClick={onSelect(detail)}
+                    Add Class
+                </Button>
+                {classesList.map(detail => (
+                    <div
+                    key={`@@homechips#${detail.className}`}
+                    >
+                    <ListItem button onClick={onSelect(detail)}
+                        
+                    >
+                        <ListItemText primary={detail.className} />
+                    </ListItem>
+                    <Divider />
+                    </div>
                     
-                >
-                    <ListItemText primary={detail.className} />
-                </ListItem>
-                <Divider />
-                </div>
-                
-            ))}
-        </Grid>
+                ))}
+            </Grid>
         </Grid>
 
     </Grid>
