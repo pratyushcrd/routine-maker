@@ -7,6 +7,7 @@ import PropTypes from 'prop-types'
 import ChipsList from './ChipsList'
 import Sections from './Sections'
 import AddClassDialog from './Dialogs/AddClassDialog'
+import ClassSidebar from './Components/ClassSidebar'
 
 const styles = theme => ({
   details: {
@@ -104,7 +105,14 @@ class Home extends React.Component {
           addClass={this.addClass}
           classList={this.getClassList()}
         />
-        <Grid item xs={8}>
+        <Grid item xs={2} >
+          <ClassSidebar 
+            selectClass={selectClass} 
+            classesList={this.getClassList()}
+            addClass={this.handleClassDialog(true)}
+            />
+        </Grid>
+        <Grid item xs={7}>
           <Grid container>
             <Grid item xs={12} >
               <ChipsList selectClass={selectClass} classesList={this.getClassList()} />
@@ -126,7 +134,7 @@ class Home extends React.Component {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={4} >
+        <Grid item xs={3} >
           Teachers Panel
         </Grid>
       </Grid>
