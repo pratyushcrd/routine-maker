@@ -1,17 +1,8 @@
 import React from 'react'
-import { connect, } from 'react-redux'
 import Grid from '@material-ui/core/Grid'
-import Chip from '@material-ui/core/Chip'
-import Paper from '@material-ui/core/Paper'
-import Avatar from '@material-ui/core/Avatar'
-import Typography from '@material-ui/core/Typography'
 import { withStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 import PropTypes from 'prop-types'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
-import ListItemText from '@material-ui/core/ListItemText'
-import Divider from '@material-ui/core/Divider'
 
 const styles = theme => console.log(theme) || ({
   button: {
@@ -28,7 +19,7 @@ const styles = theme => console.log(theme) || ({
     marginTop: theme.spacing.unit * 1,
     minHeight: theme.spacing.unit * 5,
     textAlign: 'center',
-    color: '#9499a2',
+    color: theme.palette.grey[500],
   },
   listButtonSelected: {
     color: theme.palette.primary.main,
@@ -97,7 +88,6 @@ ClassSideBar.propTypes = {
     })
   ).isRequired,
   classes: PropTypes.shape({
-    chip: PropTypes.string.isRequired
   }).isRequired,
   selectClass: PropTypes.func.isRequired,
   addClass: PropTypes.func.isRequired,

@@ -15,16 +15,6 @@ function filterSubjectsBySection(subjects, sectionName) {
 }
 
 const styles = theme => ({
-  button: {
-    margin: theme.spacing.unit,
-  },
-  root: {
-    display: 'flex-root',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
-    padding: theme.spacing.unit,
-    margin: theme.spacing.unit
-  },
 })
 
 /**
