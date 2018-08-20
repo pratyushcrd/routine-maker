@@ -4,7 +4,6 @@ import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
 import { withStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
-import ChipsList from './ChipsList'
 import Sections from './Sections'
 import AddClassDialog from './Dialogs/AddClassDialog'
 import ClassSidebar from './Components/ClassSidebar'
@@ -115,17 +114,6 @@ class Home extends React.Component {
         </Grid>
         <Grid item xs={7}>
           <Grid container>
-            <Grid item xs={12} >
-              <ChipsList selectClass={selectClass} classesList={this.getClassList()} />
-              <Button
-                variant="contained"
-                color="primary"
-                className={classes.button}
-                onClick={this.handleClassDialog(true)}
-              >
-                Add Class
-              </Button>
-            </Grid>
             <Grid item xs={12} className={classes.details} >
               <Sections
                 activeClass={this.state.selectedClass}
