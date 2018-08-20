@@ -107,6 +107,7 @@ class Home extends React.Component {
         />
         <Grid item xs={2} >
           <ClassSidebar
+            activeClass={this.state.selectedClass}
             selectClass={selectClass}
             classesList={this.getClassList()}
             addClass={this.handleClassDialog(true)}

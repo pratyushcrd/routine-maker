@@ -23,31 +23,49 @@ const styles = theme => ({
   },
   listButton: {
     width: '90%',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    display: 'block',
+    // display: 'block',
     fontWeight: 700,
     marginTop: theme.spacing.unit * 1,
     minHeight: theme.spacing.unit * 5,
     textAlign: 'center',
     color: '#9499a2',
   },
+  listButtonSelected: {
+    color: '#687286',
+    fontWeight: 900,
+  },
   gap: {
-    minHeight: theme.spacing.unit,
+    minHeight: theme.spacing.unit * 2,
     width: '100%',
   }
 })
 
+function listClassGetter(classes, activeClass) {
+  const normalClass = classes.listButton
+  const activeClassName = [classes.listButton, classes.listButtonSelected].join(' ')
+
+  return function (item) {
+    if (item.className === activeClass) {
+      return activeClassName
+    }
+    return normalClass
+  }
+}
+
 const ClassSideBar = (props) => {
   const classesList = props.classesList
   const classes = props.classes
+  const activeClass = props.activeClass
+  const getClassForListItem = listClassGetter(classes, activeClass)
   const onSelect = detail => () => props.selectClass(detail)
+
+
   return (<Grid container>
     <Grid item xs={11} >
 
       <Button
         variant="contained"
-        
+
         color="primary"
         className={classes.button}
         onClick={props.addClass}
@@ -60,9 +78,8 @@ const ClassSideBar = (props) => {
       {classesList.map(detail => (
         <Button
           key={`@@homechips#${detail.className}`}
-          
           color="primary"
-          className={classes.listButton}
+          className={getClassForListItem(detail)}
           onClick={onSelect(detail)}
         >
           {`CLASS ${detail.className}`}
@@ -83,11 +100,8 @@ ClassSideBar.propTypes = {
     chip: PropTypes.string.isRequired
   }).isRequired,
   selectClass: PropTypes.func.isRequired,
-  addClass: PropTypes.func.isRequired
+  addClass: PropTypes.func.isRequired,
+  activeClass: PropTypes.string.isRequired,
 }
 
-function mapStateToProperties(state) {
-  return Object.assign({}, state.input)
-}
-
-export default connect(mapStateToProperties)(withStyles(styles)(ClassSideBar))
+export default withStyles(styles)(ClassSideBar)
