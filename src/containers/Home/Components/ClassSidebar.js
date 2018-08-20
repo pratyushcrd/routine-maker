@@ -15,16 +15,21 @@ import Divider from '@material-ui/core/Divider'
 
 const styles = theme => ({
   button: {
+    width: '80%',
     marginLeft: 'auto',
     marginRight: 'auto',
     display: 'block',
-    width: '80%'
+    fontWeight: 700,
   },
   listButton: {
-    width: '100%',
+    width: '90%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    display: 'block',
+    fontWeight: 700,
     marginTop: theme.spacing.unit * 1.5,
     textAlign: 'center',
-    color: '#9499a2'
+    color: '#9499a2',
   },
   gap: {
     minHeight: theme.spacing.unit,
@@ -37,7 +42,7 @@ const ClassSideBar = (props) => {
   const classes = props.classes
   const onSelect = detail => () => props.selectClass(detail)
   return (<Grid container>
-    <Grid item xs={12} >
+    <Grid item xs={11} >
 
       <Button
         variant="contained"
