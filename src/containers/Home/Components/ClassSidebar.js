@@ -13,7 +13,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import Divider from '@material-ui/core/Divider'
 
-const styles = theme => ({
+const styles = theme => console.log(theme) || ({
   button: {
     width: '80%',
     marginLeft: 'auto',
@@ -31,7 +31,7 @@ const styles = theme => ({
     color: '#9499a2',
   },
   listButtonSelected: {
-    color: '#687286',
+    color: theme.palette.primary.main,
     fontWeight: 900,
   },
   gap: {
