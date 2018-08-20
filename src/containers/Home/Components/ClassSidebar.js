@@ -14,7 +14,22 @@ import ListItemText from '@material-ui/core/ListItemText'
 import Divider from '@material-ui/core/Divider'
 
 const styles = theme => ({
-
+  button: {
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    display: 'block',
+    width: '80%'
+  },
+  listButton: {
+    width: '100%',
+    marginTop: theme.spacing.unit * 1.5,
+    textAlign: 'center',
+    color: '#9499a2'
+  },
+  gap: {
+    minHeight: theme.spacing.unit,
+    width: '100%',
+  }
 })
 
 const ClassSideBar = (props) => {
@@ -23,35 +38,30 @@ const ClassSideBar = (props) => {
   const onSelect = detail => () => props.selectClass(detail)
   return (<Grid container>
     <Grid item xs={12} >
-      <Grid container spacing={24} >
-        <Grid item xs={12} >
-          <Typography variant="subheading" gutterBottom>
-                    School
-          </Typography>
 
-          <Button
-            variant="contained"
-            color="primary"
-            className={classes.button}
-            onClick={props.addClass}
-          >
-            Add Class
-          </Button>
-          {classesList.map(detail => (
-            <div
-              key={`@@homechips#${detail.className}`}
-            >
-              <ListItem
-                button
-                onClick={onSelect(detail)}
-              >
-                <ListItemText primary={`Class ${detail.className}`} />
-              </ListItem>
-              <Divider />
-            </div>
-          ))}
-        </Grid>
-      </Grid>
+      <Button
+        variant="contained"
+        
+        color="primary"
+        className={classes.button}
+        onClick={props.addClass}
+      >
+            NEW CLASS
+      </Button>
+
+      <div className={classes.gap} />
+
+      {classesList.map(detail => (
+        <Button
+          key={`@@homechips#${detail.className}`}
+          
+          color="primary"
+          className={classes.listButton}
+          onClick={onSelect(detail)}
+        >
+          {`CLASS ${detail.className}`}
+        </Button>
+      ))}
 
     </Grid>
   </Grid>)

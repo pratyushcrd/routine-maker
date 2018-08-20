@@ -98,7 +98,7 @@ class Home extends React.Component {
     const subjects = this.getSubjects()
 
     return (
-      <Grid container spacing={24} >
+      <Grid container spacing={16} >
         <AddClassDialog
           open={this.state.addClassDialogOpen}
           onClose={this.handleClassDialog(false)}
