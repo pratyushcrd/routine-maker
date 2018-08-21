@@ -45,6 +45,16 @@ class Sections extends React.Component {
   }
 
   /**
+   * Set active section to first when class is changed
+   */
+  componentWillReceiveProps = () => {
+    const activeSection = this.props.sections[0].section
+    this.setState({
+      activeSection
+    })
+  }
+
+  /**
    * Function to check if given section isActive
    */
   isActive = (sectionName) => this.state.activeSection === sectionName
