@@ -14,7 +14,7 @@ const styles = theme => ({
     overflow: 'hidden',
   },
   details: {
-    marginTop: `${theme.spacing.unit * 4}px`,
+    marginTop: `${theme.spacing.unit * 2}px`,
   },
   button: {
     margin: theme.spacing.unit,

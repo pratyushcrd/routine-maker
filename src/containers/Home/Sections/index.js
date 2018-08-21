@@ -4,17 +4,31 @@ import Typography from '@material-ui/core/Typography'
 import { withStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
 import Button from '@material-ui/core/Button'
-import Paper from '@material-ui/core/Paper'
-import AddIcon from '@material-ui/icons/Add'
-
-import SectionCard from './Card'
 
 function filterSubjectsBySection(subjects, sectionName) {
   return subjects
     .filter(({ section }) => sectionName === section)
 }
 
+function joinClasses(...params) {
+  return params.join(' ')
+}
+
 const styles = theme => ({
+  header: {
+    color: theme.palette.text.secondary,
+    marginLeft: theme.spacing.unit,
+    marginBottom: theme.spacing.unit,
+  },
+  sectionsButton: {
+    marginRight: theme.spacing.unit,
+    background: '#fff',
+    color: theme.palette.text.secondary,
+  },
+  sectionsButtonSelected: {
+    color: theme.palette.primary.main,
+    fontWeight: 700,
+  },
 })
 
 /**
@@ -32,6 +46,8 @@ class Sections extends React.Component {
     const sections = this.props.sections
     const subjects = this.props.subjects
     const activeClass = this.props.activeClass
+    const sectionBtnClass = classes.sectionsButton
+    const sectionBtnClassActive = joinClasses(classes.sectionsButton, classes.sectionsButtonSelected)
 
     if (!sections.length) {
       sections.push({
@@ -42,29 +58,20 @@ class Sections extends React.Component {
     return (
       <Grid container spacing={24} >
         <Grid item xs={12} >
-          <Typography variant="subheading" gutterBottom>
+          <Typography variant="subheading" className={classes.header}>
               Sections
           </Typography>
-        </Grid>
-        <Grid item xs={12} >
-          <Paper className={classes.root}>
-            <Typography variant="subheading" gutterBottom> Details </Typography>
-            <Typography> Class Name: {activeClass} </Typography>
-          </Paper>
-        </Grid>
-        {sections.map(section => (
-          <Grid item xs={6} key={`class@@section@card@@${activeClass + section.section}`} >
-            <SectionCard
-              classes={classes}
+          {sections.map((section, index) => (
+            <Button
+              key={`class@@section@card@@${activeClass + section.section}`}
+              variant="raised"
               section={section}
               subjects={filterSubjectsBySection(subjects, section.section)}
-            />
-          </Grid>
-        ))}
-        <Grid item xs={12} >
-          <Button variant="fab" color="primary" aria-label="Add" className={classes.button}>
-            <AddIcon />
-          </Button>
+              className={index === 0 ? sectionBtnClassActive : sectionBtnClass}
+            >
+              {section.section}
+            </Button>
+          ))}
         </Grid>
       </Grid>
     )
@@ -86,6 +93,8 @@ Sections.propTypes = {
     section: PropTypes.string,
     subject: PropTypes.string,
   })).isRequired,
+  classes: PropTypes.shape({
+  }).isRequired,
 }
 
 export default withStyles(styles)(Sections)
