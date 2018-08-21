@@ -39,9 +39,9 @@ const styles = theme => console.log(theme) || ({
     paddingTop: theme.spacing.unit * 1,
   },
   createIcon: {
-    marginLeft: theme.spacing.unit,
+    marginLeft: theme.spacing.unit * 0.75,
     fontSize: 15,
-    transform: 'translateY(1.1px)',
+    transform: 'translateY(1.2px)',
   },
 })
 
