@@ -24,6 +24,7 @@ const styles = theme => ({
     marginRight: theme.spacing.unit,
     background: '#fff',
     color: theme.palette.text.secondary,
+    textTransform: 'none',
   },
   sectionsButtonSelected: {
     color: theme.palette.primary.main,
@@ -37,8 +38,21 @@ const styles = theme => ({
 class Sections extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {}
+    const sections = this.props.sections
+    this.state = {
+      activeSection: sections[0].section
+    }
   }
+
+  /**
+   * Function to check if given section isActive
+   */
+  isActive = (sectionName) => this.state.activeSection === sectionName
+
+  /**
+   * Function that returns a function to mark a section active
+   */
+  markActive = (activeSection) => () => this.setState({ activeSection })
 
   render() {
     const props = this.props
@@ -65,11 +79,11 @@ class Sections extends React.Component {
             <Button
               key={`class@@section@card@@${activeClass + section.section}`}
               variant="raised"
-              section={section}
               subjects={filterSubjectsBySection(subjects, section.section)}
-              className={index === 0 ? sectionBtnClassActive : sectionBtnClass}
+              onClick={this.markActive(section.section)}
+              className={this.isActive(section.section) ? sectionBtnClassActive : sectionBtnClass}
             >
-              {section.section}
+              Section {section.section}
             </Button>
           ))}
         </Grid>
