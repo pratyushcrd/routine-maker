@@ -8,7 +8,8 @@ import CreateIcon from '@material-ui/icons/Create'
 
 const styles = theme => console.log(theme) || ({
   button: {
-    width: '80%',
+    paddingLeft: theme.spacing.unit * 3,
+    paddingRight: theme.spacing.unit * 3,
     marginLeft: 'auto',
     marginRight: 'auto',
     display: 'block',
@@ -36,7 +37,7 @@ const styles = theme => console.log(theme) || ({
   backPaper: {
     height: '100%',
     padding: theme.spacing.unit * 0,
-    paddingTop: theme.spacing.unit * 1,
+    paddingTop: theme.spacing.unit * 1.5,
   },
   createIcon: {
     marginLeft: theme.spacing.unit * 0.75,
