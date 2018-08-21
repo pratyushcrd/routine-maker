@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 import Paper from '@material-ui/core/Paper'
 import PropTypes from 'prop-types'
+import CreateIcon from '@material-ui/icons/Create'
 
 const styles = theme => console.log(theme) || ({
   button: {
@@ -12,6 +13,7 @@ const styles = theme => console.log(theme) || ({
     marginRight: 'auto',
     display: 'block',
     fontWeight: 700,
+    textTransform: 'none',
   },
   listButton: {
     width: '100%',
@@ -21,6 +23,7 @@ const styles = theme => console.log(theme) || ({
     minHeight: theme.spacing.unit * 5,
     textAlign: 'center',
     color: theme.palette.grey[500],
+    textTransform: 'none',
   },
   listButtonSelected: {
     color: theme.palette.primary.main,
@@ -34,6 +37,11 @@ const styles = theme => console.log(theme) || ({
     height: '100%',
     padding: theme.spacing.unit * 0,
     paddingTop: theme.spacing.unit * 1,
+  },
+  createIcon: {
+    marginLeft: theme.spacing.unit,
+    fontSize: 15,
+    transform: 'translateY(1.1px)',
   },
 })
 
@@ -71,7 +79,8 @@ const ClassSideBar = (props) => {
             className={classes.button}
             onClick={props.addClass}
           >
-              NEW CLASS
+            New class
+            <CreateIcon className={classes.createIcon} />
           </Button>
 
           <div className={classes.gap} />
@@ -83,7 +92,7 @@ const ClassSideBar = (props) => {
               className={getClassForListItem(detail)}
               onClick={onSelect(detail)}
             >
-              {`CLASS ${detail.className}`}
+              {`Class ${detail.className}`}
             </Button>
           ))}
 
