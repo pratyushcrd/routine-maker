@@ -80,7 +80,6 @@ const styles = theme => ({
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
-    padding: theme.spacing.unit * 3,
   },
 })
 
@@ -97,9 +96,9 @@ class MiniDrawer extends React.Component {
     this.setState({ open: false, })
   };
 
-  nextPage = () => {this.props.dispatch(nextScreen())}
+  nextPage = () => { this.props.dispatch(nextScreen()) }
 
-  previousPge = () => {this.props.dispatch(previousScreen())}
+  previousPge = () => { this.props.dispatch(previousScreen()) }
 
   render() {
     const { classes, theme, } = this.props
@@ -124,22 +123,7 @@ class MiniDrawer extends React.Component {
             </Typography>
           </Toolbar>
         </AppBar>
-        <Drawer
-          variant="permanent"
-          classes={{
-            paper: classNames(classes.drawerPaper, !this.state.open && classes.drawerPaperClose),
-          }}
-          open={this.state.open}
-        >
-          <div className={classes.toolbar}>
-            <IconButton onClick={this.handleDrawerClose}>
-              {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-            </IconButton>
-          </div>
-          <Divider />
-          <List>{navListItems(this.props)}</List>
-          
-        </Drawer>
+        
         <main className={classes.content}>
           <div className={classes.toolbar} />
           {routes}
@@ -150,8 +134,6 @@ class MiniDrawer extends React.Component {
 }
 
 MiniDrawer.propTypes = {
-  classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
 }
 
 function mapStateToProperties(state) {

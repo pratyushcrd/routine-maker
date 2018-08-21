@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect, } from 'react-redux'
 import Grid from '@material-ui/core/Grid'
-import Button from '@material-ui/core/Button'
 import { withStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
 import Sections from './Sections'
@@ -9,6 +8,11 @@ import AddClassDialog from './Dialogs/AddClassDialog'
 import ClassSidebar from './Components/ClassSidebar'
 
 const styles = theme => ({
+  home: {
+    height: 'calc(100vh - 38px)',
+    maxHeight: 'calc(100vh - 38px)',
+    overflow: 'hidden',
+  },
   details: {
     marginTop: `${theme.spacing.unit * 4}px`,
   },
@@ -97,7 +101,7 @@ class Home extends React.Component {
     const subjects = this.getSubjects()
 
     return (
-      <Grid container >
+      <Grid container spacing={24} className={classes.home}>
         <AddClassDialog
           open={this.state.addClassDialogOpen}
           onClose={this.handleClassDialog(false)}

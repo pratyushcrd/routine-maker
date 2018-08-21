@@ -2,6 +2,7 @@ import React from 'react'
 import Grid from '@material-ui/core/Grid'
 import { withStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
+import Paper from '@material-ui/core/Paper'
 import PropTypes from 'prop-types'
 
 const styles = theme => console.log(theme) || ({
@@ -28,7 +29,11 @@ const styles = theme => console.log(theme) || ({
   gap: {
     minHeight: theme.spacing.unit * 2,
     width: '100%',
-  }
+  },
+  backPaper: {
+    height: '100%',
+    paddingTop: theme.spacing.unit * 1,
+  },
 })
 
 function listClassGetter(classes, activeClass) {
@@ -51,34 +56,40 @@ const ClassSideBar = (props) => {
   const onSelect = detail => () => props.selectClass(detail)
 
 
-  return (<Grid container>
-    <Grid item xs={11} >
+  return (
+    <Paper className={classes.backPaper}>
+      <Grid container>
+        <Grid item xs={11} >
 
-      <Button
-        variant="contained"
+          <div className={classes.gap} />
 
-        color="primary"
-        className={classes.button}
-        onClick={props.addClass}
-      >
-            NEW CLASS
-      </Button>
+          <Button
+            variant="contained"
 
-      <div className={classes.gap} />
+            color="primary"
+            className={classes.button}
+            onClick={props.addClass}
+          >
+              NEW CLASS
+          </Button>
 
-      {classesList.map(detail => (
-        <Button
-          key={`@@homechips#${detail.className}`}
-          color="primary"
-          className={getClassForListItem(detail)}
-          onClick={onSelect(detail)}
-        >
-          {`CLASS ${detail.className}`}
-        </Button>
-      ))}
+          <div className={classes.gap} />
 
-    </Grid>
-  </Grid>)
+          {classesList.map(detail => (
+            <Button
+              key={`@@homechips#${detail.className}`}
+              color="primary"
+              className={getClassForListItem(detail)}
+              onClick={onSelect(detail)}
+            >
+              {`CLASS ${detail.className}`}
+            </Button>
+          ))}
+
+        </Grid>
+      </Grid>
+    </Paper>
+  )
 }
 
 ClassSideBar.propTypes = {
