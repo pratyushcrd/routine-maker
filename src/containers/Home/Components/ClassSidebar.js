@@ -14,7 +14,7 @@ const styles = theme => console.log(theme) || ({
     fontWeight: 700,
   },
   listButton: {
-    width: '90%',
+    width: '100%',
     // display: 'block',
     fontWeight: 700,
     marginTop: theme.spacing.unit * 1,
@@ -32,6 +32,7 @@ const styles = theme => console.log(theme) || ({
   },
   backPaper: {
     height: '100%',
+    padding: theme.spacing.unit * 0,
     paddingTop: theme.spacing.unit * 1,
   },
 })
@@ -59,7 +60,7 @@ const ClassSideBar = (props) => {
   return (
     <Paper className={classes.backPaper}>
       <Grid container>
-        <Grid item xs={11} >
+        <Grid item xs={12} >
 
           <div className={classes.gap} />
 
