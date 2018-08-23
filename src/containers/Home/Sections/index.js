@@ -85,10 +85,10 @@ class Sections extends React.Component {
           <Typography variant="subheading" className={classes.header}>
               Sections
           </Typography>
-          {sections.map((section, index) => (
+          {sections.map(section => (
             <Button
               key={`class@@section@card@@${activeClass + section.section}`}
-              variant="raised"
+              variant={this.isActive(section.section) ? 'raised' : 'contained'}
               subjects={filterSubjectsBySection(subjects, section.section)}
               onClick={this.markActive(section.section)}
               className={this.isActive(section.section) ? sectionBtnClassActive : sectionBtnClass}
