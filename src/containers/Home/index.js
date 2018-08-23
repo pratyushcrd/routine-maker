@@ -70,19 +70,35 @@ class Home extends React.Component {
     return sections
   }
 
+  /**
+   * Get total periods in school
+   */
+  getTotalPeriods = () => this.props.days
+    .map(ob => ob.periods)
+    .reduce((a, b) => a + b, 0)
+
+
+  /**
+   * Function to set a class active
+   */
   selectClass = (obj) => {
-    console.log('selectClass', obj)
     this.setState({
       selectedClass: obj.className
     })
   }
 
+  /**
+   * Set AddClassDialog opened or closed
+   */
   handleClassDialog = (val) => () => {
     this.setState({
       addClassDialogOpen: !!val
     })
   }
 
+  /**
+   * Dispatch action to add class
+   */
   addClass = ({
     className, sections = [], subjects = [], classSections = [], classSubjects = []
   }) => this.props.dispatch({
@@ -95,13 +111,13 @@ class Home extends React.Component {
   })
 
   render() {
-    console.log(this.props);
     const classes = this.props.classes
 
     const selectClass = this.selectClass
 
     const sections = this.getSections()
     const subjects = this.getSubjects()
+    const totalPeriods = this.getTotalPeriods()
 
     return (
       <Grid container className={classes.home}>
@@ -126,6 +142,7 @@ class Home extends React.Component {
                 activeClass={this.state.selectedClass}
                 sections={sections}
                 subjects={subjects}
+                totalPeriods={totalPeriods}
               />
             </Grid>
           </Grid>
@@ -141,19 +158,23 @@ class Home extends React.Component {
 
 Home.propTypes = {
   classes: PropTypes.shape({
-    details: PropTypes.string.isRequired,
+    details: PropTypes.string,
   }).isRequired,
   classList: PropTypes.arrayOf(PropTypes.shape({
-    className: PropTypes.string.isRequired,
+    className: PropTypes.string,
   })).isRequired,
   sections: PropTypes.arrayOf(PropTypes.shape({
-    className: PropTypes.string.isRequired,
-    section: PropTypes.string.isRequired,
+    className: PropTypes.string,
+    section: PropTypes.string,
   })).isRequired,
   subjects: PropTypes.arrayOf(PropTypes.shape({
-    className: PropTypes.string.isRequired,
-    section: PropTypes.string.isRequired,
-    subject: PropTypes.string.isRequired,
+    className: PropTypes.string,
+    section: PropTypes.string,
+    subject: PropTypes.string,
+  })).isRequired,
+  days: PropTypes.arrayOf(PropTypes.shape({
+    day: PropTypes.string,
+    periods: PropTypes.number,
   })).isRequired,
   dispatch: PropTypes.func.isRequired,
 }

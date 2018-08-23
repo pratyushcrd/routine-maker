@@ -11,6 +11,15 @@ function filterSubjectsBySection(subjects, sectionName) {
     .filter(({ section }) => sectionName === section)
 }
 
+function getSubjectsBySection(subjects) {
+  return subjects
+    .reduce((acc, subject) => {
+      acc[subject.section] = acc[subject.section] || []
+      acc[subject.section].push(subject)
+      return acc
+    }, {})
+}
+
 function joinClasses(...params) {
   return params.join(' ')
 }
@@ -71,14 +80,12 @@ class Sections extends React.Component {
     const subjects = this.props.subjects
     const activeClass = this.props.activeClass
     const sectionBtnClass = classes.sectionsButton
-    const sectionBtnClassActive = joinClasses(classes.sectionsButton, classes.sectionsButtonSelected)
+    const sectionBtnClassActive = joinClasses(
+      classes.sectionsButton, classes.sectionsButtonSelected
+    )
     const activeSection = this.state.activeSection
-
-    if (!sections.length) {
-      sections.push({
-        section: 'None'
-      })
-    }
+    const subjectMap = getSubjectsBySection(subjects)
+    const totalPeriods = this.props.totalPeriods
 
     return (
       <Grid container spacing={24} >
@@ -90,7 +97,6 @@ class Sections extends React.Component {
             <Button
               key={`class@@section@card@@${activeClass + section.section}`}
               variant={this.isActive(section.section) ? 'raised' : 'contained'}
-              subjects={filterSubjectsBySection(subjects, section.section)}
               onClick={this.markActive(section.section)}
               className={this.isActive(section.section) ? sectionBtnClassActive : sectionBtnClass}
             >
@@ -105,6 +111,8 @@ class Sections extends React.Component {
           <SectionDetails
             activeClass={activeClass}
             activeSection={activeSection}
+            subjects={subjectMap[activeSection]}
+            totalPeriods={totalPeriods}
           />
         </Grid>
       </Grid>
@@ -129,6 +137,7 @@ Sections.propTypes = {
   })).isRequired,
   classes: PropTypes.shape({
   }).isRequired,
+  totalPeriods: PropTypes.number.isRequired,
 }
 
 export default withStyles(styles)(Sections)

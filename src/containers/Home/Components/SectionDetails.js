@@ -46,6 +46,13 @@ class Details extends React.Component {
     const classes = this.props.classes
     const activeSection = this.props.activeSection
     const activeClass = this.props.activeClass
+    const subjects = this.props.subjects
+    const totalPeriods = +this.props.totalPeriods
+
+    const periodsAssigned = subjects
+      .map(subject => +subject.periodsPerWeek || 0)
+      .reduce((a, b) => a + b, 0)
+    const progressRatio = Math.round(100 * (periodsAssigned / totalPeriods))
 
     return (
       <Card className={classes.card}>
@@ -64,10 +71,10 @@ class Details extends React.Component {
                 Periods Assigned
               </Typography>
               <div className={classes.progress}>
-                <LinearProgress variant="determinate" value={8} />
+                <LinearProgress variant="determinate" value={progressRatio} />
               </div>
               <Typography component="p" color="textSecondary">
-                25 of 40
+                {periodsAssigned} of {totalPeriods}
               </Typography>
             </Grid>
           </Grid>
@@ -81,6 +88,12 @@ Details.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   activeClass: PropTypes.string.isRequired,
   activeSection: PropTypes.string.isRequired,
+  totalPeriods: PropTypes.number.isRequired,
+  subjects: PropTypes.arrayOf(PropTypes.shape({
+    className: PropTypes.string,
+    section: PropTypes.string,
+    subject: PropTypes.string,
+  })).isRequired,
 }
 
 export default withStyles(styles)(Details)
