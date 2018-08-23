@@ -104,7 +104,7 @@ class Home extends React.Component {
     const subjects = this.getSubjects()
 
     return (
-      <Grid container spacing={16} className={classes.home}>
+      <Grid container className={classes.home}>
         <AddClassDialog
           open={this.state.addClassDialogOpen}
           onClose={this.handleClassDialog(false)}
@@ -131,8 +131,8 @@ class Home extends React.Component {
           </Grid>
         </Grid>
         <Grid item xs={3} >
-          <AddTeacher/>
-          <ShowTeacher teachers = {this.props.teachers}/>
+          {/* <AddTeacher/>
+          <ShowTeacher teachers = {this.props.teachers}/> */}
         </Grid>
       </Grid>
     )
