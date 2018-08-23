@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography'
 import { withStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
 import Button from '@material-ui/core/Button'
+import SectionDetails from './SectionDetails'
 
 function filterSubjectsBySection(subjects, sectionName) {
   return subjects
@@ -33,7 +34,7 @@ const styles = theme => ({
 })
 
 /**
- * Component to render Classes & School's Chips
+ * Component to Manage all Sections of a Class
  */
 class Sections extends React.Component {
   constructor(props) {
@@ -95,6 +96,12 @@ class Sections extends React.Component {
               Section {section.section}
             </Button>
           ))}
+        </Grid>
+        <Grid item xs={12} >
+          <Typography variant="subheading" className={classes.header}>
+            Details
+          </Typography>
+          <SectionDetails />
         </Grid>
       </Grid>
     )
