@@ -3,7 +3,7 @@ import { connect, } from 'react-redux'
 import Grid from '@material-ui/core/Grid'
 import { withStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
-import Sections from './Sections'
+import SectionManager from './Components/SectionManager'
 import AddClassDialog from './Dialogs/AddClassDialog'
 import ClassSidebar from './Components/ClassSidebar'
 import AddTeacher from './Components/AddTeacher'
@@ -122,7 +122,7 @@ class Home extends React.Component {
         <Grid item xs={7}>
           <Grid container>
             <Grid item xs={12} className={classes.details} >
-              <Sections
+              <SectionManager
                 activeClass={this.state.selectedClass}
                 sections={sections}
                 subjects={subjects}

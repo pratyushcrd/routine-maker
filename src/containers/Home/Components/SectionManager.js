@@ -65,8 +65,7 @@ class Sections extends React.Component {
   markActive = (activeSection) => () => this.setState({ activeSection })
 
   render() {
-    const props = this.props
-    const classes = props.classes
+    const classes = this.props.classes
     const sections = this.props.sections
     const subjects = this.props.subjects
     const activeClass = this.props.activeClass
