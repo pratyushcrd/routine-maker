@@ -44,6 +44,8 @@ class Details extends React.Component {
 
   render() {
     const classes = this.props.classes
+    const activeSection = this.props.activeSection
+    const activeClass = this.props.activeClass
 
     return (
       <Card className={classes.card}>
@@ -51,7 +53,7 @@ class Details extends React.Component {
           <Grid container spacing={8} className={classes.container}>
             <Grid item xs={2} className={classes.leftBox}>
               <Typography variant="headline" component="h2">
-              1 - A
+                {activeClass} - {activeSection}
               </Typography>
               <Button size="small" color="secondary">
               Delete
@@ -77,6 +79,8 @@ class Details extends React.Component {
 
 Details.propTypes = {
   classes: PropTypes.shape({}).isRequired,
+  activeClass: PropTypes.string.isRequired,
+  activeSection: PropTypes.string.isRequired,
 }
 
 export default withStyles(styles)(Details)

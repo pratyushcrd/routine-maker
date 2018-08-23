@@ -72,6 +72,7 @@ class Sections extends React.Component {
     const activeClass = this.props.activeClass
     const sectionBtnClass = classes.sectionsButton
     const sectionBtnClassActive = joinClasses(classes.sectionsButton, classes.sectionsButtonSelected)
+    const activeSection = this.state.activeSection
 
     if (!sections.length) {
       sections.push({
@@ -101,7 +102,10 @@ class Sections extends React.Component {
           <Typography variant="subheading" className={classes.header}>
             Details
           </Typography>
-          <SectionDetails />
+          <SectionDetails
+            activeClass={activeClass}
+            activeSection={activeSection}
+          />
         </Grid>
       </Grid>
     )
