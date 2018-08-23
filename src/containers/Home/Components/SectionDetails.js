@@ -13,11 +13,21 @@ import LinearProgress from '@material-ui/core/LinearProgress'
 const styles = theme => ({
   progress: {
     paddingLeft: theme.spacing.unit / 4,
+    paddingRight: theme.spacing.unit * 4,
     marginTop: theme.spacing.unit * 1.5,
-    marginBottom: theme.spacing.unit * 0.5,
+    marginBottom: theme.spacing.unit * 0.75,
   },
   periodDetails: {
-    marginTop: theme.spacing.unit * 1.5,
+  },
+  leftBox: {
+    textAlign: 'center',
+    margin: 'auto',
+  },
+  container: {
+  },
+  cardContent: {
+    padding: theme.spacing.unit * 1.5,
+    paddingBottom: `${theme.spacing.unit * 1.5}px !important`,
   }
 })
 
@@ -36,13 +46,18 @@ class Details extends React.Component {
     const classes = this.props.classes
 
     return (
-      <Grid container spacing={24} >
-        <Grid item xs={6} >
-          <Card className={classes.card}>
-            <CardContent>
-              <Typography gutterBottom variant="headline" component="h2">
-              Class 1 - A
+      <Card className={classes.card}>
+        <CardContent className={classes.cardContent}>
+          <Grid container spacing={8} className={classes.container}>
+            <Grid item xs={2} className={classes.leftBox}>
+              <Typography variant="headline" component="h2">
+              1 - A
               </Typography>
+              <Button size="small" color="secondary">
+              Delete
+              </Button>
+            </Grid>
+            <Grid item xs={10} >
               <Typography component="p" color="textSecondary" className={classes.periodDetails}>
                 Periods Assigned
               </Typography>
@@ -52,15 +67,10 @@ class Details extends React.Component {
               <Typography component="p" color="textSecondary">
                 25 of 40
               </Typography>
-            </CardContent>
-            <CardActions>
-              <Button size="small" color="secondary">
-              Delete
-              </Button>
-            </CardActions>
-          </Card>
-        </Grid>
-      </Grid>
+            </Grid>
+          </Grid>
+        </CardContent>
+      </Card>
     )
   }
 }
