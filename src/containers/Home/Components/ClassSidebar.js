@@ -4,7 +4,6 @@ import { withStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 import Paper from '@material-ui/core/Paper'
 import PropTypes from 'prop-types'
-import CreateIcon from '@material-ui/icons/Create'
 
 const styles = theme => console.log(theme) || ({
   button: {
@@ -18,9 +17,8 @@ const styles = theme => console.log(theme) || ({
   },
   listButton: {
     width: '100%',
-    // display: 'block',
     fontWeight: 700,
-    marginTop: theme.spacing.unit * 1,
+    marginTop: theme.spacing.unit * 0.5,
     minHeight: theme.spacing.unit * 5,
     textAlign: 'center',
     color: theme.palette.grey[500],
@@ -78,13 +76,11 @@ const ClassSideBar = (props) => {
 
           <Button
             variant="contained"
-
             color="primary"
             className={classes.button}
             onClick={props.addClass}
           >
-            New class
-            <CreateIcon className={classes.createIcon} />
+            Add Class
           </Button>
 
           <div className={classes.gap} />
