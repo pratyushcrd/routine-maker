@@ -5,11 +5,7 @@ import { withStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
 import Button from '@material-ui/core/Button'
 import SectionDetails from './SectionDetails'
-
-function filterSubjectsBySection(subjects, sectionName) {
-  return subjects
-    .filter(({ section }) => sectionName === section)
-}
+import Subject from './Subject'
 
 function getSubjectsBySection(subjects) {
   return subjects
@@ -86,6 +82,7 @@ class Sections extends React.Component {
     const activeSection = this.state.activeSection
     const subjectMap = getSubjectsBySection(subjects)
     const totalPeriods = this.props.totalPeriods
+    const activeSectionSubjects = subjectMap[activeSection]
 
     return (
       <Grid container spacing={24} >
@@ -111,10 +108,27 @@ class Sections extends React.Component {
           <SectionDetails
             activeClass={activeClass}
             activeSection={activeSection}
-            subjects={subjectMap[activeSection]}
+            subjects={activeSectionSubjects}
             totalPeriods={totalPeriods}
           />
         </Grid>
+
+        <Grid item xs={12} >
+          <Typography variant="subheading" className={classes.header}>
+            Subjects
+          </Typography>
+        </Grid>
+
+        {
+          activeSectionSubjects.map(subject => (
+            <Grid item xs={4} >
+              <Subject
+                subject={subject}
+              />
+            </Grid>
+          ))
+        }
+
       </Grid>
     )
   }
