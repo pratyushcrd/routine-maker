@@ -135,7 +135,7 @@ class Home extends React.Component {
             addClass={this.handleClassDialog(true)}
           />
         </Grid>
-        <Grid item xs={7}>
+        <Grid item xs={8}>
           <Grid container>
             <Grid item xs={12} className={classes.details} >
               <SectionManager
@@ -147,7 +147,7 @@ class Home extends React.Component {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={3} >
+        <Grid item xs={2} >
           {/* <AddTeacher/>
           <ShowTeacher teachers = {this.props.teachers}/> */}
         </Grid>
