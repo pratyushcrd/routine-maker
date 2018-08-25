@@ -36,6 +36,9 @@ const styles = theme => ({
     color: theme.palette.primary.main,
     fontWeight: 700,
   },
+  subjectGrid: {
+    padding: '6px 6px !important',
+  },
 })
 
 /**
@@ -121,7 +124,12 @@ class Sections extends React.Component {
 
         {
           activeSectionSubjects.map(subject => (
-            <Grid item xs={4} >
+            <Grid
+              key={['subject@@', subject.subject].join('-')}
+              item
+              xs={4}
+              className={classes.subjectGrid}
+            >
               <Subject
                 subject={subject}
               />
