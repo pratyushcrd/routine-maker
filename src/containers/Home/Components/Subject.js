@@ -40,7 +40,7 @@ const styles = theme => ({
   teacherName: {
     fontSize: '12px',
     lineHeight: '14px',
-    color: theme.palette.text.secondary
+    color: theme.palette.text.primary
   },
   teacherDetails: {
     fontSize: '10px',
