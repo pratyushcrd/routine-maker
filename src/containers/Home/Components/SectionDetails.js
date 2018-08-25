@@ -12,8 +12,8 @@ import LinearProgress from '@material-ui/core/LinearProgress'
 
 const styles = theme => ({
   progress: {
-    marginTop: theme.spacing.unit * 0.875,
-    marginBottom: theme.spacing.unit * 0.75,
+    marginTop: theme.spacing.unit * 1.5,
+    marginBottom: theme.spacing.unit * 1,
   },
   periodDetails: {
   },
@@ -26,6 +26,9 @@ const styles = theme => ({
   cardContent: {
     padding: theme.spacing.unit * 1.5,
     paddingBottom: `${theme.spacing.unit * 1.5}px !important`,
+  },
+  nameBox: {
+    marginTop: theme.spacing.unit * 1,
   }
 })
 
@@ -57,10 +60,10 @@ class Details extends React.Component {
         <CardContent className={classes.cardContent}>
           <Grid container spacing={8} className={classes.container}>
             <Grid item xs={3} className={classes.leftBox}>
-              <Typography variant="caption" component="h2">
+              <Typography variant="caption">
                 Name
               </Typography>
-              <Typography variant="headline" component="h2">
+              <Typography variant="headline" className={classes.nameBox}>
                 {activeClass} - {activeSection}
               </Typography>
             </Grid>
