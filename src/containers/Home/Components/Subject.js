@@ -36,9 +36,14 @@ const styles = theme => ({
     paddingTop: '2.5px',
     color: theme.palette.text.secondary
   },
-  teacherDetails: {
+  teacherName: {
     fontSize: '12px',
     lineHeight: '14px',
+    color: theme.palette.text.secondary
+  },
+  teacherDetails: {
+    fontSize: '10px',
+    lineHeight: '15px',
     color: theme.palette.text.secondary
   },
   subjectInfo: {
@@ -90,11 +95,11 @@ class Subjects extends React.Component {
               </Typography>
             </Grid>
             <Grid item xs={10}>
-              <Typography className={classes.teacherDetails}>
+              <Typography className={classes.teacherName}>
                 Mr. Raman Raghav Rao
               </Typography>
               <Typography className={classes.teacherDetails}>
-                25 periods assigned
+                (25 periods assigned)
               </Typography>
             </Grid>
           </Grid>
