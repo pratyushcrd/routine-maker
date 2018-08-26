@@ -1,50 +1,70 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
-import PropTypes from 'prop-types'
-import Table from '@material-ui/core/Table'
-import { withStyles } from '@material-ui/core/styles'
-import TableBody from '@material-ui/core/TableBody'
-import TableCell from '@material-ui/core/TableCell'
-import TableHead from '@material-ui/core/TableHead'
-import TableRow from '@material-ui/core/TableRow'
-import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
+import { withStyles } from '@material-ui/core/styles'
+import Typography from '@material-ui/core/Typography'
+import Avatar from '@material-ui/core/Avatar'
+import PropTypes from 'prop-types'
 
 const styles = theme => ({
-  paper: {
-    padding: theme.spacing.unit,
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-    whiteSpace: 'nowrap',
-    marginBottom: theme.spacing.unit,
+  teacherDetail: {
+    marginTop: theme.spacing.unit
   },
 })
 
-const dummyDay = {
-  key: 'none',
-  name: 'No teacher added',
-  id: '',
+function getInitials(name){
+  const nameArr = name.split(" ")
+  return nameArr[0][0].toUpperCase() + (nameArr.length > 1 ? nameArr[nameArr.length - 1][0] : '').toUpperCase()
 }
 
-function getTableEntries(teacher, index) {
-  return (<Paper className={styles.paper}  key={teacher.id}>
-    <Grid>{teacher.name} {teacher.id}</Grid>
-  </Paper>)
-}
-
-function ShowTeacher(props) {
-  const { classes, teachers = {} } = props
+const ShowTeacher = (props) => {
+  const { classes, teacher = {} } = props
   return (
-    <div>
-      { teachers.map(getTableEntries) }
-      { !teachers.length && getTableEntries(dummyDay, -1) }
-    </div>
+    <Grid
+    container 
+    spacing={16} 
+    className = {classes.teacherDetail}
+    >
+      <Grid item xs={1}  >
+      </Grid>
+      <Grid item xs={3} container justify={'center'}
+      alignItems={'center'} >
+          <Avatar>{ ' ' + getInitials(teacher.name)}</Avatar>
+      </Grid>
+      <Grid item xs={7} >
+          <Typography variant="body1">
+              {teacher.name}
+          </Typography>
+          <Grid container
+          direction={'row'}
+          justify={'space-between'}
+          alignItems={'flex-end'} 
+          >
+              <Grid item >
+                  <Typography variant="caption">
+                    {teacher.id}
+                  </Typography>
+              </Grid>
+              <Grid item >
+                  <Grid container
+                  direction={'row'}
+                  alignItems={'flex-end'} >
+                      <Typography variant="title" >
+                          3
+                      </Typography>
+                      <Typography >
+                          /10
+                      </Typography>
+                  </Grid>
+              </Grid>
+          </Grid>
+      </Grid>
+    </Grid>
   )
 }
 
 ShowTeacher.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
-  teachers: PropTypes.arrayOf(PropTypes.object).isRequired,
+  teacher: PropTypes.object.isRequired,
 }
 
 

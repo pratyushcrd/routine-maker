@@ -6,8 +6,7 @@ import PropTypes from 'prop-types'
 import SectionManager from './Components/SectionManager'
 import AddClassDialog from './Dialogs/AddClassDialog'
 import ClassSidebar from './Components/ClassSidebar'
-import AddTeacher from './Components/AddTeacher'
-import ShowTeacher from './Components/ShowTeacher'
+import TeacherArea from './Components/TeacherArea'
 
 const styles = theme => ({
   home: {
@@ -148,8 +147,7 @@ class Home extends React.Component {
           </Grid>
         </Grid>
         <Grid item xs={2} >
-          {/* <AddTeacher/>
-          <ShowTeacher teachers = {this.props.teachers}/> */}
+          <TeacherArea teachers = {this.props.teachers}/>
         </Grid>
       </Grid>
     )
