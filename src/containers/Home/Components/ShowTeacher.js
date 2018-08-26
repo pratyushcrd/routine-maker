@@ -41,7 +41,7 @@ const ShowTeacher = (props) => {
           >
               <Grid item >
                   <Typography variant="caption">
-                    {teacher.id}
+                    {teacher.id.toUpperCase()}
                   </Typography>
               </Grid>
               <Grid item >
