@@ -14,8 +14,9 @@ const styles = theme => ({
     maxHeight: 'calc(100vh - 38px)',
     overflow: 'hidden',
   },
-  details: {
+  sectionManager: {
     marginTop: `${theme.spacing.unit * 2}px`,
+    marginLeft: '-3%',
   },
   button: {
     margin: theme.spacing.unit,
@@ -136,7 +137,7 @@ class Home extends React.Component {
         </Grid>
         <Grid item xs={8}>
           <Grid container>
-            <Grid item xs={12} className={classes.details} >
+            <Grid item xs={12} className={classes.sectionManager} >
               <SectionManager
                 activeClass={this.state.selectedClass}
                 sections={sections}
@@ -156,7 +157,7 @@ class Home extends React.Component {
 
 Home.propTypes = {
   classes: PropTypes.shape({
-    details: PropTypes.string,
+    sectionManager: PropTypes.string,
   }).isRequired,
   classList: PropTypes.arrayOf(PropTypes.shape({
     className: PropTypes.string,

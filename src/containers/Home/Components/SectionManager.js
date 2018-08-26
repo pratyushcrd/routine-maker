@@ -37,7 +37,7 @@ const styles = theme => ({
     fontWeight: 700,
   },
   subjectGrid: {
-    padding: '6px 6px !important',
+    // padding: '6px 6px !important',
   },
 })
 

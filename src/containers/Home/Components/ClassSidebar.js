@@ -69,7 +69,7 @@ const ClassSideBar = (props) => {
 
   return (
     <Grid container className={classes.backPaperContainer}>
-      <Grid item xs={10} >
+      <Grid item xs={9} >
         <Paper className={classes.backPaper}>
 
           <div className={classes.gap} />
