@@ -187,6 +187,7 @@ class Home extends React.Component {
                 activeClass={this.state.selectedClass}
                 sections={sections}
                 subjects={subjects}
+                teachersMap={teachersMap}
                 totalPeriods={totalPeriods}
               />
             </Grid>

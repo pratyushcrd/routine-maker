@@ -93,6 +93,7 @@ class Sections extends React.Component {
     const subjectMap = getSubjectsBySection(subjects)
     const totalPeriods = this.props.totalPeriods
     const activeSectionSubjects = subjectMap[activeSection]
+    const teachersMap = this.props.teachersMap
 
     return (
       <Grid container spacing={24} >
@@ -139,6 +140,7 @@ class Sections extends React.Component {
             >
               <Subject
                 subject={subject}
+                teachersMap={teachersMap}
               />
             </Grid>
           ))
@@ -167,6 +169,7 @@ Sections.propTypes = {
   classes: PropTypes.shape({
   }).isRequired,
   totalPeriods: PropTypes.number.isRequired,
+  teachersMap: PropTypes.shape({}).isRequired,
 }
 
 export default withStyles(styles)(Sections)

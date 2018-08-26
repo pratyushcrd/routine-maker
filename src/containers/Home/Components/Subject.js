@@ -73,6 +73,23 @@ class Subjects extends React.Component {
 
   render() {
     const classes = this.props.classes
+    const subject = this.props.subject
+    const teachersMap = this.props.teachersMap
+
+    const periodsPerWeek = subject.periodsPerWeek
+    const subjectName = subject.subject
+    const commonArea = subject.commonArea || 'N/A'
+    const teacherId = subject.teacherId || ''
+    const classLength = subject.classLength || 1
+
+    const teacher = teacherId && teachersMap[teacherId]
+
+    const teacherNameText = teacher ? teacher.name : 'No teacher assigned'
+    const periodsPerWeekText = String(+periodsPerWeek || 0)
+    const teacherPeriodsText = teacher ?
+      `(${+teacher.periodsPerWeek || 0} periods assigned)`
+      :
+      ''
 
     return (
       <Card className={classes.card}>
@@ -80,7 +97,7 @@ class Subjects extends React.Component {
           <Grid container spacing={8}>
             <Grid item xs={10}>
               <Typography variant="subheading">
-                English
+                {subjectName}
               </Typography>
             </Grid>
             <Grid item xs={2}>
@@ -90,24 +107,19 @@ class Subjects extends React.Component {
             </Grid>
           </Grid>
           <Grid container spacing={8} className={classes.container}>
-            {/* <Grid item xs={2}>
-              <Typography className={classes.teacherIcon}>
-                <Face />
-              </Typography>
-            </Grid> */}
             <Grid item xs={12}>
               <Typography className={classes.teacherName}>
-                Mr. Raman Raghav Rao
+                {teacherNameText}
               </Typography>
               <Typography className={classes.teacherDetails}>
-                (25 periods assigned)
+                {teacherPeriodsText}
               </Typography>
             </Grid>
           </Grid>
           <Grid container spacing={8} className={classes.subjectInfoContainer}>
             <Grid item xs={4}>
               <Typography className={classes.subjectInfo}>
-                6
+                {periodsPerWeekText}
               </Typography>
               <Typography className={classes.subjectInfoDesc}>
                 Periods per Week
@@ -115,7 +127,7 @@ class Subjects extends React.Component {
             </Grid>
             <Grid item xs={4}>
               <Typography className={classes.subjectInfo}>
-                N/A
+                {commonArea}
               </Typography>
               <Typography className={classes.subjectInfoDesc}>
                 Common Area
@@ -123,7 +135,7 @@ class Subjects extends React.Component {
             </Grid>
             <Grid item xs={4}>
               <Typography className={classes.subjectInfo}>
-                1
+                {classLength}
               </Typography>
               <Typography className={classes.subjectInfoDesc}>
                 Class Length
@@ -138,6 +150,8 @@ class Subjects extends React.Component {
 
 Subjects.propTypes = {
   classes: PropTypes.shape({}).isRequired,
+  subject: PropTypes.shape({}).isRequired,
+  teachersMap: PropTypes.shape({}).isRequired,
 }
 
 export default withStyles(styles)(Subjects)
