@@ -8,6 +8,13 @@ import AddClassDialog from './Dialogs/AddClassDialog'
 import ClassSidebar from './Components/ClassSidebar'
 import TeacherArea from './Components/TeacherArea'
 
+function getTeachersMap (arr) {
+  return arr.reduce((acc, teacher) => {
+    acc[teacher.id] = teacher
+    return acc
+  }, {})
+}
+
 const styles = theme => ({
   home: {
     height: 'calc(100vh - 38px)',
@@ -71,6 +78,42 @@ class Home extends React.Component {
   }
 
   /**
+   * Get teachers in format {name: "Name", id: "Id", periods: 10}
+   */
+  getTeachers = () => {
+    // Store teachers in map hashed by ip
+    const teachersMap = getTeachersMap(
+      this.props.teachers
+        .slice()
+        .map(teacher => ({
+          ...{
+            periodsAssigned: 0,
+            subjects: []
+          },
+          ...teacher
+        }))
+    )
+
+    // Iterate over subjects that are relevant
+    this.props.subjects
+      .filter(sub => +sub.periodsPerWeek && sub.teacherId)
+      .forEach(sub => {
+        const teacher = teachersMap[sub.teacherId]
+        // Return if teacher not found
+        if (!teacher) {
+          console.error('Teacher not valid for', sub) // eslint-disable-line
+          return
+        }
+        // increment periods assigned to teacher by subject's periods count
+        teacher.periodsAssigned += (+sub.periodsPerWeek || 0)
+        // Push current subject to teachers entry
+        teacher.subjects.push(sub)
+      })
+    return Object.entries(teachersMap)
+      .map(arr => arr[1])
+  }
+
+  /**
    * Get total periods in school
    */
   getTotalPeriods = () => this.props.days
@@ -117,6 +160,8 @@ class Home extends React.Component {
 
     const sections = this.getSections()
     const subjects = this.getSubjects()
+    const teachers = this.getTeachers()
+    const teachersMap = getTeachersMap(teachers)
     const totalPeriods = this.getTotalPeriods()
 
     return (
@@ -148,7 +193,10 @@ class Home extends React.Component {
           </Grid>
         </Grid>
         <Grid item xs={2} >
-          <TeacherArea teachers = {this.props.teachers}/>
+          <TeacherArea
+            teachers={teachers}
+            teachersMap={teachersMap}
+          />
         </Grid>
       </Grid>
     )
@@ -170,10 +218,15 @@ Home.propTypes = {
     className: PropTypes.string,
     section: PropTypes.string,
     subject: PropTypes.string,
+    periodsPerWeek: PropTypes.number,
   })).isRequired,
   days: PropTypes.arrayOf(PropTypes.shape({
     day: PropTypes.string,
     periods: PropTypes.number,
+  })).isRequired,
+  teachers: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
   })).isRequired,
   dispatch: PropTypes.func.isRequired,
 }

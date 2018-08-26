@@ -26,8 +26,10 @@ const styles = theme => ({
 })
 
 const TeacherArea = (props) => {
-
   const classes = props.classes
+  const teachers = props.teachers
+  const maxPeriods = Math.max(1, ...teachers.map(t => t.periodsAssigned))
+
   return (
     <Paper className={classes.backPaper}>
       <Grid
@@ -44,9 +46,12 @@ const TeacherArea = (props) => {
       <List>
         <Divider />
         {
-          props.teachers.map((v, i) => (
-            <div key={['@@teacher-', i]}>
-              <TeacherCard teacher={v} />
+          teachers.map(teacher => (
+            <div key={['@@teacher-', teacher.id]}>
+              <TeacherCard
+                teacher={teacher}
+                maxPeriods={maxPeriods}
+              />
             </div>
           ))
         }

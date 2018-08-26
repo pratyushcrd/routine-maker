@@ -40,7 +40,10 @@ function getInitials(name) {
 }
 
 const TeacherCard = (props) => {
-  const { classes, teacher = {} } = props
+  const { classes, teacher = {}, maxPeriods } = props
+  const periodsAssigned = teacher.periodsAssigned
+  const progress = Math.round((periodsAssigned / maxPeriods) * 100)
+
   return (
     <ListItem
       button
@@ -49,9 +52,6 @@ const TeacherCard = (props) => {
 
       <Grid
         container
-        // direction={'row'}
-        // justify={'space-between'}
-        // alignItems={'flex-end'}
       >
         <Grid item xs={12}>
           <Grid container>
@@ -62,7 +62,7 @@ const TeacherCard = (props) => {
             </Grid>
             <Grid item>
               <Typography className={classes.idText}>
-                {`(${teacher.id.toUpperCase()})`}
+                {`(${teacher.id})`}
               </Typography>
             </Grid>
           </Grid>
@@ -72,11 +72,11 @@ const TeacherCard = (props) => {
           <Grid container>
             <Grid item xs={4}>
               <Typography className={classes.periodsText}>
-                {'25 periods assigned'}
+                {`${periodsAssigned} periods assigned`}
               </Typography>
             </Grid>
             <Grid item xs={6} className={classes.progressItem}>
-              <LinearProgress variant="determinate" value={50} />
+              <LinearProgress variant="determinate" value={progress} />
             </Grid>
           </Grid>
         </Grid>
@@ -88,7 +88,12 @@ const TeacherCard = (props) => {
 
 TeacherCard.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
-  teacher: PropTypes.object.isRequired,
+  teacher: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    periodsAssigned: PropTypes.number.isRequired,
+    subjects: PropTypes.array.isRequired,
+  }).isRequired,
 }
 
 
