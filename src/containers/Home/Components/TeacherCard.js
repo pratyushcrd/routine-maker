@@ -39,7 +39,7 @@ function getInitials(name) {
   return nameArr[0][0].toUpperCase() + (nameArr.length > 1 ? nameArr[nameArr.length - 1][0] : '').toUpperCase()
 }
 
-const ShowTeacher = (props) => {
+const TeacherCard = (props) => {
   const { classes, teacher = {} } = props
   return (
     <ListItem
@@ -86,10 +86,10 @@ const ShowTeacher = (props) => {
   )
 }
 
-ShowTeacher.propTypes = {
+TeacherCard.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
   teacher: PropTypes.object.isRequired,
 }
 
 
-export default withStyles(styles)(ShowTeacher)
+export default withStyles(styles)(TeacherCard)

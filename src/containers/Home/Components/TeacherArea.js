@@ -1,15 +1,13 @@
 import React from 'react'
 import Grid from '@material-ui/core/Grid'
 import { withStyles } from '@material-ui/core/styles'
-import Button from '@material-ui/core/Button'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import List from '@material-ui/core/List'
 import Divider from '@material-ui/core/Divider'
-import Avatar from '@material-ui/core/Avatar'
 import GroupAdd from '@material-ui/icons/GroupAdd'
 import PropTypes from 'prop-types'
-import ShowTeacher from './ShowTeacher'
+import TeacherCard from './TeacherCard'
 
 const styles = theme => ({
   header: {
@@ -45,14 +43,21 @@ const TeacherArea = (props) => {
       </Grid>
       <List>
         <Divider />
-        {props.teachers.map((v, i) => (
-          <div key={['@@teacher-', i]}>
-            <ShowTeacher teacher={v} />
-          </div>
-        ))}
+        {
+          props.teachers.map((v, i) => (
+            <div key={['@@teacher-', i]}>
+              <TeacherCard teacher={v} />
+            </div>
+          ))
+        }
       </List>
     </Paper>
   )
+}
+
+TeacherArea.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  teachers: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 }
 
 
