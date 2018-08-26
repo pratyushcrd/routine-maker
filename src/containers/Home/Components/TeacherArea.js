@@ -20,9 +20,9 @@ const styles = theme => ({
       height: '100%',
     },
     backPaper: {
-      height: '100%',
-      padding: theme.spacing.unit * 0,
-      paddingTop: theme.spacing.unit * 1.5,
+      // height: '100%',
+      // padding: theme.spacing.unit * 0,
+      marginBottom: theme.spacing.unit * 2.5,
     },
   })
 
@@ -31,12 +31,12 @@ const TeacherArea = (props) => {
     const classes = props.classes
     return (
       <Grid container className={classes.backPaperContainer}>
-        <Grid item xs={2} >
+        <Grid item xs={0} >
         </Grid>
-        <Grid item xs={10} >
-            <Paper className={classes.backPaper}>
-                <Grid container spacing={24} >
-                    <Grid item xs={12} >
+        <Grid item xs={12} >
+            {/* <Paper className={classes.backPaper}> */}
+                <Grid container>
+                    <Grid item xs={12}>
                         <Grid
                             container
                             alignItems={'flex-end'}
@@ -49,12 +49,14 @@ const TeacherArea = (props) => {
                             <GroupAdd className={classes.header}/>
                         </Grid>
                         {props.teachers.map((v, i) => (
-                            <ShowTeacher key = {i} teacher = {v}/>
+                            <Paper className={classes.backPaper}>
+                              <ShowTeacher key = {i} teacher = {v}/>
+                            </Paper>
                         ))}
                         
                     </Grid>
                 </Grid>
-            </Paper>
+            {/* </Paper> */}
         </Grid>
       </Grid>
     )
