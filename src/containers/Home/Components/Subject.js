@@ -7,15 +7,16 @@ import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
-import Person from '@material-ui/icons/Person'
-import Title from '@material-ui/icons/Title'
+import Face from '@material-ui/icons/Face'
+// import WbIncandescent from '@material-ui/icons/WbIncandescent'
 
 
 const styles = theme => ({
   periodDetails: {
   },
   editButton: {
-    padding: '6px 10px',
+    marginTop: '-2px',
+    padding: '8px 10px',
     margin: 0,
     minHeight: 0,
     minWidth: 0,
@@ -39,7 +40,7 @@ const styles = theme => ({
   teacherName: {
     fontSize: '12px',
     lineHeight: '14px',
-    color: theme.palette.text.secondary
+    color: theme.palette.text.primary
   },
   teacherDetails: {
     fontSize: '10px',
@@ -75,7 +76,11 @@ class Subjects extends React.Component {
       <Card className={classes.card}>
         <CardContent className={classes.cardContent}>
           <Grid container spacing={8}>
-            <Grid item xs={2} />
+            <Grid item xs={2} >
+              <Typography className={classes.teacherIcon}>
+                {/* <WbIncandescent /> */}
+              </Typography>
+            </Grid>
             <Grid item xs={8}>
               <Typography variant="subheading">
                 English
@@ -91,7 +96,7 @@ class Subjects extends React.Component {
           <Grid container spacing={8} className={classes.container}>
             <Grid item xs={2}>
               <Typography className={classes.teacherIcon}>
-                <Person />
+                <Face />
               </Typography>
             </Grid>
             <Grid item xs={10}>
