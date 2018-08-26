@@ -39,6 +39,13 @@ const styles = theme => ({
   subjectGrid: {
     // padding: '6px 6px !important',
   },
+  classDetailsGrid: {
+    marginTop: theme.spacing.unit * 2,
+  },
+  subjectTitleGrid: {
+    paddingBottom: '0',
+    marginBottom: -theme.spacing.unit * 2,
+  },
 })
 
 /**
@@ -104,7 +111,7 @@ class Sections extends React.Component {
             </Button>
           ))}
         </Grid>
-        <Grid item xs={6} >
+        <Grid item xs={6} className={classes.classDetailsGrid} >
           <Typography variant="subheading" className={classes.header}>
             Details
           </Typography>
@@ -116,7 +123,7 @@ class Sections extends React.Component {
           />
         </Grid>
 
-        <Grid item xs={12} >
+        <Grid item xs={12} className={classes.subjectTitleGrid}>
           <Typography variant="subheading" className={classes.header}>
             Subjects
           </Typography>
