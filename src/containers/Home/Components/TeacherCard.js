@@ -35,6 +35,7 @@ const styles = theme => ({
 })
 
 function getInitials(name) {
+  // return name.split(' ').map(st => st[0]).slice(0, 2).join('')
   const nameArr = name.split(' ')
   return nameArr[0][0].toUpperCase() + (nameArr.length > 1 ? nameArr[nameArr.length - 1][0] : '').toUpperCase()
 }
@@ -59,11 +60,6 @@ const TeacherCard = (props) => {
               <Typography>
                 {teacher.name}
                 <span className={classes.idText}> {`(${teacher.id})`} </span>
-              </Typography>
-            </Grid>
-            <Grid item>
-              <Typography >
-                
               </Typography>
             </Grid>
           </Grid>
@@ -95,6 +91,7 @@ TeacherCard.propTypes = {
     periodsAssigned: PropTypes.number.isRequired,
     subjects: PropTypes.array.isRequired,
   }).isRequired,
+  maxPeriods: PropTypes.number.isRequired,
 }
 
 
