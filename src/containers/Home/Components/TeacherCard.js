@@ -22,7 +22,7 @@ const styles = theme => ({
     marginLeft: theme.spacing.unit * 0.5,
   },
   periodsText: {
-    color: theme.palette.text.secondary,
+    color: theme.palette.text.primary,
     fontSize: '11px',
     lineHeight: '14px',
   },
@@ -58,11 +58,12 @@ const TeacherCard = (props) => {
             <Grid item>
               <Typography>
                 {teacher.name}
+                <span className={classes.idText}> {`(${teacher.id})`} </span>
               </Typography>
             </Grid>
             <Grid item>
-              <Typography className={classes.idText}>
-                {`(${teacher.id})`}
+              <Typography >
+                
               </Typography>
             </Grid>
           </Grid>
@@ -72,7 +73,7 @@ const TeacherCard = (props) => {
           <Grid container>
             <Grid item xs={4}>
               <Typography className={classes.periodsText}>
-                {`${periodsAssigned} periods assigned`}
+                {`${periodsAssigned || 'No'} classes per week`}
               </Typography>
             </Grid>
             <Grid item xs={6} className={classes.progressItem}>
