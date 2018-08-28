@@ -17,14 +17,18 @@ const styles = theme => ({
   },
   idText: {
     color: theme.palette.text.secondary,
-    fontSize: '12px',
+    fontSize: '13px',
     lineHeight: '18.5px',
     marginLeft: theme.spacing.unit * 0.5,
   },
   periodsText: {
     color: theme.palette.text.primary,
-    fontSize: '11px',
+    fontWeight: theme.typography.fontWeightRegular,
+    fontSize: '12px',
     lineHeight: '14px',
+  },
+  periodsTextLight: {
+    fontWeight: theme.typography.fontWeightLight,
   },
   periodsContainer: {
     marginTop: theme.spacing.unit / 4,
@@ -69,7 +73,10 @@ const TeacherCard = (props) => {
           <Grid container>
             <Grid item xs={4}>
               <Typography className={classes.periodsText}>
-                {`${periodsAssigned || 'No'} classes per week`}
+                {
+                  `${periodsAssigned || 'No'} `
+                }
+                <span className={classes.periodsTextLight}>periods</span>
               </Typography>
             </Grid>
             <Grid item xs={6} className={classes.progressItem}>

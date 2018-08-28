@@ -22,8 +22,8 @@ const styles = theme => ({
     margin: 0,
     minHeight: 0,
     minWidth: 0,
-    fontSize: '12px',
-    lineHeight: '12px',
+    fontSize: '13px',
+    lineHeight: '13px',
   },
   container: {
     padding: 0,
@@ -40,7 +40,7 @@ const styles = theme => ({
     color: theme.palette.text.secondary
   },
   teacherName: {
-    fontSize: '12px',
+    fontSize: '13px',
     lineHeight: '14px',
     color: theme.palette.text.primary
   },
@@ -55,7 +55,7 @@ const styles = theme => ({
   },
   subjectInfoDesc: {
     textAlign: 'center',
-    fontSize: '12px',
+    fontSize: '13px',
     color: theme.palette.text.secondary
   }
 })
