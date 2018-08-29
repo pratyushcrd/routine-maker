@@ -5,13 +5,32 @@ import Typography from '@material-ui/core/Typography'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
-import Button from '@material-ui/core/Button'
+import Divider from '@material-ui/core/Divider'
 import Grid from '@material-ui/core/Grid'
 // import Face from '@material-ui/icons/Face'
 // import WbIncandescent from '@material-ui/icons/WbIncandescent'
 
 
 const styles = theme => ({
+  infoDivider: {
+    borderLeft: '1px solid rgba(0, 0, 0, 0.12);',
+    height: '85%',
+    marginTop: '-43%',
+    marginLeft: '-5%',
+  },
+  periodsText: {
+    marginTop: -theme.spacing.unit * 1,
+  },
+  divider: {
+    marginTop: theme.spacing.unit * 1,
+    marginBottom: theme.spacing.unit * 2,
+  },
+  textRight: {
+    textAlign: 'right',
+  },
+  cardContent: {
+    // padding: theme.spacing.unit * 2,
+  },
   periodDetails: {
   },
   editButton: {
@@ -30,7 +49,7 @@ const styles = theme => ({
   },
   subjectInfoContainer: {
     padding: 0,
-    marginTop: theme.spacing.unit * 1,
+    marginTop: theme.spacing.unit * 1.5,
   },
   subjectIcon: {
     color: theme.palette.text.secondary
@@ -87,38 +106,50 @@ class Subjects extends React.Component {
     const teacherNameText = teacher ? teacher.name : 'No teacher assigned'
     const periodsPerWeekText = String(+periodsPerWeek || 0)
     const teacherPeriodsText = teacher ?
-      `(${+teacher.periodsPerWeek || 0} periods assigned)`
+      `...has ${+teacher.periodsPerWeek || 0} periods assigned`
       :
-      ''
+      'No details found'
 
     return (
       <Card className={classes.card}>
         <CardContent className={classes.cardContent}>
           <Grid container spacing={8}>
-            <Grid item xs={10}>
-              <Typography variant="subheading">
+            <Grid item xs={9}>
+              <Typography variant="title">
                 {subjectName}
               </Typography>
             </Grid>
-            <Grid item xs={2}>
-              <Button size="small" color="primary" variant="text" className={classes.editButton}>
-                Edit
-              </Button>
+            <Grid item xs={3}>
+              <Typography className={classes.textRight}>
+                  Class {subject.className} - {subject.section}
+              </Typography>
             </Grid>
           </Grid>
-          <Grid container spacing={8} className={classes.container}>
-            <Grid item xs={12}>
-              <Typography className={classes.teacherName}>
+          <Divider className={classes.divider} />
+          <Grid container spacing={8}>
+            <Grid item xs={2}>
+              <Typography>
+                Teacher
+              </Typography>
+            </Grid>
+            <Grid item xs={10}>
+              <Typography className={classes.textRight} variant="body1">
                 {teacherNameText}
               </Typography>
-              <Typography className={classes.teacherDetails}>
+            </Grid>
+            <Grid item xs={2} />
+            <Grid item xs={10}>
+              <Typography
+                className={[classes.textRight, classes.periodsText].join(' ')}
+                variant="caption"
+              >
                 {teacherPeriodsText}
               </Typography>
             </Grid>
           </Grid>
           <Grid container spacing={8} className={classes.subjectInfoContainer}>
             <Grid item xs={4}>
-              <Typography className={classes.subjectInfo}>
+              <Typography variant="body1" className={classes.subjectInfo}>
                 {periodsPerWeekText}
               </Typography>
               <Typography className={classes.subjectInfoDesc}>
@@ -126,20 +157,22 @@ class Subjects extends React.Component {
               </Typography>
             </Grid>
             <Grid item xs={4}>
-              <Typography className={classes.subjectInfo}>
+              <Typography variant="body1" className={classes.subjectInfo}>
                 {commonArea}
               </Typography>
               <Typography className={classes.subjectInfoDesc}>
                 Common Area
               </Typography>
+              <div className={classes.infoDivider} />
             </Grid>
             <Grid item xs={4}>
-              <Typography className={classes.subjectInfo}>
+              <Typography variant="body1" className={classes.subjectInfo}>
                 {classLength}
               </Typography>
               <Typography className={classes.subjectInfoDesc}>
                 Class Length
               </Typography>
+              <div className={classes.infoDivider} />
             </Grid>
           </Grid>
         </CardContent>
