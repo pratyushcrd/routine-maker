@@ -39,6 +39,7 @@ class Home extends React.Component {
       selectedClass: firstClass && firstClass.className,
       addClassDialogOpen: false,
       addSectionDialogOpen: false,
+      displayAddTeacher: false
     }
   }
 
@@ -49,6 +50,10 @@ class Home extends React.Component {
     const classes = this.props.classList
       .sort((a, b) => (a.className > b.className ? 1 : -1))
     return classes
+  }
+
+  toogleDisplayAddTeacher = () =>{
+    this.setState(state => ({ displayAddTeacher: !state.displayAddTeacher }))
   }
 
   /**
@@ -197,6 +202,8 @@ class Home extends React.Component {
           <TeacherArea
             teachers={teachers}
             teachersMap={teachersMap}
+            toogleDisplayAddTeacher = {this.toogleDisplayAddTeacher}
+            displayAddTeacher = {this.state.displayAddTeacher}
           />
         </Grid>
       </Grid>
