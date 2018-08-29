@@ -7,19 +7,20 @@ import List from '@material-ui/core/List'
 import Divider from '@material-ui/core/Divider'
 import GroupAdd from '@material-ui/icons/GroupAdd'
 import PropTypes from 'prop-types'
-import TeacherCard from './TeacherCard'
 import FormControl from '@material-ui/core/FormControl'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Collapse from '@material-ui/core/Collapse'
 import IconButton from '@material-ui/core/IconButton'
 
+import TeacherCard from './TeacherCard'
+
 const styles = theme => ({
   header: {
     color: theme.palette.text.secondary,
     marginLeft: theme.spacing.unit * 1.5,
-    marginTop: theme.spacing.unit ,
-    marginBottom: -theme.spacing.unit ,
+    marginTop: theme.spacing.unit,
+    marginBottom: -theme.spacing.unit,
   },
   backPaperContainer: {
     height: '100%',
@@ -33,25 +34,23 @@ const styles = theme => ({
     minWidth: '90%',
   },
   textField: {
-    
+
     marginTop: theme.spacing.unit * 0.5,
     minWidth: '90%',
     textAlign: 'start',
-    
+
   },
   button: {
     marginTop: theme.spacing.unit,
     marginBottom: theme.spacing.unit * 1.5,
     paddingLeft: theme.spacing.unit * 5,
-    paddingRight: theme.spacing.unit* 5,
+    paddingRight: theme.spacing.unit * 5,
     textAlign: 'center',
     minWidth: '90%',
-    
+
   },
-  displayAddTchrBtn:{
+  displayAddTeacherBtn: {
     color: theme.palette.text.secondary,
-    marginTop: theme.spacing.unit ,
-    marginBottom: -theme.spacing.unit
   }
 })
 
@@ -63,15 +62,16 @@ const TeacherArea = (props) => {
     <Grid
       container
       alignItems={'center'}
-      justify={'center'}>
+      justify={'center'}
+    >
       <form autoComplete="off">
         <FormControl className={classes.formControl}>
           <div>
             <TextField
-            id="teacher"
-            label="Name"
-            className={classes.textField}
-            margin="normal"
+              id="teacher"
+              label="Name"
+              className={classes.textField}
+              margin="normal"
             />
           </div>
         </FormControl>
@@ -93,7 +93,7 @@ const TeacherArea = (props) => {
           mini
           color="primary"
           aria-label="add"
-          onClick={()=>{}}
+          onClick={() => {}}
           className={classes.button}
         >
           Add
@@ -101,40 +101,55 @@ const TeacherArea = (props) => {
       </div>
     </Grid>
     <Divider />
-  </Collapse>);
+  </Collapse>)
   return (
-    <Paper className={classes.backPaper}>
+    <Grid
+      container
+      alignItems={'center'}
+      direction={'row'}
+      justify={'flex-start'}
+      className={classes.backPaperContainer}
+    >
+
       <Grid
-        container
-        alignItems={'center'}
-        direction={'row'}
-        justify={'flex-start'}
+        item
+        xs={2}
+      />
+
+      <Grid
+        item
+        xs={10}
+        className={classes.backPaper}
       >
-        <Typography variant="subheading" className={classes.header}>
+
+        <Paper className={classes.backPaper}>
+          <Typography variant="subheading" className={classes.header}>
               Teachers
-        </Typography>
-        <IconButton component="span" className={classes.displayAddTchrBtn} onClick={props.toogleDisplayAddTeacher}>
-          <GroupAdd />
-        </IconButton>
-        
-        
+            <IconButton component="span" className={classes.displayAddTeacherBtn} onClick={props.toogleDisplayAddTeacher}>
+              <GroupAdd />
+            </IconButton>
+          </Typography>
+          <List>
+            <Divider />
+            {addArea}
+
+            {
+              teachers.map(teacher => (
+                <div key={['@@teacher-', teacher.id]}>
+                  <TeacherCard
+                    teacher={teacher}
+                    maxPeriods={maxPeriods}
+                  />
+                </div>
+              ))
+            }
+          </List>
+        </Paper>
       </Grid>
-      <List>
-        <Divider />
-        {addArea}
-        
-        {
-          teachers.map(teacher => (
-            <div key={['@@teacher-', teacher.id]}>
-              <TeacherCard
-                teacher={teacher}
-                maxPeriods={maxPeriods}
-              />
-            </div>
-          ))
-        }
-      </List>
-    </Paper>
+
+    </Grid>
+
+
   )
 }
 

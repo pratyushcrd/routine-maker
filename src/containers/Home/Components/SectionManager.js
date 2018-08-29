@@ -135,7 +135,7 @@ class Sections extends React.Component {
             <Grid
               key={['subject@@', subject.subject].join('-')}
               item
-              xs={4}
+              xs={6}
               className={classes.subjectGrid}
             >
               <Subject

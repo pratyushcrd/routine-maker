@@ -8,7 +8,7 @@ import AddClassDialog from './Dialogs/AddClassDialog'
 import ClassSidebar from './Components/ClassSidebar'
 import TeacherArea from './Components/TeacherArea'
 
-function getTeachersMap (arr) {
+function getTeachersMap(arr) {
   return arr.reduce((acc, teacher) => {
     acc[teacher.id] = teacher
     return acc
@@ -23,7 +23,7 @@ const styles = theme => ({
   },
   sectionManager: {
     marginTop: `${theme.spacing.unit * 2}px`,
-    marginLeft: '-3%',
+    marginLeft: '1%',
   },
   button: {
     margin: theme.spacing.unit,
@@ -52,7 +52,7 @@ class Home extends React.Component {
     return classes
   }
 
-  toogleDisplayAddTeacher = () =>{
+  toogleDisplayAddTeacher = () => {
     this.setState(state => ({ displayAddTeacher: !state.displayAddTeacher }))
   }
 
@@ -185,7 +185,7 @@ class Home extends React.Component {
             addClass={this.handleClassDialog(true)}
           />
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={7}>
           <Grid container>
             <Grid item xs={12} className={classes.sectionManager} >
               <SectionManager
@@ -198,12 +198,12 @@ class Home extends React.Component {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={2} >
+        <Grid item xs={3} >
           <TeacherArea
             teachers={teachers}
             teachersMap={teachersMap}
-            toogleDisplayAddTeacher = {this.toogleDisplayAddTeacher}
-            displayAddTeacher = {this.state.displayAddTeacher}
+            toogleDisplayAddTeacher ={this.toogleDisplayAddTeacher}
+            displayAddTeacher ={this.state.displayAddTeacher}
           />
         </Grid>
       </Grid>
