@@ -5,7 +5,7 @@ import { withStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
 import Button from '@material-ui/core/Button'
 import SectionDetails from './SectionDetails'
-import Subject from './Subject'
+import Subject from './EditSubject'
 
 function getSubjectsBySection(subjects) {
   return subjects

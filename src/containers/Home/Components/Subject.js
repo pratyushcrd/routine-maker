@@ -25,49 +25,12 @@ const styles = theme => ({
   textRight: {
     textAlign: 'right',
   },
-  cardContent: {
-    // padding: theme.spacing.unit * 2,
-  },
-  periodDetails: {
-  },
-  editButton: {
-    marginTop: '-4px',
-    marginRight: -theme.spacing.unit,
-    float: 'right',
-    padding: '8px 10px',
-    margin: 0,
-    minHeight: 0,
-    minWidth: 0,
-    fontSize: '13px',
-    lineHeight: '13px',
-  },
-  container: {
-    padding: 0,
-  },
   subjectInfoContainer: {
     padding: 0,
     marginTop: theme.spacing.unit * 1.5,
   },
-  subjectIcon: {
-    color: theme.palette.text.secondary
-  },
-  teacherIcon: {
-    paddingTop: '2.5px',
-    color: theme.palette.text.secondary
-  },
-  teacherName: {
-    fontSize: '13px',
-    lineHeight: '14px',
-    color: theme.palette.text.primary
-  },
-  teacherDetails: {
-    fontSize: '10px',
-    lineHeight: '15px',
-    color: theme.palette.text.secondary
-  },
   subjectInfo: {
     textAlign: 'center',
-    fontSize: '18px',
   },
   subjectInfoDesc: {
     textAlign: 'center',
