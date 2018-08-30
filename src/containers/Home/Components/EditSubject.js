@@ -79,7 +79,7 @@ const styles = theme => ({
 /**
  * Component to render Section Details
  */
-class Subject extends React.Component {
+class EditSubject extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -182,10 +182,10 @@ class Subject extends React.Component {
   }
 }
 
-Subject.propTypes = {
+EditSubject.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   subject: PropTypes.shape({}).isRequired,
   teachersMap: PropTypes.shape({}).isRequired,
 }
 
-export default withStyles(styles)(Subject)
+export default withStyles(styles)(EditSubject)
