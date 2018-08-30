@@ -9,6 +9,9 @@ import Grid from '@material-ui/core/Grid'
 
 
 const styles = theme => ({
+  subjectName: {
+    fontWeight: 400,
+  },
   infoDivider: {
     borderLeft: '1px solid rgba(0, 0, 0, 0.12);',
     height: '85%',
@@ -75,7 +78,7 @@ class Subject extends React.Component {
         <CardContent className={classes.cardContent}>
           <Grid container spacing={8}>
             <Grid item xs={9}>
-              <Typography variant="title">
+              <Typography variant="title" className={classes.subjectName}>
                 {subjectName}
               </Typography>
             </Grid>

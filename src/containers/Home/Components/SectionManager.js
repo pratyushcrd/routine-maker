@@ -5,7 +5,7 @@ import { withStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
 import Button from '@material-ui/core/Button'
 import SectionDetails from './SectionDetails'
-import Subject from './EditSubject'
+import Subject from './Subject'
 
 function getSubjectsBySection(subjects) {
   return subjects
@@ -21,6 +21,12 @@ function joinClasses(...params) {
 }
 
 const styles = theme => ({
+  sectionHeader: {
+    color: theme.palette.primary.main,
+    fontWeight: 500,
+    marginLeft: theme.spacing.unit,
+    marginBottom: theme.spacing.unit,
+  },
   header: {
     color: theme.palette.text.secondary,
     marginLeft: theme.spacing.unit,
@@ -98,7 +104,7 @@ class Sections extends React.Component {
     return (
       <Grid container spacing={24} >
         <Grid item xs={12} >
-          <Typography variant="subheading" className={classes.header}>
+          <Typography variant="subheading" className={classes.sectionHeader}>
               Sections
           </Typography>
           {sections.map(section => (
