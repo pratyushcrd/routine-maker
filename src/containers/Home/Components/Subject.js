@@ -106,7 +106,7 @@ class Subjects extends React.Component {
     const teacherNameText = teacher ? teacher.name : 'No teacher assigned'
     const periodsPerWeekText = String(+periodsPerWeek || 0)
     const teacherPeriodsText = teacher ?
-      `...has ${+teacher.periodsPerWeek || 0} periods assigned`
+      `has ${+teacher.periodsPerWeek || 0} periods assigned`
       :
       'No details found'
 
@@ -133,7 +133,10 @@ class Subjects extends React.Component {
               </Typography>
             </Grid>
             <Grid item xs={10}>
-              <Typography className={classes.textRight} variant="body1">
+              <Typography
+                className={classes.textRight}
+                variant="body1"
+              >
                 {teacherNameText}
               </Typography>
             </Grid>
@@ -142,6 +145,7 @@ class Subjects extends React.Component {
               <Typography
                 className={[classes.textRight, classes.periodsText].join(' ')}
                 variant="caption"
+
               >
                 {teacherPeriodsText}
               </Typography>
@@ -153,7 +157,7 @@ class Subjects extends React.Component {
                 {periodsPerWeekText}
               </Typography>
               <Typography className={classes.subjectInfoDesc}>
-                Periods per Week
+                Periods / Week
               </Typography>
             </Grid>
             <Grid item xs={4}>
