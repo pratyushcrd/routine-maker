@@ -17,13 +17,10 @@ function getTeachersMap(arr) {
 
 const styles = theme => ({
   home: {
-    height: 'calc(100vh - 38px)',
-    maxHeight: 'calc(100vh - 38px)',
-    overflow: 'hidden',
+    overflow: 'scroll',
     padding: '0 !important',
   },
   sectionManagerContainer: {
-    overflowY: 'scroll',
     overflowX: 'hidden',
     paddingRight: '1px',
     paddingBottom: '100px',
