@@ -17,13 +17,19 @@ function getTeachersMap(arr) {
 
 const styles = theme => ({
   home: {
-    overflow: 'scroll',
+    height: 'calc(100vh - 38px)',
+    maxHeight: 'calc(100vh - 38px)',
+    overflow: 'hidden',
     padding: '0 !important',
+    '&::-webkit-scrollbar': {
+      display: 'none',
+    },
   },
   sectionManagerContainer: {
+    overflowY: 'scroll',
     overflowX: 'hidden',
     paddingRight: '1px',
-    paddingBottom: '100px',
+    paddingBottom: '70px',
     '&::-webkit-scrollbar': {
       display: 'none',
     },
