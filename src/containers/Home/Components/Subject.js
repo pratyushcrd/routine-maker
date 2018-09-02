@@ -8,6 +8,8 @@ import Divider from '@material-ui/core/Divider'
 import Grid from '@material-ui/core/Grid'
 import CardActions from '@material-ui/core/CardActions'
 import Button from '@material-ui/core/Button'
+import IconButton from '@material-ui/core/IconButton'
+import EditIcon from '@material-ui/icons/Edit'
 
 
 const styles = theme => ({
@@ -39,6 +41,7 @@ const styles = theme => ({
   },
   subjectInfo: {
     textAlign: 'center',
+    fontSize: '15px',
   },
   subjectInfoDesc: {
     textAlign: 'center',
@@ -148,9 +151,12 @@ class Subject extends React.Component {
             </Grid>
           </Grid>
         </CardContent>
-        <CardActions>
+        <CardActions className={classes.actions} disableActionSpacing>
+          {/* <IconButton aria-label="Edit">
+            <EditIcon />
+          </IconButton> */}
           <Button size="small" color="primary">
-            Edit
+            Edit Details
           </Button>
         </CardActions>
       </Card>
