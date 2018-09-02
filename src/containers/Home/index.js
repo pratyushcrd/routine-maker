@@ -52,9 +52,6 @@ class Home extends React.Component {
     return classes
   }
 
-  toogleDisplayAddTeacher = () => {
-    this.setState(state => ({ displayAddTeacher: !state.displayAddTeacher }))
-  }
 
   /**
    * Get subjects list in format: [{ className: '1', section: 'A', subject: 'English' }]
@@ -125,6 +122,12 @@ class Home extends React.Component {
     .map(ob => ob.periods)
     .reduce((a, b) => a + b, 0)
 
+  /**
+   * Toggle add teacher field in right
+   */
+  toogleDisplayAddTeacher = () => {
+    this.setState(state => ({ displayAddTeacher: !state.displayAddTeacher }))
+  }
 
   /**
    * Function to set a class active
@@ -202,8 +205,8 @@ class Home extends React.Component {
           <TeacherArea
             teachers={teachers}
             teachersMap={teachersMap}
-            toogleDisplayAddTeacher ={this.toogleDisplayAddTeacher}
-            displayAddTeacher ={this.state.displayAddTeacher}
+            toogleDisplayAddTeacher={this.toogleDisplayAddTeacher}
+            displayAddTeacher={this.state.displayAddTeacher}
           />
         </Grid>
       </Grid>
