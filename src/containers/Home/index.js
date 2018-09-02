@@ -20,10 +20,20 @@ const styles = theme => ({
     height: 'calc(100vh - 38px)',
     maxHeight: 'calc(100vh - 38px)',
     overflow: 'hidden',
+    padding: '0 !important',
+  },
+  sectionManagerContainer: {
+    overflowY: 'scroll',
+    overflowX: 'hidden',
+    paddingRight: '1px',
+    paddingBottom: '2%',
+    '&::-webkit-scrollbar': {
+      display: 'none'
+    },
   },
   sectionManager: {
-    marginTop: `${theme.spacing.unit * 2}px`,
-    marginLeft: '1%',
+    paddingTop: `${theme.spacing.unit * 2}px`,
+    paddingLeft: '1%',
   },
   button: {
     margin: theme.spacing.unit,
@@ -188,7 +198,7 @@ class Home extends React.Component {
             addClass={this.handleClassDialog(true)}
           />
         </Grid>
-        <Grid item xs={7}>
+        <Grid item xs={7} className={classes.sectionManagerContainer} >
           <Grid container>
             <Grid item xs={12} className={classes.sectionManager} >
               <SectionManager
