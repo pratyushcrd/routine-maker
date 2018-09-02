@@ -6,9 +6,14 @@ import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import Divider from '@material-ui/core/Divider'
 import Grid from '@material-ui/core/Grid'
+import CardActions from '@material-ui/core/CardActions'
+import Button from '@material-ui/core/Button'
 
 
 const styles = theme => ({
+  noPadding: {
+    padding: '0 !important',
+  },
   subjectName: {
     fontWeight: 400,
   },
@@ -143,6 +148,11 @@ class Subject extends React.Component {
             </Grid>
           </Grid>
         </CardContent>
+        <CardActions>
+          <Button size="small" color="primary">
+            Edit
+          </Button>
+        </CardActions>
       </Card>
     )
   }
