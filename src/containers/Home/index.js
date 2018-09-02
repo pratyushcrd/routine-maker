@@ -20,10 +20,20 @@ const styles = theme => ({
     height: 'calc(100vh - 38px)',
     maxHeight: 'calc(100vh - 38px)',
     overflow: 'hidden',
+    padding: '0 !important',
+  },
+  sectionManagerContainer: {
+    overflowY: 'scroll',
+    overflowX: 'hidden',
+    paddingRight: '1px',
+    paddingBottom: '2%',
+    '&::-webkit-scrollbar': {
+      display: 'none'
+    },
   },
   sectionManager: {
-    marginTop: `${theme.spacing.unit * 2}px`,
-    marginLeft: '1%',
+    paddingTop: `${theme.spacing.unit * 2}px`,
+    paddingLeft: '1%',
   },
   button: {
     margin: theme.spacing.unit,
@@ -52,9 +62,6 @@ class Home extends React.Component {
     return classes
   }
 
-  toogleDisplayAddTeacher = () => {
-    this.setState(state => ({ displayAddTeacher: !state.displayAddTeacher }))
-  }
 
   /**
    * Get subjects list in format: [{ className: '1', section: 'A', subject: 'English' }]
@@ -125,6 +132,12 @@ class Home extends React.Component {
     .map(ob => ob.periods)
     .reduce((a, b) => a + b, 0)
 
+  /**
+   * Toggle add teacher field in right
+   */
+  toogleDisplayAddTeacher = () => {
+    this.setState(state => ({ displayAddTeacher: !state.displayAddTeacher }))
+  }
 
   /**
    * Function to set a class active
@@ -185,7 +198,7 @@ class Home extends React.Component {
             addClass={this.handleClassDialog(true)}
           />
         </Grid>
-        <Grid item xs={7}>
+        <Grid item xs={7} className={classes.sectionManagerContainer} >
           <Grid container>
             <Grid item xs={12} className={classes.sectionManager} >
               <SectionManager
@@ -202,8 +215,8 @@ class Home extends React.Component {
           <TeacherArea
             teachers={teachers}
             teachersMap={teachersMap}
-            toogleDisplayAddTeacher ={this.toogleDisplayAddTeacher}
-            displayAddTeacher ={this.state.displayAddTeacher}
+            toogleDisplayAddTeacher={this.toogleDisplayAddTeacher}
+            displayAddTeacher={this.state.displayAddTeacher}
           />
         </Grid>
       </Grid>
