@@ -31,12 +31,11 @@ const styles = theme => ({
     marginBottom: theme.spacing.unit * 2.5,
   },
   formControl: {
-    minWidth: '90%',
+    minWidth: '100%',
   },
   textField: {
 
     marginTop: theme.spacing.unit * 0.5,
-    minWidth: '90%',
     textAlign: 'start',
 
   },
@@ -46,11 +45,21 @@ const styles = theme => ({
     paddingLeft: theme.spacing.unit * 5,
     paddingRight: theme.spacing.unit * 5,
     textAlign: 'center',
-    minWidth: '90%',
-
   },
   displayAddTeacherBtn: {
     color: theme.palette.text.secondary,
+  },
+  formArea: {
+    paddingLeft: theme.spacing.unit * 2,
+    paddingRight: theme.spacing.unit * 2,
+    minWidth: '100%',
+  },
+  addTeacherLabel: {
+    textAlign: 'flex-start',
+    fontSize: '13px',
+    color: theme.palette.text.secondary,
+    paddingLeft: theme.spacing.unit,
+    paddingTop: theme.spacing.unit,
   }
 })
 
@@ -58,36 +67,42 @@ const TeacherArea = (props) => {
   const classes = props.classes
   const teachers = props.teachers
   const maxPeriods = Math.max(1, ...teachers.map(t => t.periodsAssigned))
-  const addArea = (<Collapse in={props.displayAddTeacher}>
+  const addArea = (<Collapse in={true || props.displayAddTeacher}>
     <Grid
       container
       alignItems={'center'}
-      justify={'center'}
+      justify={'flex-start'}
+
     >
-      <form autoComplete="off">
+      <Grid item xs={12}>
+        <Typography className={classes.addTeacherLabel}>
+          Add Teacher
+        </Typography>
+      </Grid>
+      <form autoComplete="off" className={classes.formArea}>
+      <Grid item xs={12}>
         <FormControl className={classes.formControl}>
-          <div>
+          
             <TextField
               id="teacher"
               label="Name"
               className={classes.textField}
               margin="normal"
             />
-          </div>
         </FormControl>
-        <br />
+      </Grid>
+      <Grid item  xs={4}>
         <FormControl className={classes.formControl}>
-          <div >
+          
             <TextField
               id="tid"
               label="Teacher ID"
               className={classes.textField}
               margin="normal"
             />
-          </div>
         </FormControl>
-      </form>
-      <div>
+      </Grid>
+        <Grid item xs={4}>
         <Button
           variant="contained"
           mini
@@ -98,7 +113,9 @@ const TeacherArea = (props) => {
         >
           Add
         </Button>
-      </div>
+        </Grid>
+      </form>
+        
     </Grid>
     <Divider />
   </Collapse>)
@@ -110,7 +127,6 @@ const TeacherArea = (props) => {
       justify={'flex-start'}
       className={classes.backPaperContainer}
     >
-
       <Grid
         item
         xs={2}
