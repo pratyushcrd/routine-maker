@@ -79,43 +79,48 @@ const TeacherArea = (props) => {
           Add Teacher
         </Typography>
       </Grid>
-      <form autoComplete="off" className={classes.formArea}>
+
       <Grid item xs={12}>
-        <FormControl className={classes.formControl}>
-          
-            <TextField
-              id="teacher"
-              label="Name"
-              className={classes.textField}
-              margin="normal"
-            />
-        </FormControl>
+        <form autoComplete="off" className={classes.formArea}>
+          <Grid
+            container
+          >
+            <Grid item xs={12}>
+              <FormControl className={classes.formControl}>
+                <TextField
+                  id="teacher"
+                  label="Name"
+                  className={classes.textField}
+                  margin="normal"
+                />
+              </FormControl>
+            </Grid>
+            <Grid item xs={4}>
+              <FormControl className={classes.formControl}>
+
+                <TextField
+                  id="tid"
+                  label="Teacher ID"
+                  className={classes.textField}
+                  margin="normal"
+                />
+              </FormControl>
+            </Grid>
+            <Grid item xs={4}>
+              <Button
+                variant="contained"
+                mini
+                color="primary"
+                aria-label="add"
+                onClick={() => { }}
+                className={classes.button}
+              >
+                Add
+              </Button>
+            </Grid>
+          </Grid>
+        </form>
       </Grid>
-      <Grid item  xs={4}>
-        <FormControl className={classes.formControl}>
-          
-            <TextField
-              id="tid"
-              label="Teacher ID"
-              className={classes.textField}
-              margin="normal"
-            />
-        </FormControl>
-      </Grid>
-        <Grid item xs={4}>
-        <Button
-          variant="contained"
-          mini
-          color="primary"
-          aria-label="add"
-          onClick={() => {}}
-          className={classes.button}
-        >
-          Add
-        </Button>
-        </Grid>
-      </form>
-        
     </Grid>
     <Divider />
   </Collapse>)
@@ -140,7 +145,7 @@ const TeacherArea = (props) => {
 
         <Paper className={classes.backPaper}>
           <Typography variant="subheading" className={classes.header}>
-              Teachers
+            Teachers
             <IconButton component="span" className={classes.displayAddTeacherBtn} onClick={props.toogleDisplayAddTeacher}>
               <GroupAdd />
             </IconButton>
