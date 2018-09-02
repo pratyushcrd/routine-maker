@@ -26,9 +26,9 @@ const styles = theme => ({
     overflowY: 'scroll',
     overflowX: 'hidden',
     paddingRight: '1px',
-    paddingBottom: '2%',
+    paddingBottom: '100px',
     '&::-webkit-scrollbar': {
-      display: 'none'
+      display: 'none',
     },
   },
   sectionManager: {
