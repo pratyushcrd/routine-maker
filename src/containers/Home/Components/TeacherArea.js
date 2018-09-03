@@ -27,36 +27,8 @@ const styles = theme => ({
     // padding: theme.spacing.unit * 0,
     marginBottom: theme.spacing.unit * 2.5,
   },
-  formControl: {
-    minWidth: '100%',
-  },
-  textField: {
-
-    marginTop: theme.spacing.unit * 0.5,
-    textAlign: 'start',
-
-  },
-  button: {
-    marginTop: theme.spacing.unit,
-    marginBottom: theme.spacing.unit * 1.5,
-    paddingLeft: theme.spacing.unit * 5,
-    paddingRight: theme.spacing.unit * 5,
-    textAlign: 'center',
-  },
   displayAddTeacherBtn: {
     color: theme.palette.text.secondary,
-  },
-  formArea: {
-    paddingLeft: theme.spacing.unit * 2,
-    paddingRight: theme.spacing.unit * 2,
-    minWidth: '100%',
-  },
-  addTeacherLabel: {
-    textAlign: 'flex-start',
-    fontSize: '13px',
-    color: theme.palette.text.secondary,
-    paddingLeft: theme.spacing.unit,
-    paddingTop: theme.spacing.unit,
   }
 })
 

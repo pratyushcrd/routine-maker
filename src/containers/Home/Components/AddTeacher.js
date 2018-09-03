@@ -10,28 +10,13 @@ import Divider from '@material-ui/core/Divider'
 import Collapse from '@material-ui/core/Collapse'
 
 const styles = theme => ({
-  header: {
-    color: theme.palette.text.secondary,
-    marginLeft: theme.spacing.unit * 1.5,
-    marginTop: theme.spacing.unit,
-    marginBottom: -theme.spacing.unit,
-  },
-  backPaperContainer: {
-    height: '100%',
-  },
-  backPaper: {
-    height: '100%',
-    // padding: theme.spacing.unit * 0,
-    marginBottom: theme.spacing.unit * 2.5,
-  },
   formControl: {
     minWidth: '100%',
   },
   textField: {
-
     marginTop: theme.spacing.unit * 0.5,
     textAlign: 'start',
-
+    minWidth: '100%',
   },
   button: {
     marginTop: theme.spacing.unit,
@@ -39,9 +24,6 @@ const styles = theme => ({
     paddingLeft: theme.spacing.unit * 5,
     paddingRight: theme.spacing.unit * 5,
     textAlign: 'center',
-  },
-  displayAddTeacherBtn: {
-    color: theme.palette.text.secondary,
   },
   formArea: {
     paddingLeft: theme.spacing.unit * 2,
@@ -172,7 +154,7 @@ class AddTeacher extends React.Component {
                     </div>
                   </FormControl>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={7}>
                   <FormControl className={classes.formControl}>
                     <div ref={this.teacherId}>
                       <TextField
