@@ -7,13 +7,10 @@ import List from '@material-ui/core/List'
 import Divider from '@material-ui/core/Divider'
 import GroupAdd from '@material-ui/icons/GroupAdd'
 import PropTypes from 'prop-types'
-import FormControl from '@material-ui/core/FormControl'
-import TextField from '@material-ui/core/TextField'
-import Button from '@material-ui/core/Button'
-import Collapse from '@material-ui/core/Collapse'
 import IconButton from '@material-ui/core/IconButton'
 
 import TeacherCard from './TeacherCard'
+import AddTeacher from './AddTeacher'
 
 const styles = theme => ({
   header: {
@@ -67,63 +64,6 @@ const TeacherArea = (props) => {
   const classes = props.classes
   const teachers = props.teachers
   const maxPeriods = Math.max(1, ...teachers.map(t => t.periodsAssigned))
-  const addArea = (<Collapse in={true || props.displayAddTeacher}>
-    <Grid
-      container
-      alignItems={'center'}
-      justify={'flex-start'}
-
-    >
-      <Grid item xs={12}>
-        <Typography className={classes.addTeacherLabel}>
-          Add Teacher
-        </Typography>
-      </Grid>
-
-      <Grid item xs={12}>
-        <form autoComplete="off" className={classes.formArea}>
-          <Grid
-            container
-          >
-            <Grid item xs={12}>
-              <FormControl className={classes.formControl}>
-                <TextField
-                  id="teacher"
-                  label="Name"
-                  className={classes.textField}
-                  margin="normal"
-                />
-              </FormControl>
-            </Grid>
-            <Grid item xs={4}>
-              <FormControl className={classes.formControl}>
-
-                <TextField
-                  id="tid"
-                  label="Teacher ID"
-                  className={classes.textField}
-                  margin="normal"
-                />
-              </FormControl>
-            </Grid>
-            <Grid item xs={4}>
-              <Button
-                variant="contained"
-                mini
-                color="primary"
-                aria-label="add"
-                onClick={() => { }}
-                className={classes.button}
-              >
-                Add
-              </Button>
-            </Grid>
-          </Grid>
-        </form>
-      </Grid>
-    </Grid>
-    <Divider />
-  </Collapse>)
   return (
     <Grid
       container
@@ -152,7 +92,7 @@ const TeacherArea = (props) => {
           </Typography>
           <List>
             <Divider />
-            {addArea}
+            <AddTeacher show={props.displayAddTeacher}/>
 
             {
               teachers.map(teacher => (
@@ -177,6 +117,8 @@ const TeacherArea = (props) => {
 TeacherArea.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
   teachers: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  displayAddTeacher: PropTypes.bool.isRequired,
+  toogleDisplayAddTeacher: PropTypes.func.isRequired,
 }
 
 
