@@ -1,37 +1,41 @@
 import React from 'react'
-import { connect, } from 'react-redux'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import FormControl from '@material-ui/core/FormControl'
-import Paper from '@material-ui/core/Paper'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
+import Divider from '@material-ui/core/Divider'
+import Collapse from '@material-ui/core/Collapse'
 
 const styles = theme => ({
-  button: {
-    marginTop: theme.spacing.unit * 2,
-    marginBottom: theme.spacing.unit,
-    textAlign: 'center',
-    minWidth: '90%',
-    marginLeft: '3%'
-  },
   formControl: {
-    marginTop: theme.spacing.unit,
-    minWidth: '90%',
-  },
-  paper: {
-    padding: theme.spacing.unit,
-    textAlign: 'start',
-    color: theme.palette.text.secondary,
-    whiteSpace: 'nowrap',
-    marginBottom: theme.spacing.unit,
+    minWidth: '100%',
   },
   textField: {
-    minWidth: '90%',
+    marginTop: theme.spacing.unit * 0.5,
     textAlign: 'start',
-    marginLeft: '3%'
+    minWidth: '100%',
+  },
+  button: {
+    marginTop: theme.spacing.unit,
+    marginBottom: theme.spacing.unit * 1.5,
+    paddingLeft: theme.spacing.unit * 5,
+    paddingRight: theme.spacing.unit * 5,
+    textAlign: 'center',
+  },
+  formArea: {
+    paddingLeft: theme.spacing.unit * 2,
+    paddingRight: theme.spacing.unit * 2,
+    minWidth: '100%',
+  },
+  addTeacherLabel: {
+    textAlign: 'flex-start',
+    fontSize: '13px',
+    color: theme.palette.text.secondary,
+    paddingLeft: theme.spacing.unit,
+    paddingTop: theme.spacing.unit,
   }
 })
 
@@ -120,68 +124,74 @@ class AddTeacher extends React.Component {
   render() {
     const { classes } = this.props
     return (
-      <Paper className={classes.paper}>
-        <Typography variant="caption" align="left" gutterBottom className={classes.textField}>
-          Add teachers
-        </Typography>
-        <form autoComplete="off">
-          <FormControl className={classes.formControl}>
-            <div ref={this.teacherName}>
-              <TextField
-                id="teacher"
-                label="Name"
-                className={classes.textField}
-                value={this.state.teacher}
-                onChange={this.handleChange('teacher')}
-                margin="normal"
-                onKeyPress={this.addTeacherByEnter}
-              />
-            </div>
-          </FormControl>
-          <br />
-          <FormControl className={classes.formControl}>
-            <div ref={this.teacherId}>
-              <TextField
-                id="tid"
-                label="Teacher ID"
-                className={classes.textField}
-                value={this.state.tid}
-                onChange={this.handleChange('tid')}
-                margin="normal"
-                onKeyPress={this.addTeacherByEnter}
-              />
-            </div>
-          </FormControl>
-        </form>
+      <Collapse in={this.props.show}>
+        <Grid
+          container
+          alignItems={'center'}
+          justify={'flex-start'}
 
-        <div>
-          <Button
-            variant="contained"
-            mini
-            color="primary"
-            aria-label="add"
-            onClick={this.addTeachers}
-            className={classes.button}
-          >
-            Add
-          </Button>
-        </div>
-      </Paper>
+        >
+          <Grid item xs={12}>
+            <Typography className={classes.addTeacherLabel}>
+              Add Teacher
+            </Typography>
+          </Grid>
+
+          <Grid item xs={12}>
+            <form autoComplete="off" className={classes.formArea}>
+              <Grid
+                container
+              >
+                <Grid item xs={12}>
+                  <FormControl className={classes.formControl}>
+                    <div ref={this.teacherName}>
+                      <TextField
+                        id="teacher"
+                        label="Name"
+                        className={classes.textField}
+                        margin="normal"
+                      />
+                    </div>
+                  </FormControl>
+                </Grid>
+                <Grid item xs={7}>
+                  <FormControl className={classes.formControl}>
+                    <div ref={this.teacherId}>
+                      <TextField
+                        id="tid"
+                        label="Teacher ID"
+                        className={classes.textField}
+                        margin="normal"
+                      />
+                    </div>
+                  </FormControl>
+                </Grid>
+                <Grid item xs={4}>
+                  <Button
+                    variant="contained"
+                    mini
+                    color="primary"
+                    aria-label="add"
+                    onClick={() => { }}
+                    className={classes.button}
+                  >
+                    Add
+                  </Button>
+                </Grid>
+              </Grid>
+            </form>
+          </Grid>
+        </Grid>
+        <Divider />
+      </Collapse>
     )
   }
 }
 
 AddTeacher.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
-  dispatch: PropTypes.func.isRequired,
-  teachers: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-  })).isRequired
+  show: PropTypes.bool.isRequired,
 }
 
-function mapStateToProperties(state) {
-  return Object.assign({}, state.input)
-}
 
-export default connect(mapStateToProperties)(withStyles(styles)(AddTeacher))
+export default withStyles(styles)(AddTeacher)
