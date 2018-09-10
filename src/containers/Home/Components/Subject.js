@@ -65,6 +65,7 @@ class Subject extends React.Component {
     const classes = this.props.classes
     const subject = this.props.subject
     const teachersMap = this.props.teachersMap
+    const toggleEdit = this.props.toggleEdit
 
     const periodsPerWeek = subject.periodsPerWeek
     const subjectName = subject.subject
@@ -155,7 +156,7 @@ class Subject extends React.Component {
           {/* <IconButton aria-label="Edit">
             <EditIcon />
           </IconButton> */}
-          <Button size="small" color="primary">
+          <Button size="small" color="primary" onClick={toggleEdit}>
             Edit Details
           </Button>
         </CardActions>
@@ -168,6 +169,7 @@ Subject.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   subject: PropTypes.shape({}).isRequired,
   teachersMap: PropTypes.shape({}).isRequired,
+  toggleEdit: PropTypes.func.isRequired,
 }
 
 export default withStyles(styles)(Subject)

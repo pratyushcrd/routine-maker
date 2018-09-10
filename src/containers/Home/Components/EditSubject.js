@@ -6,9 +6,14 @@ import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import Divider from '@material-ui/core/Divider'
 import Grid from '@material-ui/core/Grid'
-
+import CardActions from '@material-ui/core/CardActions'
+import Button from '@material-ui/core/Button'
+import TextField from '@material-ui/core/TextField'
 
 const styles = theme => ({
+  noPadding: {
+    padding: '0 !important',
+  },
   subjectName: {
     fontWeight: 400,
   },
@@ -34,6 +39,7 @@ const styles = theme => ({
   },
   subjectInfo: {
     textAlign: 'center',
+    fontSize: '15px',
   },
   subjectInfoDesc: {
     textAlign: 'center',
@@ -57,6 +63,7 @@ class EditSubject extends React.Component {
     const classes = this.props.classes
     const subject = this.props.subject
     const teachersMap = this.props.teachersMap
+    const toggleEdit = this.props.toggleEdit
 
     const periodsPerWeek = subject.periodsPerWeek
     const subjectName = subject.subject
@@ -78,9 +85,11 @@ class EditSubject extends React.Component {
         <CardContent className={classes.cardContent}>
           <Grid container spacing={8}>
             <Grid item xs={9}>
-              <Typography variant="title" className={classes.subjectName}>
-                {subjectName}
-              </Typography>
+              <TextField
+                label="Edit Subject"
+                defaultValue={subjectName}
+                className={classes.subjectName}
+              />
             </Grid>
             <Grid item xs={3}>
               <Typography className={classes.textRight}>
@@ -90,12 +99,12 @@ class EditSubject extends React.Component {
           </Grid>
           <Divider className={classes.divider} />
           <Grid container spacing={8}>
-            <Grid item xs={2}>
+            <Grid item xs={4}>
               <Typography>
-                Teacher
+                Select Teacher
               </Typography>
             </Grid>
-            <Grid item xs={10}>
+            <Grid item xs={8}>
               <Typography
                 className={classes.textRight}
                 variant="body1"
@@ -143,6 +152,14 @@ class EditSubject extends React.Component {
             </Grid>
           </Grid>
         </CardContent>
+        <CardActions className={classes.actions} disableActionSpacing>
+          <Button size="small" color="primary">
+            Save
+          </Button>
+          <Button size="small" color="primary" onClick={toggleEdit}>
+            Cancel
+          </Button>
+        </CardActions>
       </Card>
     )
   }
@@ -152,6 +169,7 @@ EditSubject.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   subject: PropTypes.shape({}).isRequired,
   teachersMap: PropTypes.shape({}).isRequired,
+  toggleEdit: PropTypes.func.isRequired,
 }
 
 export default withStyles(styles)(EditSubject)

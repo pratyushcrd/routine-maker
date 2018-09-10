@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import Button from '@material-ui/core/Button'
 import SectionDetails from './SectionDetails'
 import Subject from './Subject'
+import EditSubject from './EditSubject'
 
 function getSubjectsBySection(subjects) {
   return subjects
@@ -62,7 +63,8 @@ class Sections extends React.Component {
     super(props)
     const sections = this.props.sections
     this.state = {
-      activeSection: sections[0].section
+      activeSection: sections[0].section,
+      editSubject: -1,
     }
   }
 
@@ -73,6 +75,9 @@ class Sections extends React.Component {
     const activeSection = nextProps.sections[0].section
     this.setState({
       activeSection
+    })
+    this.setState({
+      editSubject: -1
     })
   }
 
@@ -85,6 +90,15 @@ class Sections extends React.Component {
    * Function that returns a function to mark a section active
    */
   markActive = (activeSection) => () => this.setState({ activeSection })
+
+  /**
+   * Function to mark which class is to be edited
+   */
+  toggleEditSubject = (subject) => () => {
+    this.setState(state => ({
+      editSubject: state.editSubject === subject ? -1 : subject
+    }))
+  }
 
   render() {
     const classes = this.props.classes
@@ -144,10 +158,19 @@ class Sections extends React.Component {
               xs={6}
               className={classes.subjectGrid}
             >
-              <Subject
-                subject={subject}
-                teachersMap={teachersMap}
-              />
+              {
+                this.state.editSubject !== subject.subject ?
+                  <Subject
+                    subject={subject}
+                    teachersMap={teachersMap}
+                    toggleEdit={this.toggleEditSubject(subject.subject)}
+                  /> :
+                  <EditSubject
+                    subject={subject}
+                    teachersMap={teachersMap}
+                    toggleEdit={this.toggleEditSubject(subject.subject)}
+                  />
+              }
             </Grid>
           ))
         }
