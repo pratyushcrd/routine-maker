@@ -175,6 +175,7 @@ class Home extends React.Component {
   })
 
   render() {
+    console.log(this.props)
     const classes = this.props.classes
 
     const selectClass = this.selectClass

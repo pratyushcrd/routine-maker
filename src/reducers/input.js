@@ -87,7 +87,14 @@ const handlers = {
       sections: action.classSections,
     }, ...state.classList],
     sections: state.sections.concat(action.sections),
-    subjects: state.subjects.concat(action.subjects)
+    subjects: state.subjects.concat(action.subjects.map(sub =>
+      ({ ...sub,
+        id: `@@${sub.className}_${sub.section}_${sub.subject.toLowerCase()}`,
+        classLength: sub.classLength || 1,
+        commonArea: sub.commonArea || null,
+        periodsPerWeek: sub.periodsPerWeek || 0
+      })
+    ))
   }),
   [ADD_SECTION]: (state, action) => ({
     sections: [{
@@ -129,12 +136,14 @@ const handlers = {
     }))
   }),
   [EDIT_SUBJECT]: (state, action) => ({
-    subjects: state.sections.map(subjectInfo => ({
-      ...subjectInfo,
-      periodsPerWeek: (action.className === subjectInfo.className) &&
-        (action.subject === subjectInfo.subject) ?
-        action.periodsPerWeek : subjectInfo.periodsPerWeek
-    }))
+    subjects: state.subjects.map(sub => (sub.id === action.id ?
+      {
+        className: action.className,
+        id: `@@${action.className}_${action.section}_${action.subject.toLowerCase()}`,
+        classLength: action.classLength || 1,
+        commonArea: action.commonArea || null,
+        periodsPerWeek: action.periodsPerWeek || 0
+      } : sub))
   }),
   [DELETE_DAY]: (state, action) => ({
     days: state.days.filter(day => action.day !== day.day)

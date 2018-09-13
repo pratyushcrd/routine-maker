@@ -131,10 +131,10 @@ class AddClass extends React.Component {
         }, () => this.subjectInputField.current.querySelector('input').focus())
       }
     } else {
-      if(!inputSub){
+      if (!inputSub) {
         this.displayWarning('Enter at least one subject')
       }
-      if(!inputPeriodsPerWeek){
+      if (!inputPeriodsPerWeek) {
         this.displayWarning('Enter periods / week. You can change that for every section later')
       }
     }
@@ -168,7 +168,7 @@ class AddClass extends React.Component {
 
   validateAndSaveClass = () => {
     if (!this.state.className.trim()) {
-      this.displayWarning('Clas name is mandatory')
+      this.displayWarning('Class name is mandatory')
       return
     }
     if (this.state.subjects.length < 1) {
