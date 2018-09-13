@@ -119,6 +119,7 @@ class Sections extends React.Component {
     const totalPeriods = this.props.totalPeriods
     const activeSectionSubjects = subjectMap[activeSection]
     const teachersMap = this.props.teachersMap
+    const commonAreas = this.props.commonAreas
 
     return (
       <Grid container spacing={24} >
@@ -176,6 +177,7 @@ class Sections extends React.Component {
                   subject={subject}
                   teachersMap={teachersMap}
                   toggleEdit={this.toggleEditSubject(subject.subject)}
+                  commonAreas={commonAreas}
                 />
               </Collapse>
 
@@ -207,6 +209,9 @@ Sections.propTypes = {
   }).isRequired,
   totalPeriods: PropTypes.number.isRequired,
   teachersMap: PropTypes.shape({}).isRequired,
+  commonAreas: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
+  })).isRequired,
 }
 
 export default withStyles(styles)(Sections)

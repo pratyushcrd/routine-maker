@@ -93,6 +93,11 @@ class Home extends React.Component {
   }
 
   /**
+   * Get common areas list in format: [{ name: 'Ground' }]
+   */
+  getCommonAreas = () => this.props.commonAreas.slice()
+
+  /**
    * Get teachers in format {name: "Name", id: "Id", periods: 10}
    */
   getTeachers = () => {
@@ -183,6 +188,7 @@ class Home extends React.Component {
     const sections = this.getSections()
     const subjects = this.getSubjects()
     const teachers = this.getTeachers()
+    const commonAreas = this.getCommonAreas()
     const teachersMap = getTeachersMap(teachers)
     const totalPeriods = this.getTotalPeriods()
 
@@ -211,6 +217,7 @@ class Home extends React.Component {
                 subjects={subjects}
                 teachersMap={teachersMap}
                 totalPeriods={totalPeriods}
+                commonAreas={commonAreas}
               />
             </Grid>
           </Grid>
@@ -252,6 +259,9 @@ Home.propTypes = {
   teachers: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
+  })).isRequired,
+  commonAreas: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
   })).isRequired,
   dispatch: PropTypes.func.isRequired,
 }

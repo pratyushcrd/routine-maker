@@ -114,16 +114,15 @@ class EditSubject extends React.Component {
 
     const periodsPerWeek = this.state.periodsPerWeek
     const subjectName = subject.subject
-    const commonArea = this.state.commonArea || 'N/A'
     const teacherId = this.state.teacherId || ''
-    const classLength = this.state.classLength || 1
+    const commonAreas = [{
+      name: '',
+    }, ...this.props.commonAreas]
 
     const teacher = teacherId ? teachersMap[teacherId] : ({})
 
     const allTeachers = Object.entries(teachersMap)
       .map(arr => arr[1])
-
-    const periodsPerWeekText = String(+periodsPerWeek || 0)
 
     return (
       <Card className={classes.card}>
@@ -191,9 +190,20 @@ class EditSubject extends React.Component {
               </Typography>
             </Grid>
             <Grid item xs={4}>
-              <Typography variant="body1" className={classes.subjectInfo}>
-                {commonArea}
-              </Typography>
+              <Select
+                open={this.state.commonAreaSelectOpen}
+                onClose={this.toggleSelects('commonAreaSelectOpen', false)}
+                onOpen={this.toggleSelects('commonAreaSelectOpen', true)}
+                value={this.state.commonArea}
+                onChange={this.onSelectChange('commonArea')}
+                className={classes.subjectInfo}
+              >
+                {
+                  commonAreas.map((a) => a.name).map(val => (
+                    <MenuItem key={`@@selPPW-${val}`} value={val}>{String(val) || 'None'}</MenuItem>
+                  ))
+                }
+              </Select>
               <Typography className={classes.subjectInfoDesc}>
                 Common Area
               </Typography>
@@ -244,6 +254,9 @@ EditSubject.propTypes = {
   }).isRequired,
   teachersMap: PropTypes.shape({}).isRequired,
   toggleEdit: PropTypes.func.isRequired,
+  commonAreas: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
+  })).isRequired,
 }
 
 export default withStyles(styles)(EditSubject)
