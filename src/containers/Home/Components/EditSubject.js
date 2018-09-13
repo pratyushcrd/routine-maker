@@ -10,6 +10,8 @@ import CardActions from '@material-ui/core/CardActions'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 
+import SelectTeacher from './SelectTeacher'
+
 const styles = theme => ({
   noPadding: {
     padding: '0 !important',
@@ -56,8 +58,22 @@ class EditSubject extends React.Component {
     super(props)
     this.state = {
       dialogueOpen: false,
+      teacherDialogOpen: false,
+      teacher: props.subject.teacherId || ''
     }
   }
+
+  // Do certain operations when props change
+  componentWillReceiveProps = props => {
+    const teacherId = props.subject.teacherId || ''
+
+    // Change teacherId to selected subject
+    this.changeTeacher(teacherId)
+  }
+
+  changeTeacher = (teacherId) => this.setState({
+    teacher: teacherId || ''
+  })
 
   render() {
     const classes = this.props.classes
@@ -68,17 +84,15 @@ class EditSubject extends React.Component {
     const periodsPerWeek = subject.periodsPerWeek
     const subjectName = subject.subject
     const commonArea = subject.commonArea || 'N/A'
-    const teacherId = subject.teacherId || ''
+    const teacherId = this.state.teacher || ''
     const classLength = subject.classLength || 1
 
-    const teacher = teacherId && teachersMap[teacherId]
+    const teacher = teacherId ? teachersMap[teacherId] : ({})
 
-    const teacherNameText = teacher ? teacher.name : 'No teacher assigned'
+    const allTeachers = Object.entries(teachersMap)
+      .map(arr => arr[1])
+
     const periodsPerWeekText = String(+periodsPerWeek || 0)
-    const teacherPeriodsText = teacher ?
-      `has ${+teacher.periodsPerWeek || 0} periods assigned`
-      :
-      'No details found'
 
     return (
       <Card className={classes.card}>
@@ -99,28 +113,25 @@ class EditSubject extends React.Component {
           </Grid>
           <Divider className={classes.divider} />
           <Grid container spacing={8}>
-            <Grid item xs={4}>
+            <Grid item xs={12}>
               <Typography>
                 Select Teacher
               </Typography>
             </Grid>
-            <Grid item xs={8}>
-              <Typography
+            <Grid item xs={12}>
+              {/* Select teacher dialog */}
+              <SelectTeacher
+                teacher={teacher}
+                changeTeacher={this.changeTeacher}
+                allTeachers={allTeachers}
+              />
+              {/* <Typography
                 className={classes.textRight}
                 variant="body1"
+                onClick={this.openTeachersDialog}
               >
-                {teacherNameText}
-              </Typography>
-            </Grid>
-            <Grid item xs={2} />
-            <Grid item xs={10}>
-              <Typography
-                className={[classes.textRight, classes.periodsText].join(' ')}
-                variant="caption"
-
-              >
-                {teacherPeriodsText}
-              </Typography>
+                {teacherNameText} {teacherPeriodsText}
+              </Typography> */}
             </Grid>
           </Grid>
           <Grid container spacing={8} className={classes.subjectInfoContainer}>
