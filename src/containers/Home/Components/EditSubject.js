@@ -9,6 +9,8 @@ import Grid from '@material-ui/core/Grid'
 import CardActions from '@material-ui/core/CardActions'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
+import MenuItem from '@material-ui/core/MenuItem'
+import Select from '@material-ui/core/Select'
 
 import SelectTeacher from './SelectTeacher'
 
@@ -42,11 +44,17 @@ const styles = theme => ({
   subjectInfo: {
     textAlign: 'center',
     fontSize: '15px',
+    margin: 'auto',
+    display: 'block',
+    width: '70%',
   },
   subjectInfoDesc: {
     textAlign: 'center',
     fontSize: '13px',
     color: theme.palette.text.secondary
+  },
+  actions: {
+    // marginTop: theme.spacing.unit * 4
   }
 })
 
@@ -59,20 +67,43 @@ class EditSubject extends React.Component {
     this.state = {
       dialogueOpen: false,
       teacherDialogOpen: false,
-      teacher: props.subject.teacherId || ''
+      teacherId: props.subject.teacherId || '',
+      periodsPerWeek: +props.subject.periodsPerWeek || 0,
+      commonArea: props.subject.commonArea || '',
+      classLength: props.subject.classLength || 1,
+      periodsPerWeekSelectOpen: false,
+      commonAreaSelectOpen: false,
+      classLengthSelectOpen: false,
     }
   }
 
   // Do certain operations when props change
   componentWillReceiveProps = props => {
-    const teacherId = props.subject.teacherId || ''
-
-    // Change teacherId to selected subject
-    this.changeTeacher(teacherId)
+    this.setState({
+      periodsPerWeek: +props.subject.periodsPerWeek || 0,
+      commonArea: props.subject.commonArea || '',
+      classLength: props.subject.classLength || 1,
+    })
   }
 
-  changeTeacher = (teacherId) => this.setState({
-    teacher: teacherId || ''
+  onSelectChange = name => event => this.setState({
+    [name]: event.target.value
+  })
+
+  changeTeacher = (teacherId = '') => this.setState({
+    teacherId
+  })
+
+  changePeriodsPerWeek = (periodsPerWeek = 1) => this.setState({
+    periodsPerWeek
+  })
+
+  changeClassLength = (classLength = 1) => this.setState({
+    classLength
+  })
+
+  toggleSelects = (selectName, value) => () => this.setState({
+    [selectName]: value
   })
 
   render() {
@@ -81,11 +112,11 @@ class EditSubject extends React.Component {
     const teachersMap = this.props.teachersMap
     const toggleEdit = this.props.toggleEdit
 
-    const periodsPerWeek = subject.periodsPerWeek
+    const periodsPerWeek = this.state.periodsPerWeek
     const subjectName = subject.subject
-    const commonArea = subject.commonArea || 'N/A'
-    const teacherId = this.state.teacher || ''
-    const classLength = subject.classLength || 1
+    const commonArea = this.state.commonArea || 'N/A'
+    const teacherId = this.state.teacherId || ''
+    const classLength = this.state.classLength || 1
 
     const teacher = teacherId ? teachersMap[teacherId] : ({})
 
@@ -100,7 +131,6 @@ class EditSubject extends React.Component {
           <Grid container spacing={8}>
             <Grid item xs={9}>
               <TextField
-                label="Edit Subject"
                 defaultValue={subjectName}
                 className={classes.subjectName}
               />
@@ -113,12 +143,13 @@ class EditSubject extends React.Component {
           </Grid>
           <Divider className={classes.divider} />
           <Grid container spacing={8}>
-            <Grid item xs={12}>
-              <Typography>
+            <Grid item xs={2}>
+              <Typography variant="caption" style={{ textAlign: 'center' }}>
                 Select Teacher
               </Typography>
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={1} />
+            <Grid item xs={9}>
               {/* Select teacher dialog */}
               <SelectTeacher
                 teacher={teacher}
@@ -135,10 +166,26 @@ class EditSubject extends React.Component {
             </Grid>
           </Grid>
           <Grid container spacing={8} className={classes.subjectInfoContainer}>
-            <Grid item xs={4}>
-              <Typography variant="body1" className={classes.subjectInfo}>
-                {periodsPerWeekText}
+            <Grid item xs={12}>
+              <Typography variant="caption">
+                Edit details
               </Typography>
+            </Grid>
+            <Grid item xs={4}>
+              <Select
+                open={this.state.periodsPerWeekSelectOpen}
+                onClose={this.toggleSelects('periodsPerWeekSelectOpen', false)}
+                onOpen={this.toggleSelects('periodsPerWeekSelectOpen', true)}
+                value={this.state.periodsPerWeek}
+                onChange={this.onSelectChange('periodsPerWeek')}
+                className={classes.subjectInfo}
+              >
+                {
+                  Array(21).fill(0).map((a, i) => a + i).map(val => (
+                    <MenuItem key={`@@selPPW-${val}`} value={val}>{String(val)}</MenuItem>
+                  ))
+                }
+              </Select>
               <Typography className={classes.subjectInfoDesc}>
                 Periods / Week
               </Typography>
@@ -153,9 +200,23 @@ class EditSubject extends React.Component {
               <div className={classes.infoDivider} />
             </Grid>
             <Grid item xs={4}>
-              <Typography variant="body1" className={classes.subjectInfo}>
-                {classLength}
-              </Typography>
+              <Select
+                open={this.state.classLengthSelectOpen}
+                onClose={this.toggleSelects('classLengthSelectOpen', false)}
+                onOpen={this.toggleSelects('classLengthSelectOpen', true)}
+                value={this.state.classLength}
+                onChange={this.onSelectChange('classLength')}
+                className={classes.subjectInfo}
+                inputProps={{
+                  name: 'Hello'
+                }}
+              >
+                {
+                  Array(10).fill(1).map((a, i) => a + i).map(val => (
+                    <MenuItem key={`@@selCLength-${val}`} value={val}>{val}</MenuItem>
+                  ))
+                }
+              </Select>
               <Typography className={classes.subjectInfoDesc}>
                 Class Length
               </Typography>
@@ -178,7 +239,9 @@ class EditSubject extends React.Component {
 
 EditSubject.propTypes = {
   classes: PropTypes.shape({}).isRequired,
-  subject: PropTypes.shape({}).isRequired,
+  subject: PropTypes.shape({
+    teacherId: PropTypes.subject
+  }).isRequired,
   teachersMap: PropTypes.shape({}).isRequired,
   toggleEdit: PropTypes.func.isRequired,
 }

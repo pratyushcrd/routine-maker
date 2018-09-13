@@ -8,6 +8,9 @@ import Select from '@material-ui/core/Select'
 
 
 const styles = theme => ({
+  select: {
+    width: '100%'
+  }
 })
 
 class SelectTeacher extends React.Component {
@@ -18,7 +21,7 @@ class SelectTeacher extends React.Component {
 
   componentWillReceiveProps = props => {
     this.setState({
-      teacher: props.teacher
+      teacher: props.teacher,
     })
   }
 
@@ -58,6 +61,7 @@ class SelectTeacher extends React.Component {
         onOpen={this.handleOpen}
         value={teacherId}
         onChange={this.onChange}
+        className={classes.select}
         inputProps={{
           name: 'Hello'
         }}

@@ -4,6 +4,8 @@ import Typography from '@material-ui/core/Typography'
 import { withStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
 import Button from '@material-ui/core/Button'
+import Collapse from '@material-ui/core/Collapse'
+
 import SectionDetails from './SectionDetails'
 import Subject from './Subject'
 import EditSubject from './EditSubject'
@@ -53,6 +55,9 @@ const styles = theme => ({
     paddingBottom: '0',
     marginBottom: -theme.spacing.unit * 2,
   },
+  animContainer: {
+    padding: '1px'
+  }
 })
 
 /**
@@ -158,19 +163,22 @@ class Sections extends React.Component {
               xs={6}
               className={classes.subjectGrid}
             >
-              {
-                this.state.editSubject !== subject.subject ?
-                  <Subject
-                    subject={subject}
-                    teachersMap={teachersMap}
-                    toggleEdit={this.toggleEditSubject(subject.subject)}
-                  /> :
-                  <EditSubject
-                    subject={subject}
-                    teachersMap={teachersMap}
-                    toggleEdit={this.toggleEditSubject(subject.subject)}
-                  />
-              }
+
+              <Collapse in={this.state.editSubject !== subject.subject} className={classes.animContainer}>
+                <Subject
+                  subject={subject}
+                  teachersMap={teachersMap}
+                  toggleEdit={this.toggleEditSubject(subject.subject)}
+                />
+              </Collapse>
+              <Collapse in={this.state.editSubject === subject.subject} className={classes.animContainer}>
+                <EditSubject
+                  subject={subject}
+                  teachersMap={teachersMap}
+                  toggleEdit={this.toggleEditSubject(subject.subject)}
+                />
+              </Collapse>
+
             </Grid>
           ))
         }
