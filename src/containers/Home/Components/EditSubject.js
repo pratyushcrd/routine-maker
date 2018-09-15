@@ -71,6 +71,7 @@ class EditSubject extends React.Component {
       periodsPerWeek: +props.subject.periodsPerWeek || 0,
       commonArea: props.subject.commonArea || '',
       classLength: props.subject.classLength || 1,
+      subjectName: props.subject.subject,
       periodsPerWeekSelectOpen: false,
       commonAreaSelectOpen: false,
       classLengthSelectOpen: false,
@@ -83,11 +84,17 @@ class EditSubject extends React.Component {
       periodsPerWeek: +props.subject.periodsPerWeek || 0,
       commonArea: props.subject.commonArea || '',
       classLength: props.subject.classLength || 1,
+      subjectName: props.subject.subject,
     })
   }
 
+
   onSelectChange = name => event => this.setState({
     [name]: event.target.value
+  })
+
+  changeSubjectName = event => this.setState({
+    subjectName: event.target.value
   })
 
   changeTeacher = (teacherId = '') => this.setState({
@@ -135,8 +142,9 @@ class EditSubject extends React.Component {
           <Grid container spacing={8}>
             <Grid item xs={9}>
               <TextField
-                defaultValue={subjectName}
                 className={classes.subjectName}
+                onChange={this.changeSubjectName}
+                value={this.state.subjectName}
               />
             </Grid>
             <Grid item xs={3}>
