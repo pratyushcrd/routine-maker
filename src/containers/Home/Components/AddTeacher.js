@@ -4,10 +4,11 @@ import { withStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import FormControl from '@material-ui/core/FormControl'
 import TextField from '@material-ui/core/TextField'
-import Button from '@material-ui/core/Button'
+import IconButton from '@material-ui/core/IconButton'
 import Grid from '@material-ui/core/Grid'
 import Divider from '@material-ui/core/Divider'
 import Collapse from '@material-ui/core/Collapse'
+import AddIcon from '@material-ui/icons/Add'
 
 const styles = theme => ({
   formControl: {
@@ -19,11 +20,11 @@ const styles = theme => ({
     minWidth: '100%',
   },
   button: {
-    marginTop: theme.spacing.unit,
+    marginTop: theme.spacing.unit * 2,
     marginBottom: theme.spacing.unit * 1.5,
-    paddingLeft: theme.spacing.unit * 5,
-    paddingRight: theme.spacing.unit * 5,
-    textAlign: 'center',
+    paddingLeft: theme.spacing.unit * 0.5,
+    paddingRight: theme.spacing.unit * 0.5,
+    // textAlign: 'center',
   },
   formArea: {
     paddingLeft: theme.spacing.unit * 2,
@@ -166,17 +167,17 @@ class AddTeacher extends React.Component {
                     </div>
                   </FormControl>
                 </Grid>
-                <Grid item xs={4}>
-                  <Button
-                    variant="contained"
-                    mini
+                <Grid item xs={2} />
+                <Grid item>
+                  <IconButton
+                    variant="text"
                     color="primary"
                     aria-label="add"
                     onClick={() => { }}
                     className={classes.button}
                   >
-                    Add
-                  </Button>
+                    <AddIcon />
+                  </IconButton>
                 </Grid>
               </Grid>
             </form>

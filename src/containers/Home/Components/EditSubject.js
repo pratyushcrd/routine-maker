@@ -266,7 +266,7 @@ EditSubject.propTypes = {
     commonArea: PropTypes.string,
     periodsPerWeek: PropTypes.number,
     subject: PropTypes.string,
-    classLength: PropTypes.string,
+    classLength: PropTypes.number,
   }).isRequired,
   teachersMap: PropTypes.shape({}).isRequired,
   toggleEdit: PropTypes.func.isRequired,
