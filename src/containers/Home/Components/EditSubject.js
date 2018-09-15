@@ -123,7 +123,6 @@ class EditSubject extends React.Component {
     const periodsAssignedToCurrentSubject = +subject.periodsPerWeek || 0
     const totalPeriods = this.props.totalPeriods
 
-    const subjectName = subject.subject
     const teacherId = this.state.teacherId || ''
     const commonAreas = [{
       name: '',
@@ -263,7 +262,11 @@ class EditSubject extends React.Component {
 EditSubject.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   subject: PropTypes.shape({
-    teacherId: PropTypes.subject
+    teacherId: PropTypes.string,
+    commonArea: PropTypes.string,
+    periodsPerWeek: PropTypes.number,
+    subject: PropTypes.string,
+    classLength: PropTypes.string,
   }).isRequired,
   teachersMap: PropTypes.shape({}).isRequired,
   toggleEdit: PropTypes.func.isRequired,
