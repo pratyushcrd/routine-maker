@@ -85,6 +85,7 @@ class EditSubject extends React.Component {
       commonArea: props.subject.commonArea || '',
       classLength: props.subject.classLength || 1,
       subjectName: props.subject.subject,
+      teacherId: props.subject.teacherId || '',
     })
   }
 
