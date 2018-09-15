@@ -23,6 +23,12 @@ function joinClasses(...params) {
   return params.join(' ')
 }
 
+function getTotalPeriods(subjects) {
+  return subjects
+    .map(subject => +subject.periodsPerWeek || 0)
+    .reduce((a, b) => a + b, 0)
+}
+
 const styles = theme => ({
   sectionHeader: {
     color: theme.palette.primary.main,
@@ -118,6 +124,8 @@ class Sections extends React.Component {
     const subjectMap = getSubjectsBySection(subjects)
     const totalPeriods = this.props.totalPeriods
     const activeSectionSubjects = subjectMap[activeSection]
+    const activeSectionPeriodsPerWeek = getTotalPeriods(activeSectionSubjects)
+
     const teachersMap = this.props.teachersMap
     const commonAreas = this.props.commonAreas
 
@@ -146,6 +154,7 @@ class Sections extends React.Component {
             activeClass={activeClass}
             activeSection={activeSection}
             subjects={activeSectionSubjects}
+            periodsAssigned={activeSectionPeriodsPerWeek}
             totalPeriods={totalPeriods}
           />
         </Grid>
@@ -177,6 +186,8 @@ class Sections extends React.Component {
                   subject={subject}
                   teachersMap={teachersMap}
                   toggleEdit={this.toggleEditSubject(subject.subject)}
+                  periodsAssigned={activeSectionPeriodsPerWeek}
+                  totalPeriods={totalPeriods}
                   commonAreas={commonAreas}
                 />
               </Collapse>

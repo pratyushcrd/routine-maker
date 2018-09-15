@@ -49,10 +49,8 @@ class Details extends React.Component {
     const activeClass = this.props.activeClass
     const subjects = this.props.subjects
     const totalPeriods = +this.props.totalPeriods
+    const periodsAssigned = this.props.periodsAssigned
 
-    const periodsAssigned = subjects
-      .map(subject => +subject.periodsPerWeek || 0)
-      .reduce((a, b) => a + b, 0)
     const progressRatio = Math.round(100 * (periodsAssigned / totalPeriods))
 
     return (
@@ -95,6 +93,7 @@ Details.propTypes = {
     section: PropTypes.string,
     subject: PropTypes.string,
   })).isRequired,
+  periodsAssigned: PropTypes.number.isRequired,
 }
 
 export default withStyles(styles)(Details)

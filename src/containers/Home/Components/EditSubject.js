@@ -112,12 +112,17 @@ class EditSubject extends React.Component {
     const teachersMap = this.props.teachersMap
     const toggleEdit = this.props.toggleEdit
 
-    const periodsPerWeek = this.state.periodsPerWeek
+    const periodsAssigned = this.props.periodsAssigned
+    const periodsAssignedToCurrentSubject = +subject.periodsPerWeek || 0
+    const totalPeriods = this.props.totalPeriods
+
     const subjectName = subject.subject
     const teacherId = this.state.teacherId || ''
     const commonAreas = [{
       name: '',
     }, ...this.props.commonAreas]
+
+    const maxPeriodsPerWeek = Math.min(20, totalPeriods - (periodsAssigned - periodsAssignedToCurrentSubject))
 
     const teacher = teacherId ? teachersMap[teacherId] : ({})
 
@@ -180,7 +185,7 @@ class EditSubject extends React.Component {
                 className={classes.subjectInfo}
               >
                 {
-                  Array(21).fill(0).map((a, i) => a + i).map(val => (
+                  Array(maxPeriodsPerWeek + 1).fill(0).map((a, i) => a + i).map(val => (
                     <MenuItem key={`@@selPPW-${val}`} value={val}>{String(val)}</MenuItem>
                   ))
                 }
@@ -257,6 +262,8 @@ EditSubject.propTypes = {
   commonAreas: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
   })).isRequired,
+  periodsAssigned: PropTypes.number.isRequired,
+  totalPeriods: PropTypes.number.isRequired,
 }
 
 export default withStyles(styles)(EditSubject)
