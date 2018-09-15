@@ -174,14 +174,20 @@ class Sections extends React.Component {
               className={classes.subjectGrid}
             >
 
-              <Collapse in={this.state.editSubject !== subject.subject} className={classes.animContainer}>
+              <Collapse
+                in={this.state.editSubject !== subject.subject}
+                className={classes.animContainer}
+              >
                 <Subject
                   subject={subject}
                   teachersMap={teachersMap}
                   toggleEdit={this.toggleEditSubject(subject.subject)}
                 />
               </Collapse>
-              <Collapse in={this.state.editSubject === subject.subject} className={classes.animContainer}>
+              <Collapse
+                in={this.state.editSubject === subject.subject}
+                className={classes.animContainer}
+              >
                 <EditSubject
                   subject={subject}
                   teachersMap={teachersMap}
