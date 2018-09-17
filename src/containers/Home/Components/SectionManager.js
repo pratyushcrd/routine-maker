@@ -85,10 +85,7 @@ class Sections extends React.Component {
   componentWillReceiveProps = (nextProps) => {
     const activeSection = nextProps.sections[0].section
     this.setState({
-      activeSection
-    })
-    this.setState({
-      editSubject: -1
+      activeSection, editSubject: -1
     })
   }
 
@@ -195,6 +192,7 @@ class Sections extends React.Component {
                   periodsAssigned={activeSectionPeriodsPerWeek}
                   totalPeriods={totalPeriods}
                   commonAreas={commonAreas}
+                  updateSubject={this.props.updateSubject}
                 />
               </Collapse>
 
@@ -229,6 +227,7 @@ Sections.propTypes = {
   commonAreas: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
   })).isRequired,
+  updateSubject: PropTypes.func.isRequired,
 }
 
 export default withStyles(styles)(Sections)

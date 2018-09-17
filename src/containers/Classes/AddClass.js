@@ -187,8 +187,6 @@ class AddClass extends React.Component {
     }
 
     const className = this.state.className.trim()
-    const classSections = this.state.sections
-    const classSubjects = this.state.subjects
 
     // get all sections in proper format
     const sections = this.state.sections.map(({ name: section }) => ({
@@ -210,8 +208,6 @@ class AddClass extends React.Component {
       className,
       sections,
       subjects,
-      classSections,
-      classSubjects,
     })
     // Clear common area name and count
     this.setState({

@@ -7,6 +7,7 @@ import SectionManager from './Components/SectionManager'
 import AddClassDialog from './Dialogs/AddClassDialog'
 import ClassSidebar from './Components/ClassSidebar'
 import TeacherArea from './Components/TeacherArea'
+import { ADD_SUBJECT } from '../../constants/action-types';
 
 function getTeachersMap(arr) {
   return arr.reduce((acc, teacher) => {
@@ -165,18 +166,22 @@ class Home extends React.Component {
     })
   }
 
+  updateSubject = (id, name, teacherId, periodsPerWeek, commonArea, classLength) => {
+    this.props.dispatch({
+      type: ADD_SUBJECT, id, name, teacherId, periodsPerWeek, commonArea, classLength
+    })
+  }
+
   /**
    * Dispatch action to add class
    */
   addClass = ({
-    className, sections = [], subjects = [], classSections = [], classSubjects = []
+    className, sections = [], subjects = []
   }) => this.props.dispatch({
     type: 'ADD_CLASS',
     className,
     sections,
-    subjects,
-    classSections,
-    classSubjects,
+    subjects
   })
 
   render() {
@@ -218,6 +223,7 @@ class Home extends React.Component {
                 teachersMap={teachersMap}
                 totalPeriods={totalPeriods}
                 commonAreas={commonAreas}
+                updateSubject={this.updateSubject}
               />
             </Grid>
           </Grid>

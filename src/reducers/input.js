@@ -82,9 +82,7 @@ const handlers = {
   }),
   [ADD_CLASS]: (state, action) => ({
     classList: [{
-      className: action.className,
-      subjects: action.classSubjects,
-      sections: action.classSections,
+      className: action.className
     }, ...state.classList],
     sections: state.sections.concat(action.sections),
     subjects: state.subjects.concat(action.subjects.map(sub =>

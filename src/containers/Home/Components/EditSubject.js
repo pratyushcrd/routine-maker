@@ -248,7 +248,19 @@ class EditSubject extends React.Component {
           </Grid>
         </CardContent>
         <CardActions className={classes.actions} disableActionSpacing>
-          <Button size="small" color="primary">
+          <Button
+            size="small"
+            color="primary"
+            onClick={() => {this.props.updateSubject(this.props.subject.id,
+              this.state.subjectName,
+              this.state.teacherId,
+              this.state.periodsPerWeek,
+              this.state.commonArea,
+              this.state.className)
+            toggleEdit() 
+            }
+            }
+          >
             Save
           </Button>
           <Button size="small" color="primary" onClick={toggleEdit}>
@@ -268,6 +280,7 @@ EditSubject.propTypes = {
     periodsPerWeek: PropTypes.number,
     subject: PropTypes.string,
     classLength: PropTypes.number,
+    id: PropTypes.string,
   }).isRequired,
   teachersMap: PropTypes.shape({}).isRequired,
   toggleEdit: PropTypes.func.isRequired,
@@ -276,6 +289,7 @@ EditSubject.propTypes = {
   })).isRequired,
   periodsAssigned: PropTypes.number.isRequired,
   totalPeriods: PropTypes.number.isRequired,
+  updateSubject: PropTypes.func.isRequired,
 }
 
 export default withStyles(styles)(EditSubject)
