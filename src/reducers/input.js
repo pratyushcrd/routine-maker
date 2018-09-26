@@ -66,7 +66,6 @@ function uniqueBy(conditionsOb, array) {
   return Object.keys(map)
     .map(key => map[key])
 }
-
 const handlers = {
   [ADD_TEACHER]: (state, action) => ({
     teachers: [{
@@ -86,11 +85,13 @@ const handlers = {
     }, ...state.classList],
     sections: state.sections.concat(action.sections),
     subjects: state.subjects.concat(action.subjects.map(sub =>
-      ({ ...sub,
+      ({
+        ...sub,
         id: `@@${sub.className}_${sub.section}_${sub.subject.toLowerCase()}`,
         classLength: sub.classLength || 1,
         commonArea: sub.commonArea || null,
-        periodsPerWeek: sub.periodsPerWeek || 0
+        periodsPerWeek: sub.periodsPerWeek || 0,
+        teacherId: sub.teacherId || null,
       })
     ))
   }),
@@ -102,12 +103,15 @@ const handlers = {
     }, ...state.sections]
   }),
   [ADD_SUBJECT]: (state, action) => ({
-    subjects: [{
-      className: action.className,
-      section: action.section,
-      subject: action.subject,
-      periodsPerWeek: action.periodsPerWeek,
-    }, ...state.subjects]
+    subjects: state.subjects.map((subject) => (subject.id === action.id ? ({
+      ...subject,
+      id: `@@${subject.className}_${subject.section}_${action.name.toLowerCase()}`,
+      classLength: action.classLength || 1,
+      commonArea: action.commonArea || null,
+      periodsPerWeek: action.periodsPerWeek || 0,
+      teacherId: action.teacherId || null,
+      subject: action.name
+    }) : subject))
   }),
   [ADD_COMMON_AREA]: (state, action) => ({
     commonAreas: [{

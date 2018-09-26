@@ -251,13 +251,14 @@ class EditSubject extends React.Component {
           <Button
             size="small"
             color="primary"
-            onClick={() => {this.props.updateSubject(this.props.subject.id,
-              this.state.subjectName,
-              this.state.teacherId,
-              this.state.periodsPerWeek,
-              this.state.commonArea,
-              this.state.className)
-            toggleEdit() 
+            onClick={() => {
+              this.props.updateSubject(this.props.subject.id,
+                this.state.subjectName,
+                this.state.teacherId,
+                this.state.periodsPerWeek,
+                this.state.commonArea,
+                this.state.classLength)
+              toggleEdit()
             }
             }
           >
