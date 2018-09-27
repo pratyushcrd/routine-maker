@@ -320,7 +320,7 @@ class AddClass extends React.Component {
           </Grid>
           <div ref={this.periodsPerWeekInputField}>
             <TextField
-              placeholder={'Periods / Week of ' + (this.state.subjectInput || 'subject')}
+              placeholder={`Periods / Week of ${this.state.subjectInput || 'subject'}`}
               value={this.state.periodsPerWeek}
               onChange={this.handleChange('periodsPerWeek')}
               type="number"
@@ -337,7 +337,7 @@ class AddClass extends React.Component {
             {this.state.subjects.map((subject, index) => (
               <Grid item key={['subjectsgrid', index].join('_')} >
                 <Chip
-                  label={subject.name + ' / ' + subject.periodsPerWeek }
+                  label={`${subject.name} / subject.periodsPerWeek}`}
                   onDelete={this.removeItem('subjects', index)}
                   className={classes.chip}
                 />
