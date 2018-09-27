@@ -43,6 +43,7 @@ class Routine extends Component {
     }
     // adding the subject
     map[day][period] = subject
+    return this
   }
 }
 
