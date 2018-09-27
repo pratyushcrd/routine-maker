@@ -1,5 +1,5 @@
 const { expect } = require('chai')
-const { generateDaysMap } = require('../utils/routine-logic/Routine/helpers')
+const { generateDaysMap } = require('../utils/routine-logic/helpers')
 
 const sample1 = [{
   day: 'Monday',
