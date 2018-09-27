@@ -2,7 +2,6 @@ import React from 'react'
 import Grid from '@material-ui/core/Grid'
 import { withStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
-import Avatar from '@material-ui/core/Avatar'
 import ListItem from '@material-ui/core/ListItem'
 import LinearProgress from '@material-ui/core/LinearProgress'
 import PropTypes from 'prop-types'
@@ -76,7 +75,7 @@ const TeacherCard = (props) => {
                 {
                   `${periodsAssigned || 'No'} `
                 }
-                <span className={classes.periodsTextLight}>periods</span>
+                periods
               </Typography>
             </Grid>
             <Grid item xs={6} className={classes.progressItem}>
