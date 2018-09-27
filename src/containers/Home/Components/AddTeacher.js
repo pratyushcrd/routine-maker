@@ -9,6 +9,9 @@ import Grid from '@material-ui/core/Grid'
 import Divider from '@material-ui/core/Divider'
 import Collapse from '@material-ui/core/Collapse'
 import AddIcon from '@material-ui/icons/Add'
+import Snackbar from '@material-ui/core/Snackbar'
+
+import MySnackbarContentWrapper from '../../common/SnackBarContent'
 
 const styles = theme => ({
   formControl: {
@@ -110,11 +113,7 @@ class AddTeacher extends React.Component {
       return
     }
     // Dispatch action to save teacher
-    this.props.dispatch({
-      type: 'ADD_TEACHER',
-      name: this.state.teacher,
-      id: this.state.tid,
-    })
+    this.props.addTeacherFunc(this.state.teacher, this.state.tid)
     // Clear teachers name and id
     this.setState({
       teacher: '',
@@ -151,6 +150,8 @@ class AddTeacher extends React.Component {
                         label="Name"
                         className={classes.textField}
                         margin="normal"
+                        onChange={this.handleChange('teacher')}
+                        onKeyPress={this.addTeacherByEnter}
                       />
                     </div>
                   </FormControl>
@@ -163,6 +164,8 @@ class AddTeacher extends React.Component {
                         label="Teacher ID"
                         className={classes.textField}
                         margin="normal"
+                        onChange={this.handleChange('tid')}
+                        onKeyPress={this.addTeacherByEnter}
                       />
                     </div>
                   </FormControl>
@@ -173,7 +176,7 @@ class AddTeacher extends React.Component {
                     variant="text"
                     color="primary"
                     aria-label="add"
-                    onClick={() => { }}
+                    onClick={this.addTeachers}
                     className={classes.button}
                   >
                     <AddIcon />
@@ -184,6 +187,21 @@ class AddTeacher extends React.Component {
           </Grid>
         </Grid>
         <Divider />
+        <Snackbar
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
+          }}
+          open={this.state.snackOpen}
+          autoHideDuration={2500}
+          onClose={this.handleClose}
+        >
+          <MySnackbarContentWrapper
+            onClose={this.handleClose}
+            variant={this.state.snackVariant || 'success'}
+            message={this.state.snackMessage || ''}
+          />
+        </Snackbar>
       </Collapse>
     )
   }
@@ -192,6 +210,7 @@ class AddTeacher extends React.Component {
 AddTeacher.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
   show: PropTypes.bool.isRequired,
+  addTeacherFunc: PropTypes.func.isRequired,
 }
 
 

@@ -184,6 +184,15 @@ class Home extends React.Component {
     subjects
   })
 
+  addTeacher = (teacherName, teacherId) => {
+    // Dispatch action to save teacher
+    this.props.dispatch({
+      type: 'ADD_TEACHER',
+      name: teacherName,
+      id: teacherId,
+    })
+  }
+
   render() {
     console.log(this.props)
     const classes = this.props.classes
@@ -234,6 +243,7 @@ class Home extends React.Component {
             teachersMap={teachersMap}
             toogleDisplayAddTeacher={this.toogleDisplayAddTeacher}
             displayAddTeacher={this.state.displayAddTeacher}
+            addTeacherFunc={this.addTeacher}
           />
         </Grid>
       </Grid>
