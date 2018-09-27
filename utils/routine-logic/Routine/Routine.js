@@ -34,13 +34,14 @@ class Routine extends Component {
    * @param {Object} subject subject object to be added
    */
   addSubject(day, period, subject) {
-    if (this.isOccupied(day, period)) {
-      throw Error(`Class not free on ${day} period ${period}`)
-    }
     const map = this.getFromStore('routineMap')
     if (map[day] === undefined || map[day][period] === undefined) {
       throw Error('Not a valid day or period')
     }
+    if (this.isOccupied(day, period)) {
+      throw Error(`Class not free on ${day} period ${period}`)
+    }
+    // adding the subject
     map[day][period] = subject
   }
 }
