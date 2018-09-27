@@ -18,3 +18,10 @@ exports.flattenDays = days => days
       period,
     }))
   ).reduce((a, b) => a.concat(b))
+
+exports.generateDaysFlatMap = days => days.map(({ day, periods }) => ({
+  day,
+  periods: Array(periods)
+    .fill(1)
+    .map((a, i) => a + i)
+}))
