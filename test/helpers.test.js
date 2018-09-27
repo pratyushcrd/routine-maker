@@ -1,5 +1,5 @@
 const { expect } = require('chai')
-const { generateDaysMap, flattenDays, generateDaysFlatMap } = require('../utils/routine-logic/helpers')
+const { generateDaysMap, flattenDays, getDaysArray } = require('../utils/routine-logic/helpers')
 
 const sample1 = [{
   day: 'Monday',
@@ -45,6 +45,6 @@ describe('Generate days map', () => {
     expect(flattenDays(sample1)).to.deep.equal(sample1ResultFlat)
   })
   it('should make proper flat maps', () => {
-    expect(generateDaysFlatMap(sample1)).to.deep.equal(sample1ResultFlatDays)
+    expect(getDaysArray(sample1)).to.deep.equal(sample1ResultFlatDays)
   })
 })
