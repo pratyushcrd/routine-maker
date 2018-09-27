@@ -6,7 +6,7 @@
     "start": "webpack-dev-server --hot",
     "server": "babel-watch server",
     "production": "babel-node server",
-    "test": "jest",
+    "test": "./node_modules/.bin/mocha",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "postinstall": "npm run build",
