@@ -64,7 +64,11 @@ const TeacherArea = (props) => {
           </Typography>
           <List>
             <Divider />
-            <AddTeacher show={props.displayAddTeacher}/>
+            <AddTeacher
+              show={props.displayAddTeacher}
+              addTeacherFunc={props.addTeacherFunc}
+              teachers={teachers}
+            />
 
             {
               teachers.map(teacher => (
@@ -91,6 +95,7 @@ TeacherArea.propTypes = {
   teachers: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   displayAddTeacher: PropTypes.bool.isRequired,
   toogleDisplayAddTeacher: PropTypes.func.isRequired,
+  addTeacherFunc: PropTypes.func.isRequired,
 }
 
 
