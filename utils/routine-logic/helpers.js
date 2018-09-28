@@ -1,3 +1,5 @@
+const Routine = require('./Routine')
+
 exports.generateDaysMap = days => days.reduce((acc, { day, periods }) => {
   acc[day] = Array(periods)
     .fill(1)
@@ -27,3 +29,10 @@ exports.spreadDaysOb = ({ day, periods }) => ({
 })
 
 exports.getDaysArray = days => days.map(exports.spreadDaysOb)
+
+exports.putRoutineInstance = function (days, arr) {
+  arr.forEach(data => {
+    const routine = new Routine(days)
+    data.routine = routine
+  })
+}
