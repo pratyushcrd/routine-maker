@@ -36,7 +36,7 @@ function getter(ob, keys) {
  */
 class Component {
   constructor() {
-    this.state = {}
+    this.store = {}
   }
   /* Setter for store */
   addToStore(key, val) {
