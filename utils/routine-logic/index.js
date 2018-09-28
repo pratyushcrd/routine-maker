@@ -31,8 +31,7 @@ function generateRoutine(input) {
     const [index, subject] = getSubjectToAssign(sectionFinder, teacherFinder, subjects)
     // remove subject to be assigned from subjects list
     subject.periodsPerWeek -= 1
-    if (!subject.periodsPerWeek) {
-      console.log('splicing')
+    if (!subject.periodsPerWeek || subject.periodsPerWeek < 1) {
       subjects.splice(index, 1)
     }
     // assign available class to subject
@@ -46,9 +45,6 @@ function generateRoutine(input) {
   } else {
     console.log('Success! routine generated') // eslint-disable-line no-console
   }
-
-  console.log(subjects)
-
 }
 
 module.exports = generateRoutine

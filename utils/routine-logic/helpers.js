@@ -94,7 +94,7 @@ exports.getPeriodsAssigner = function getPeriodsAssigner(sectionFinder, teacherF
           teacher.routine.addSubject(day.day, period, subject)
           section.routine.addSubject(day.day, period, subject)
           // put days details in subject
-          subject.assignedDay = day
+          subject.assignedDay = day.day
           subject.assignedPeriod = period
           // set subject assigned
           isAssigned = true
