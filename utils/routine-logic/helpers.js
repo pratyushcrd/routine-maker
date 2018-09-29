@@ -83,9 +83,14 @@ exports.getPeriodsAssigner = function getPeriodsAssigner(sectionFinder, teacherF
 
 
     let isAssigned = false
+    let totalIteration = 0
 
     while (!isAssigned) {
       const day = nextDayFn(subject)
+      if (totalIteration === days.length) {
+        break
+      }
+      totalIteration += 1
       const periods = Array(day.periods).fill(1).map((a, i) => a + i)
       for (let i = 0, ii = periods.length; i < ii; i += 1) {
         const period = periods[i]
@@ -103,6 +108,6 @@ exports.getPeriodsAssigner = function getPeriodsAssigner(sectionFinder, teacherF
         }
       }
     }
-    return !!isAssigned
+    return isAssigned
   }
 }
