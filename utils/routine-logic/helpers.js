@@ -111,3 +111,36 @@ exports.getPeriodsAssigner = function getPeriodsAssigner(sectionFinder, teacherF
     return isAssigned
   }
 }
+
+exports.getSectionsRoutine = function getSectionsRoutine(sections, teacherFinder) {
+  return sections.map(sectionOb => {
+    const { className, section } = sectionOb
+    const routineMap = sectionOb.routine.getFromStore('routineMap')
+    const sortedRoutine = Object.keys(routineMap)
+      .map(day => ({ day }))
+      // sort by day orderr
+      .sort(daysSortFn)
+      .map(({ day }) => {
+        const routineForDay = routineMap[day]
+        const periods = Object.keys(routineForDay)
+          .sort((a, b) => a - b)
+          .map(period => {
+            if (!routineForDay[period]) {
+              return undefined
+            }
+            const { subject } = routineForDay[period]
+            return {
+              subject,
+              teacher: teacherFinder(routineForDay[period]).name,
+              teacherId: teacherFinder(routineForDay[period]).id,
+            }
+          })
+        return [day, periods]
+      })
+    return {
+      className,
+      section,
+      routine: sortedRoutine
+    }
+  })
+}

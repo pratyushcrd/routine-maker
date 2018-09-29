@@ -4,6 +4,7 @@ const {
   getTeacherFinder,
   getSubjectToAssign,
   getPeriodsAssigner,
+  getSectionsRoutine,
 } = require('./helpers')
 
 function generateRoutine(input) {
@@ -39,6 +40,10 @@ function generateRoutine(input) {
     // decrement counter
     isAssigned = isAssigned && wasAssignedNow
   }
+
+  const sectionsRoutine = getSectionsRoutine(sections, teacherFinder)
+
+  console.log(JSON.stringify(sectionsRoutine, null, 4))
 
   if (!isAssigned) {
     console.log('Failed to generate routine') // eslint-disable-line no-console
