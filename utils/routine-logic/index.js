@@ -47,6 +47,10 @@ function generateRoutine(input) {
   } else {
     console.log('Success! routine generated') // eslint-disable-line no-console
   }
+
+  return {
+    sectionsRoutine,
+  }
 }
 
 module.exports = generateRoutine
