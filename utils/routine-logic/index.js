@@ -5,6 +5,7 @@ const {
   getSubjectToAssign,
   getPeriodsAssigner,
   getSectionsRoutine,
+  getTeachersRoutine,
 } = require('./helpers')
 
 function generateRoutine(input) {
@@ -42,6 +43,8 @@ function generateRoutine(input) {
   }
 
   const sectionsRoutine = getSectionsRoutine(sections, teacherFinder)
+  const teachersRoutine = getTeachersRoutine(teachers)
+
   if (!isAssigned) {
     console.log('Failed to generate routine') // eslint-disable-line no-console
   } else {
@@ -50,6 +53,7 @@ function generateRoutine(input) {
 
   return {
     sectionsRoutine,
+    teachersRoutine,
   }
 }
 

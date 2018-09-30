@@ -1,8 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
-import axios from 'axios'
-import ShowRoutine from './ShowRoutine'
+import { Button } from '@material-ui/core'
+
+import ClassRoutine from './ClassRoutine'
+import TeacherView from './TeacherView'
+import SectionView from './SectionView'
 
 const styles = theme => ({
 })
@@ -11,7 +14,8 @@ class Routine extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      data: null
+      data: null,
+      selected: '',
     }
   }
   componentDidMount() {
@@ -28,28 +32,55 @@ class Routine extends React.Component {
     })
       .then(response => response.json())
       .then((response) => {
-        console.log(response.sectionsRoutine)
+        console.log(response)
         this.setState({
-          data: response.sectionsRoutine
+          data: response,
+          selected: 'sections',
         })
       })
       .catch((error) => {
         this.setState({
           data: null,
-          error: String(error),
+          selected: 'error',
         })
       })
   }
 
+  select(selection) {
+    return () => {
+      this.setState({
+        selected: selection
+      })
+    }
+  }
+
   render() {
     const { classes } = this.props
+    const { data, selected } = this.state
     return (
       <div>
+        <Button onClick={this.select('sections')} variant="text">Sections View</Button>
+        <Button onClick={this.select('teachers')} variant="text">Teachers View</Button>
         {
-          this.state.data ?
-            <ShowRoutine data={this.state.data} />
+          data ?
+            <div>
+              {
+                selected === 'sections' &&
+                <ClassRoutine
+                  data={this.state.data.sectionsRoutine}
+                  ViewComponent={SectionView}
+                />
+              }
+              {
+                selected === 'teachers' &&
+                <ClassRoutine
+                  data={this.state.data.teachersRoutine}
+                  ViewComponent={TeacherView}
+                />
+              }
+            </div>
             :
-            <div> Error </div>
+            <div> Loading </div>
         }
       </div>
     )
