@@ -1,448 +1,1141 @@
 [
   {
-      "className": "1",
-      "section": "A",
-      "routine": [
-          [
-              "Monday",
-              [
-                  {
-                      "subject": "English",
-                      "teacher": "Suresh Deshpandey Choudhary",
-                      "teacherId": "sd121"
-                  },
-                  {
-                      "subject": "Maths",
-                      "teacher": "Mahesh Kumar",
-                      "teacherId": "mh23"
-                  },
-                  {
-                      "subject": "Hindi",
-                      "teacher": "Hima Das",
-                      "teacherId": "hm23"
-                  },
-                  {
-                      "subject": "Geography",
-                      "teacher": "Mahesh Kumar",
-                      "teacherId": "mh23"
-                  },
-                  {
-                      "subject": "Maths",
-                      "teacher": "Mahesh Kumar",
-                      "teacherId": "mh23"
-                  },
-                  {
-                      "subject": "English",
-                      "teacher": "Suresh Deshpandey Choudhary",
-                      "teacherId": "sd121"
-                  },
-                  {
-                      "subject": "Science",
-                      "teacher": "Zakira",
-                      "teacherId": "zk21"
-                  },
-                  {
-                      "subject": "Science",
-                      "teacher": "Zakira",
-                      "teacherId": "zk21"
-                  }
-              ]
-          ],
-          [
-              "Tuesday",
-              [
-                  {
-                      "subject": "English",
-                      "teacher": "Suresh Deshpandey Choudhary",
-                      "teacherId": "sd121"
-                  },
-                  {
-                      "subject": "Maths",
-                      "teacher": "Mahesh Kumar",
-                      "teacherId": "mh23"
-                  },
-                  {
-                      "subject": "Geography",
-                      "teacher": "Mahesh Kumar",
-                      "teacherId": "mh23"
-                  },
-                  {
-                      "subject": "Hindi",
-                      "teacher": "Hima Das",
-                      "teacherId": "hm23"
-                  },
-                  {
-                      "subject": "Maths",
-                      "teacher": "Mahesh Kumar",
-                      "teacherId": "mh23"
-                  },
-                  {
-                      "subject": "Science",
-                      "teacher": "Zakira",
-                      "teacherId": "zk21"
-                  },
-                  {
-                      "subject": "Geography",
-                      "teacher": "Mahesh Kumar",
-                      "teacherId": "mh23"
-                  },
-                  {
-                      "subject": "Geography",
-                      "teacher": "Mahesh Kumar",
-                      "teacherId": "mh23"
-                  }
-              ]
-          ],
-          [
-              "Wednesday",
-              [
-                  {
-                      "subject": "English",
-                      "teacher": "Suresh Deshpandey Choudhary",
-                      "teacherId": "sd121"
-                  },
-                  {
-                      "subject": "Maths",
-                      "teacher": "Mahesh Kumar",
-                      "teacherId": "mh23"
-                  },
-                  {
-                      "subject": "Hindi",
-                      "teacher": "Hima Das",
-                      "teacherId": "hm23"
-                  },
-                  {
-                      "subject": "Geography",
-                      "teacher": "Mahesh Kumar",
-                      "teacherId": "mh23"
-                  },
-                  {
-                      "subject": "Maths",
-                      "teacher": "Mahesh Kumar",
-                      "teacherId": "mh23"
-                  },
-                  {
-                      "subject": "Science",
-                      "teacher": "Zakira",
-                      "teacherId": "zk21"
-                  },
-                  {
-                      "subject": "Hindi",
-                      "teacher": "Hima Das",
-                      "teacherId": "hm23"
-                  },
-                  {
-                      "subject": "Geography",
-                      "teacher": "Mahesh Kumar",
-                      "teacherId": "mh23"
-                  }
-              ]
-          ],
-          [
-              "Thursday",
-              [
-                  {
-                      "subject": "English",
-                      "teacher": "Suresh Deshpandey Choudhary",
-                      "teacherId": "sd121"
-                  },
-                  {
-                      "subject": "Maths",
-                      "teacher": "Mahesh Kumar",
-                      "teacherId": "mh23"
-                  },
-                  {
-                      "subject": "Geography",
-                      "teacher": "Mahesh Kumar",
-                      "teacherId": "mh23"
-                  },
-                  {
-                      "subject": "Hindi",
-                      "teacher": "Hima Das",
-                      "teacherId": "hm23"
-                  },
-                  {
-                      "subject": "Science",
-                      "teacher": "Zakira",
-                      "teacherId": "zk21"
-                  },
-                  {
-                      "subject": "Geography",
-                      "teacher": "Mahesh Kumar",
-                      "teacherId": "mh23"
-                  },
-                  null,
-                  null
-              ]
-          ],
-          [
-              "Friday",
-              [
-                  {
-                      "subject": "Maths",
-                      "teacher": "Mahesh Kumar",
-                      "teacherId": "mh23"
-                  },
-                  {
-                      "subject": "English",
-                      "teacher": "Suresh Deshpandey Choudhary",
-                      "teacherId": "sd121"
-                  },
-                  {
-                      "subject": "Hindi",
-                      "teacher": "Hima Das",
-                      "teacherId": "hm23"
-                  },
-                  {
-                      "subject": "Science",
-                      "teacher": "Zakira",
-                      "teacherId": "zk21"
-                  },
-                  {
-                      "subject": "Geography",
-                      "teacher": "Mahesh Kumar",
-                      "teacherId": "mh23"
-                  },
-                  {
-                      "subject": "Geography",
-                      "teacher": "Mahesh Kumar",
-                      "teacherId": "mh23"
-                  },
-                  null,
-                  {
-                      "subject": "Science",
-                      "teacher": "Zakira",
-                      "teacherId": "zk21"
-                  }
-              ]
-          ]
+    "className": "1",
+    "section": "A",
+    "routine": [
+      [
+        "Monday",
+        [
+          {
+            "subject": "Geography",
+            "teacher": "Mahesh Kumar",
+            "teacherId": "mh23"
+          },
+          {
+            "subject": "Maths",
+            "teacher": "Mahesh Kumar",
+            "teacherId": "mh23"
+          },
+          {
+            "subject": "Science",
+            "teacher": "Zakira",
+            "teacherId": "zk21"
+          },
+          {
+            "subject": "English",
+            "teacher": "Suresh Deshpandey Choudhary",
+            "teacherId": "sd121"
+          },
+          {
+            "subject": "Hindi",
+            "teacher": "Hima Das",
+            "teacherId": "hm23"
+          },
+          {
+            "subject": "Geography",
+            "teacher": "Mahesh Kumar",
+            "teacherId": "mh23"
+          },
+          {
+            "subject": "English",
+            "teacher": "Suresh Deshpandey Choudhary",
+            "teacherId": "sd121"
+          },
+          {
+            "subject": "Hindi",
+            "teacher": "Hima Das",
+            "teacherId": "hm23"
+          }
+        ]
+      ],
+      [
+        "Tuesday",
+        [
+          {
+            "subject": "Geography",
+            "teacher": "Mahesh Kumar",
+            "teacherId": "mh23"
+          },
+          {
+            "subject": "Maths",
+            "teacher": "Mahesh Kumar",
+            "teacherId": "mh23"
+          },
+          {
+            "subject": "Science",
+            "teacher": "Zakira",
+            "teacherId": "zk21"
+          },
+          {
+            "subject": "English",
+            "teacher": "Suresh Deshpandey Choudhary",
+            "teacherId": "sd121"
+          },
+          {
+            "subject": "Hindi",
+            "teacher": "Hima Das",
+            "teacherId": "hm23"
+          },
+          {
+            "subject": "Maths",
+            "teacher": "Mahesh Kumar",
+            "teacherId": "mh23"
+          },
+          {
+            "subject": "Science",
+            "teacher": "Zakira",
+            "teacherId": "zk21"
+          },
+          {
+            "subject": "Science",
+            "teacher": "Zakira",
+            "teacherId": "zk21"
+          }
+        ]
+      ],
+      [
+        "Wednesday",
+        [
+          {
+            "subject": "Geography",
+            "teacher": "Mahesh Kumar",
+            "teacherId": "mh23"
+          },
+          {
+            "subject": "English",
+            "teacher": "Suresh Deshpandey Choudhary",
+            "teacherId": "sd121"
+          },
+          {
+            "subject": "Science",
+            "teacher": "Zakira",
+            "teacherId": "zk21"
+          },
+          {
+            "subject": "Hindi",
+            "teacher": "Hima Das",
+            "teacherId": "hm23"
+          },
+          {
+            "subject": "Maths",
+            "teacher": "Mahesh Kumar",
+            "teacherId": "mh23"
+          },
+          {
+            "subject": "Science",
+            "teacher": "Zakira",
+            "teacherId": "zk21"
+          },
+          {
+            "subject": "Science",
+            "teacher": "Zakira",
+            "teacherId": "zk21"
+          },
+          {
+            "subject": "Geography",
+            "teacher": "Mahesh Kumar",
+            "teacherId": "mh23"
+          }
+        ]
+      ],
+      [
+        "Thursday",
+        [
+          {
+            "subject": "Geography",
+            "teacher": "Mahesh Kumar",
+            "teacherId": "mh23"
+          },
+          {
+            "subject": "English",
+            "teacher": "Suresh Deshpandey Choudhary",
+            "teacherId": "sd121"
+          },
+          {
+            "subject": "Hindi",
+            "teacher": "Hima Das",
+            "teacherId": "hm23"
+          },
+          {
+            "subject": "Maths",
+            "teacher": "Mahesh Kumar",
+            "teacherId": "mh23"
+          },
+          {
+            "subject": "Maths",
+            "teacher": "Mahesh Kumar",
+            "teacherId": "mh23"
+          },
+          {
+            "subject": "Geography",
+            "teacher": "Mahesh Kumar",
+            "teacherId": "mh23"
+          },
+          {
+            "subject": "Geography",
+            "teacher": "Mahesh Kumar",
+            "teacherId": "mh23"
+          },
+          {
+            "subject": "Science",
+            "teacher": "Zakira",
+            "teacherId": "zk21"
+          }
+        ]
+      ],
+      [
+        "Friday",
+        [
+          {
+            "subject": "Geography",
+            "teacher": "Mahesh Kumar",
+            "teacherId": "mh23"
+          },
+          {
+            "subject": "Hindi",
+            "teacher": "Hima Das",
+            "teacherId": "hm23"
+          },
+          {
+            "subject": "English",
+            "teacher": "Suresh Deshpandey Choudhary",
+            "teacherId": "sd121"
+          },
+          {
+            "subject": "Maths",
+            "teacher": "Mahesh Kumar",
+            "teacherId": "mh23"
+          },
+          {
+            "subject": "Maths",
+            "teacher": "Mahesh Kumar",
+            "teacherId": "mh23"
+          },
+          {
+            "subject": "Science",
+            "teacher": "Zakira",
+            "teacherId": "zk21"
+          },
+          {
+            "subject": "Geography",
+            "teacher": "Mahesh Kumar",
+            "teacherId": "mh23"
+          },
+          {
+            "subject": "Science",
+            "teacher": "Zakira",
+            "teacherId": "zk21"
+          }
+        ]
       ]
+    ]
   },
   {
-      "className": "1",
-      "section": "B",
-      "routine": [
-          [
-              "Monday",
-              [
-                  {
-                      "subject": "Science",
-                      "teacher": "Hima Das",
-                      "teacherId": "hm23"
-                  },
-                  {
-                      "subject": "English",
-                      "teacher": "Suresh Deshpandey Choudhary",
-                      "teacherId": "sd121"
-                  },
-                  {
-                      "subject": "Maths",
-                      "teacher": "Mahesh Kumar",
-                      "teacherId": "mh23"
-                  },
-                  {
-                      "subject": "English",
-                      "teacher": "Suresh Deshpandey Choudhary",
-                      "teacherId": "sd121"
-                  },
-                  {
-                      "subject": "Science",
-                      "teacher": "Hima Das",
-                      "teacherId": "hm23"
-                  },
-                  {
-                      "subject": "Geography",
-                      "teacher": "Zakira",
-                      "teacherId": "zk21"
-                  },
-                  {
-                      "subject": "Maths",
-                      "teacher": "Mahesh Kumar",
-                      "teacherId": "mh23"
-                  },
-                  {
-                      "subject": "Hindi",
-                      "teacher": "Hima Das",
-                      "teacherId": "hm23"
-                  }
-              ]
-          ],
-          [
-              "Tuesday",
-              [
-                  {
-                      "subject": "Science",
-                      "teacher": "Hima Das",
-                      "teacherId": "hm23"
-                  },
-                  {
-                      "subject": "English",
-                      "teacher": "Suresh Deshpandey Choudhary",
-                      "teacherId": "sd121"
-                  },
-                  {
-                      "subject": "English",
-                      "teacher": "Suresh Deshpandey Choudhary",
-                      "teacherId": "sd121"
-                  },
-                  {
-                      "subject": "Maths",
-                      "teacher": "Mahesh Kumar",
-                      "teacherId": "mh23"
-                  },
-                  {
-                      "subject": "Geography",
-                      "teacher": "Zakira",
-                      "teacherId": "zk21"
-                  },
-                  {
-                      "subject": "Hindi",
-                      "teacher": "Hima Das",
-                      "teacherId": "hm23"
-                  },
-                  {
-                      "subject": "Science",
-                      "teacher": "Hima Das",
-                      "teacherId": "hm23"
-                  },
-                  {
-                      "subject": "Hindi",
-                      "teacher": "Hima Das",
-                      "teacherId": "hm23"
-                  }
-              ]
-          ],
-          [
-              "Wednesday",
-              [
-                  {
-                      "subject": "Science",
-                      "teacher": "Hima Das",
-                      "teacherId": "hm23"
-                  },
-                  {
-                      "subject": "English",
-                      "teacher": "Suresh Deshpandey Choudhary",
-                      "teacherId": "sd121"
-                  },
-                  {
-                      "subject": "Maths",
-                      "teacher": "Mahesh Kumar",
-                      "teacherId": "mh23"
-                  },
-                  {
-                      "subject": "English",
-                      "teacher": "Suresh Deshpandey Choudhary",
-                      "teacherId": "sd121"
-                  },
-                  {
-                      "subject": "Geography",
-                      "teacher": "Zakira",
-                      "teacherId": "zk21"
-                  },
-                  {
-                      "subject": "Hindi",
-                      "teacher": "Hima Das",
-                      "teacherId": "hm23"
-                  },
-                  {
-                      "subject": "Maths",
-                      "teacher": "Mahesh Kumar",
-                      "teacherId": "mh23"
-                  },
-                  {
-                      "subject": "Science",
-                      "teacher": "Hima Das",
-                      "teacherId": "hm23"
-                  }
-              ]
-          ],
-          [
-              "Thursday",
-              [
-                  {
-                      "subject": "Maths",
-                      "teacher": "Mahesh Kumar",
-                      "teacherId": "mh23"
-                  },
-                  {
-                      "subject": "English",
-                      "teacher": "Suresh Deshpandey Choudhary",
-                      "teacherId": "sd121"
-                  },
-                  {
-                      "subject": "Science",
-                      "teacher": "Hima Das",
-                      "teacherId": "hm23"
-                  },
-                  {
-                      "subject": "Maths",
-                      "teacher": "Mahesh Kumar",
-                      "teacherId": "mh23"
-                  },
-                  {
-                      "subject": "Hindi",
-                      "teacher": "Hima Das",
-                      "teacherId": "hm23"
-                  },
-                  {
-                      "subject": "Hindi",
-                      "teacher": "Hima Das",
-                      "teacherId": "hm23"
-                  },
-                  {
-                      "subject": "Geography",
-                      "teacher": "Zakira",
-                      "teacherId": "zk21"
-                  },
-                  {
-                      "subject": "Geography",
-                      "teacher": "Zakira",
-                      "teacherId": "zk21"
-                  }
-              ]
-          ],
-          [
-              "Friday",
-              [
-                  {
-                      "subject": "English",
-                      "teacher": "Suresh Deshpandey Choudhary",
-                      "teacherId": "sd121"
-                  },
-                  {
-                      "subject": "Science",
-                      "teacher": "Hima Das",
-                      "teacherId": "hm23"
-                  },
-                  {
-                      "subject": "Maths",
-                      "teacher": "Mahesh Kumar",
-                      "teacherId": "mh23"
-                  },
-                  {
-                      "subject": "Hindi",
-                      "teacher": "Hima Das",
-                      "teacherId": "hm23"
-                  },
-                  {
-                      "subject": "Hindi",
-                      "teacher": "Hima Das",
-                      "teacherId": "hm23"
-                  },
-                  {
-                      "subject": "Geography",
-                      "teacher": "Zakira",
-                      "teacherId": "zk21"
-                  },
-                  {
-                      "subject": "Geography",
-                      "teacher": "Zakira",
-                      "teacherId": "zk21"
-                  },
-                  null
-              ]
-          ]
+    "className": "1",
+    "section": "B",
+    "routine": [
+      [
+        "Monday",
+        [
+          {
+            "subject": "Hindi",
+            "teacher": "Hima Das",
+            "teacherId": "hm23"
+          },
+          {
+            "subject": "English",
+            "teacher": "Suresh Deshpandey Choudhary",
+            "teacherId": "sd121"
+          },
+          {
+            "subject": "Science",
+            "teacher": "Hima Das",
+            "teacherId": "hm23"
+          },
+          {
+            "subject": "Geography",
+            "teacher": "Zakira",
+            "teacherId": "zk21"
+          },
+          {
+            "subject": "Maths",
+            "teacher": "Mahesh Kumar",
+            "teacherId": "mh23"
+          },
+          {
+            "subject": "Hindi",
+            "teacher": "Hima Das",
+            "teacherId": "hm23"
+          },
+          {
+            "subject": "Maths",
+            "teacher": "Mahesh Kumar",
+            "teacherId": "mh23"
+          },
+          {
+            "subject": "Geography",
+            "teacher": "Zakira",
+            "teacherId": "zk21"
+          }
+        ]
+      ],
+      [
+        "Tuesday",
+        [
+          {
+            "subject": "Hindi",
+            "teacher": "Hima Das",
+            "teacherId": "hm23"
+          },
+          {
+            "subject": "English",
+            "teacher": "Suresh Deshpandey Choudhary",
+            "teacherId": "sd121"
+          },
+          {
+            "subject": "Science",
+            "teacher": "Hima Das",
+            "teacherId": "hm23"
+          },
+          {
+            "subject": "Geography",
+            "teacher": "Zakira",
+            "teacherId": "zk21"
+          },
+          {
+            "subject": "Maths",
+            "teacher": "Mahesh Kumar",
+            "teacherId": "mh23"
+          },
+          {
+            "subject": "Hindi",
+            "teacher": "Hima Das",
+            "teacherId": "hm23"
+          },
+          {
+            "subject": "Science",
+            "teacher": "Hima Das",
+            "teacherId": "hm23"
+          },
+          {
+            "subject": "Maths",
+            "teacher": "Mahesh Kumar",
+            "teacherId": "mh23"
+          }
+        ]
+      ],
+      [
+        "Wednesday",
+        [
+          {
+            "subject": "Hindi",
+            "teacher": "Hima Das",
+            "teacherId": "hm23"
+          },
+          {
+            "subject": "Science",
+            "teacher": "Hima Das",
+            "teacherId": "hm23"
+          },
+          {
+            "subject": "Maths",
+            "teacher": "Mahesh Kumar",
+            "teacherId": "mh23"
+          },
+          {
+            "subject": "Geography",
+            "teacher": "Zakira",
+            "teacherId": "zk21"
+          },
+          {
+            "subject": "Hindi",
+            "teacher": "Hima Das",
+            "teacherId": "hm23"
+          },
+          {
+            "subject": "Science",
+            "teacher": "Hima Das",
+            "teacherId": "hm23"
+          },
+          {
+            "subject": "Maths",
+            "teacher": "Mahesh Kumar",
+            "teacherId": "mh23"
+          },
+          {
+            "subject": "Geography",
+            "teacher": "Zakira",
+            "teacherId": "zk21"
+          }
+        ]
+      ],
+      [
+        "Thursday",
+        [
+          {
+            "subject": "Hindi",
+            "teacher": "Hima Das",
+            "teacherId": "hm23"
+          },
+          {
+            "subject": "Science",
+            "teacher": "Hima Das",
+            "teacherId": "hm23"
+          },
+          {
+            "subject": "Maths",
+            "teacher": "Mahesh Kumar",
+            "teacherId": "mh23"
+          },
+          {
+            "subject": "Geography",
+            "teacher": "Zakira",
+            "teacherId": "zk21"
+          },
+          {
+            "subject": "Science",
+            "teacher": "Hima Das",
+            "teacherId": "hm23"
+          },
+          {
+            "subject": "English",
+            "teacher": "Suresh Deshpandey Choudhary",
+            "teacherId": "sd121"
+          },
+          {
+            "subject": "Geography",
+            "teacher": "Zakira",
+            "teacherId": "zk21"
+          },
+          null
+        ]
+      ],
+      [
+        "Friday",
+        [
+          {
+            "subject": "Hindi",
+            "teacher": "Hima Das",
+            "teacherId": "hm23"
+          },
+          {
+            "subject": "Geography",
+            "teacher": "Zakira",
+            "teacherId": "zk21"
+          },
+          {
+            "subject": "Maths",
+            "teacher": "Mahesh Kumar",
+            "teacherId": "mh23"
+          },
+          {
+            "subject": "Science",
+            "teacher": "Hima Das",
+            "teacherId": "hm23"
+          },
+          {
+            "subject": "English",
+            "teacher": "Suresh Deshpandey Choudhary",
+            "teacherId": "sd121"
+          },
+          null,
+          {
+            "subject": "English",
+            "teacher": "Suresh Deshpandey Choudhary",
+            "teacherId": "sd121"
+          },
+          {
+            "subject": "English",
+            "teacher": "Suresh Deshpandey Choudhary",
+            "teacherId": "sd121"
+          }
+        ]
       ]
+    ]
+  },
+  {
+    "className": "2",
+    "section": "A",
+    "routine": [
+      [
+        "Monday",
+        [
+          {
+            "subject": "Science",
+            "teacher": "Rama Das",
+            "teacherId": "rd67"
+          },
+          {
+            "subject": "Moral Science",
+            "teacher": "Hima Das",
+            "teacherId": "hm23"
+          },
+          {
+            "subject": "Music",
+            "teacher": "Suresh Deshpandey Choudhary",
+            "teacherId": "sd121"
+          },
+          {
+            "subject": "Games",
+            "teacher": "Mahesh Kumar",
+            "teacherId": "mh23"
+          },
+          {
+            "subject": "English",
+            "teacher": "Hiramal",
+            "teacherId": "hr34"
+          },
+          {
+            "subject": "Hindi",
+            "teacher": "Suresh Deshpandey Choudhary",
+            "teacherId": "sd121"
+          },
+          {
+            "subject": "Arts",
+            "teacher": "Manish",
+            "teacherId": "mn98"
+          },
+          {
+            "subject": "Commerce",
+            "teacher": "Hiramal",
+            "teacherId": "hr34"
+          }
+        ]
+      ],
+      [
+        "Tuesday",
+        [
+          {
+            "subject": "Science",
+            "teacher": "Rama Das",
+            "teacherId": "rd67"
+          },
+          {
+            "subject": "Moral Science",
+            "teacher": "Hima Das",
+            "teacherId": "hm23"
+          },
+          {
+            "subject": "Music",
+            "teacher": "Suresh Deshpandey Choudhary",
+            "teacherId": "sd121"
+          },
+          {
+            "subject": "Games",
+            "teacher": "Mahesh Kumar",
+            "teacherId": "mh23"
+          },
+          {
+            "subject": "Hindi",
+            "teacher": "Suresh Deshpandey Choudhary",
+            "teacherId": "sd121"
+          },
+          {
+            "subject": "Social Science",
+            "teacher": "Manish",
+            "teacherId": "mn98"
+          },
+          {
+            "subject": "Maths",
+            "teacher": "Jagdish Kumar",
+            "teacherId": "kh23"
+          },
+          {
+            "subject": "English",
+            "teacher": "Hiramal",
+            "teacherId": "hr34"
+          }
+        ]
+      ],
+      [
+        "Wednesday",
+        [
+          {
+            "subject": "Science",
+            "teacher": "Rama Das",
+            "teacherId": "rd67"
+          },
+          {
+            "subject": "Commerce",
+            "teacher": "Hiramal",
+            "teacherId": "hr34"
+          },
+          {
+            "subject": "Science",
+            "teacher": "Rama Das",
+            "teacherId": "rd67"
+          },
+          {
+            "subject": "Maths",
+            "teacher": "Jagdish Kumar",
+            "teacherId": "kh23"
+          },
+          {
+            "subject": "Hindi",
+            "teacher": "Suresh Deshpandey Choudhary",
+            "teacherId": "sd121"
+          },
+          {
+            "subject": "Hindi",
+            "teacher": "Suresh Deshpandey Choudhary",
+            "teacherId": "sd121"
+          },
+          {
+            "subject": "Social Science",
+            "teacher": "Manish",
+            "teacherId": "mn98"
+          },
+          {
+            "subject": "Maths",
+            "teacher": "Jagdish Kumar",
+            "teacherId": "kh23"
+          }
+        ]
+      ],
+      [
+        "Thursday",
+        [
+          {
+            "subject": "Science",
+            "teacher": "Rama Das",
+            "teacherId": "rd67"
+          },
+          {
+            "subject": "Maths",
+            "teacher": "Jagdish Kumar",
+            "teacherId": "kh23"
+          },
+          {
+            "subject": "Hindi",
+            "teacher": "Suresh Deshpandey Choudhary",
+            "teacherId": "sd121"
+          },
+          {
+            "subject": "Social Science",
+            "teacher": "Manish",
+            "teacherId": "mn98"
+          },
+          {
+            "subject": "Arts",
+            "teacher": "Manish",
+            "teacherId": "mn98"
+          },
+          {
+            "subject": "Maths",
+            "teacher": "Jagdish Kumar",
+            "teacherId": "kh23"
+          },
+          {
+            "subject": "English",
+            "teacher": "Hiramal",
+            "teacherId": "hr34"
+          },
+          {
+            "subject": "English",
+            "teacher": "Hiramal",
+            "teacherId": "hr34"
+          }
+        ]
+      ],
+      [
+        "Friday",
+        [
+          {
+            "subject": "Science",
+            "teacher": "Rama Das",
+            "teacherId": "rd67"
+          },
+          {
+            "subject": "Hindi",
+            "teacher": "Suresh Deshpandey Choudhary",
+            "teacherId": "sd121"
+          },
+          {
+            "subject": "Maths",
+            "teacher": "Jagdish Kumar",
+            "teacherId": "kh23"
+          },
+          {
+            "subject": "English",
+            "teacher": "Hiramal",
+            "teacherId": "hr34"
+          },
+          {
+            "subject": "English",
+            "teacher": "Hiramal",
+            "teacherId": "hr34"
+          },
+          {
+            "subject": "Social Science",
+            "teacher": "Manish",
+            "teacherId": "mn98"
+          },
+          {
+            "subject": "Social Science",
+            "teacher": "Manish",
+            "teacherId": "mn98"
+          },
+          {
+            "subject": "Social Science",
+            "teacher": "Manish",
+            "teacherId": "mn98"
+          }
+        ]
+      ]
+    ]
+  },
+  {
+    "className": "2",
+    "section": "B",
+    "routine": [
+      [
+        "Monday",
+        [
+          {
+            "subject": "Music",
+            "teacher": "Zakira",
+            "teacherId": "zk21"
+          },
+          {
+            "subject": "Games",
+            "teacher": "Hiramal",
+            "teacherId": "hr34"
+          },
+          {
+            "subject": "Commerce",
+            "teacher": "Rama Das",
+            "teacherId": "rd67"
+          },
+          {
+            "subject": "Science",
+            "teacher": "Rama Das",
+            "teacherId": "rd67"
+          },
+          {
+            "subject": "Arts",
+            "teacher": "Manish",
+            "teacherId": "mn98"
+          },
+          {
+            "subject": "Moral Science",
+            "teacher": "Hiramal",
+            "teacherId": "hr34"
+          },
+          {
+            "subject": "Hindi",
+            "teacher": "Hima Das",
+            "teacherId": "hm23"
+          },
+          {
+            "subject": "Social Science",
+            "teacher": "Manish",
+            "teacherId": "mn98"
+          }
+        ]
+      ],
+      [
+        "Tuesday",
+        [
+          {
+            "subject": "Music",
+            "teacher": "Zakira",
+            "teacherId": "zk21"
+          },
+          {
+            "subject": "Moral Science",
+            "teacher": "Hiramal",
+            "teacherId": "hr34"
+          },
+          {
+            "subject": "Commerce",
+            "teacher": "Rama Das",
+            "teacherId": "rd67"
+          },
+          {
+            "subject": "Games",
+            "teacher": "Hiramal",
+            "teacherId": "hr34"
+          },
+          {
+            "subject": "Social Science",
+            "teacher": "Manish",
+            "teacherId": "mn98"
+          },
+          {
+            "subject": "Science",
+            "teacher": "Rama Das",
+            "teacherId": "rd67"
+          },
+          {
+            "subject": "English",
+            "teacher": "Mahavir Singh",
+            "teacherId": "ms12"
+          },
+          {
+            "subject": "Arts",
+            "teacher": "Manish",
+            "teacherId": "mn98"
+          }
+        ]
+      ],
+      [
+        "Wednesday",
+        [
+          {
+            "subject": "Social Science",
+            "teacher": "Manish",
+            "teacherId": "mn98"
+          },
+          {
+            "subject": "Science",
+            "teacher": "Rama Das",
+            "teacherId": "rd67"
+          },
+          {
+            "subject": "Hindi",
+            "teacher": "Hima Das",
+            "teacherId": "hm23"
+          },
+          {
+            "subject": "English",
+            "teacher": "Mahavir Singh",
+            "teacherId": "ms12"
+          },
+          {
+            "subject": "Science",
+            "teacher": "Rama Das",
+            "teacherId": "rd67"
+          },
+          {
+            "subject": "Maths",
+            "teacher": "Jagdish Kumar",
+            "teacherId": "kh23"
+          },
+          {
+            "subject": "English",
+            "teacher": "Mahavir Singh",
+            "teacherId": "ms12"
+          },
+          {
+            "subject": "Hindi",
+            "teacher": "Hima Das",
+            "teacherId": "hm23"
+          }
+        ]
+      ],
+      [
+        "Thursday",
+        [
+          {
+            "subject": "English",
+            "teacher": "Mahavir Singh",
+            "teacherId": "ms12"
+          },
+          {
+            "subject": "Science",
+            "teacher": "Rama Das",
+            "teacherId": "rd67"
+          },
+          {
+            "subject": "Social Science",
+            "teacher": "Manish",
+            "teacherId": "mn98"
+          },
+          {
+            "subject": "Hindi",
+            "teacher": "Hima Das",
+            "teacherId": "hm23"
+          },
+          {
+            "subject": "English",
+            "teacher": "Mahavir Singh",
+            "teacherId": "ms12"
+          },
+          {
+            "subject": "Social Science",
+            "teacher": "Manish",
+            "teacherId": "mn98"
+          },
+          {
+            "subject": "Maths",
+            "teacher": "Jagdish Kumar",
+            "teacherId": "kh23"
+          },
+          {
+            "subject": "Maths",
+            "teacher": "Jagdish Kumar",
+            "teacherId": "kh23"
+          }
+        ]
+      ],
+      [
+        "Friday",
+        [
+          {
+            "subject": "English",
+            "teacher": "Mahavir Singh",
+            "teacherId": "ms12"
+          },
+          {
+            "subject": "Science",
+            "teacher": "Rama Das",
+            "teacherId": "rd67"
+          },
+          {
+            "subject": "Hindi",
+            "teacher": "Hima Das",
+            "teacherId": "hm23"
+          },
+          {
+            "subject": "Social Science",
+            "teacher": "Manish",
+            "teacherId": "mn98"
+          },
+          {
+            "subject": "Maths",
+            "teacher": "Jagdish Kumar",
+            "teacherId": "kh23"
+          },
+          {
+            "subject": "Hindi",
+            "teacher": "Hima Das",
+            "teacherId": "hm23"
+          },
+          {
+            "subject": "Maths",
+            "teacher": "Jagdish Kumar",
+            "teacherId": "kh23"
+          },
+          {
+            "subject": "Maths",
+            "teacher": "Jagdish Kumar",
+            "teacherId": "kh23"
+          }
+        ]
+      ]
+    ]
+  },
+  {
+    "className": "2",
+    "section": "C",
+    "routine": [
+      [
+        "Monday",
+        [
+          {
+            "subject": "Maths",
+            "teacher": "Hiramal",
+            "teacherId": "hr34"
+          },
+          {
+            "subject": "Moral Science",
+            "teacher": "Mahavir Singh",
+            "teacherId": "ms12"
+          },
+          {
+            "subject": "English",
+            "teacher": "Mahesh Kumar",
+            "teacherId": "mh23"
+          },
+          {
+            "subject": "Arts",
+            "teacher": "Hiramal",
+            "teacherId": "hr34"
+          },
+          {
+            "subject": "Games",
+            "teacher": "Rama Das",
+            "teacherId": "rd67"
+          },
+          {
+            "subject": "Social Science",
+            "teacher": "Manish",
+            "teacherId": "mn98"
+          },
+          {
+            "subject": "Music",
+            "teacher": "Jagdish Kumar",
+            "teacherId": "kh23"
+          },
+          {
+            "subject": "Commerce",
+            "teacher": "Suresh Deshpandey Choudhary",
+            "teacherId": "sd121"
+          }
+        ]
+      ],
+      [
+        "Tuesday",
+        [
+          {
+            "subject": "Moral Science",
+            "teacher": "Mahavir Singh",
+            "teacherId": "ms12"
+          },
+          {
+            "subject": "Games",
+            "teacher": "Rama Das",
+            "teacherId": "rd67"
+          },
+          {
+            "subject": "Social Science",
+            "teacher": "Manish",
+            "teacherId": "mn98"
+          },
+          {
+            "subject": "Music",
+            "teacher": "Jagdish Kumar",
+            "teacherId": "kh23"
+          },
+          {
+            "subject": "Arts",
+            "teacher": "Hiramal",
+            "teacherId": "hr34"
+          },
+          {
+            "subject": "Hindi",
+            "teacher": "Suresh Deshpandey Choudhary",
+            "teacherId": "sd121"
+          },
+          {
+            "subject": "English",
+            "teacher": "Mahesh Kumar",
+            "teacherId": "mh23"
+          },
+          {
+            "subject": "Commerce",
+            "teacher": "Suresh Deshpandey Choudhary",
+            "teacherId": "sd121"
+          }
+        ]
+      ],
+      [
+        "Wednesday",
+        [
+          {
+            "subject": "Science",
+            "teacher": "Zakira",
+            "teacherId": "zk21"
+          },
+          {
+            "subject": "English",
+            "teacher": "Mahesh Kumar",
+            "teacherId": "mh23"
+          },
+          {
+            "subject": "Maths",
+            "teacher": "Hiramal",
+            "teacherId": "hr34"
+          },
+          {
+            "subject": "Maths",
+            "teacher": "Hiramal",
+            "teacherId": "hr34"
+          },
+          {
+            "subject": "Science",
+            "teacher": "Zakira",
+            "teacherId": "zk21"
+          },
+          {
+            "subject": "English",
+            "teacher": "Mahesh Kumar",
+            "teacherId": "mh23"
+          },
+          {
+            "subject": "Hindi",
+            "teacher": "Suresh Deshpandey Choudhary",
+            "teacherId": "sd121"
+          },
+          {
+            "subject": "Social Science",
+            "teacher": "Manish",
+            "teacherId": "mn98"
+          }
+        ]
+      ],
+      [
+        "Thursday",
+        [
+          {
+            "subject": "Science",
+            "teacher": "Zakira",
+            "teacherId": "zk21"
+          },
+          {
+            "subject": "English",
+            "teacher": "Mahesh Kumar",
+            "teacherId": "mh23"
+          },
+          {
+            "subject": "Maths",
+            "teacher": "Hiramal",
+            "teacherId": "hr34"
+          },
+          {
+            "subject": "Maths",
+            "teacher": "Hiramal",
+            "teacherId": "hr34"
+          },
+          {
+            "subject": "Hindi",
+            "teacher": "Suresh Deshpandey Choudhary",
+            "teacherId": "sd121"
+          },
+          {
+            "subject": "Science",
+            "teacher": "Zakira",
+            "teacherId": "zk21"
+          },
+          {
+            "subject": "Social Science",
+            "teacher": "Manish",
+            "teacherId": "mn98"
+          },
+          {
+            "subject": "Hindi",
+            "teacher": "Suresh Deshpandey Choudhary",
+            "teacherId": "sd121"
+          }
+        ]
+      ],
+      [
+        "Friday",
+        [
+          {
+            "subject": "Maths",
+            "teacher": "Hiramal",
+            "teacherId": "hr34"
+          },
+          {
+            "subject": "English",
+            "teacher": "Mahesh Kumar",
+            "teacherId": "mh23"
+          },
+          {
+            "subject": "Science",
+            "teacher": "Zakira",
+            "teacherId": "zk21"
+          },
+          {
+            "subject": "Hindi",
+            "teacher": "Suresh Deshpandey Choudhary",
+            "teacherId": "sd121"
+          },
+          {
+            "subject": "Science",
+            "teacher": "Zakira",
+            "teacherId": "zk21"
+          },
+          {
+            "subject": "Hindi",
+            "teacher": "Suresh Deshpandey Choudhary",
+            "teacherId": "sd121"
+          },
+          null,
+          null
+        ]
+      ]
+    ]
   }
 ]

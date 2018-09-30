@@ -83,9 +83,8 @@ class Sections extends React.Component {
    * Set active section to first when class is changed
    */
   componentWillReceiveProps = (nextProps) => {
-    const activeSection = nextProps.sections[0].section
     this.setState({
-      activeSection, editSubject: -1
+      editSubject: -1
     })
   }
 
