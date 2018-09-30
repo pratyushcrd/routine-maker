@@ -337,7 +337,7 @@ class AddClass extends React.Component {
             {this.state.subjects.map((subject, index) => (
               <Grid item key={['subjectsgrid', index].join('_')} >
                 <Chip
-                  label={`${subject.name} / subject.periodsPerWeek}`}
+                  label={`${subject.name} / ${subject.periodsPerWeek}`}
                   onDelete={this.removeItem('subjects', index)}
                   className={classes.chip}
                 />
