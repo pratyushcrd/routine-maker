@@ -244,6 +244,7 @@ class Home extends React.Component {
             toogleDisplayAddTeacher={this.toogleDisplayAddTeacher}
             displayAddTeacher={this.state.displayAddTeacher}
             addTeacherFunc={this.addTeacher}
+            totalPeriods={totalPeriods}
           />
         </Grid>
       </Grid>

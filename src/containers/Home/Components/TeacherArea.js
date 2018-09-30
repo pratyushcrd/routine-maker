@@ -35,7 +35,8 @@ const styles = theme => ({
 const TeacherArea = (props) => {
   const classes = props.classes
   const teachers = props.teachers
-  const maxPeriods = Math.max(1, ...teachers.map(t => t.periodsAssigned))
+  const totalPeriods = props.totalPeriods
+
   return (
     <Grid
       container
@@ -75,7 +76,8 @@ const TeacherArea = (props) => {
                 <div key={['@@teacher-', teacher.id]}>
                   <TeacherCard
                     teacher={teacher}
-                    maxPeriods={maxPeriods}
+                    maxPeriods={totalPeriods}
+                    totalPeriods={totalPeriods}
                   />
                 </div>
               ))
@@ -96,6 +98,7 @@ TeacherArea.propTypes = {
   displayAddTeacher: PropTypes.bool.isRequired,
   toogleDisplayAddTeacher: PropTypes.func.isRequired,
   addTeacherFunc: PropTypes.func.isRequired,
+  totalPeriods: PropTypes.number.isRequired,
 }
 
 
