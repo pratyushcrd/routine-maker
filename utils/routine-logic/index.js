@@ -27,7 +27,7 @@ function generateRoutine(input) {
 
   while (subjects.length) {
     // sort subjects randomly
-    subjects.sort(() => Math.random() - 0.5)
+    // subjects.sort(() => Math.random() - 0.5)
     // get subjct to be assigned
     const [index, subject] = getSubjectToAssign(sectionFinder, teacherFinder, subjects)
     // remove subject to be assigned from subjects list
