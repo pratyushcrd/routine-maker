@@ -37,9 +37,9 @@ const styles = theme => ({
   }
 })
 
-function TeacherView(props) {
+function CommonAreaView(props) {
   const { classes, data } = props
-  const { routine, teacher, teacherId } = data
+  const { routine, commonArea } = data
   const maxPeriods = routine
     .map(it => it[1].length)
     .reduce((a, b) => Math.max(a, b), 0)
@@ -50,7 +50,7 @@ function TeacherView(props) {
   return (
     <div className={classes.root}>
       <Typography variant="subheading">
-        Routine for teacher: {teacher} ({teacherId})
+        Routine for Common Area: {commonArea}
       </Typography>
       <Paper className={classes.paper}>
         <Table className={classes.table}>
@@ -94,8 +94,8 @@ function TeacherView(props) {
   )
 }
 
-TeacherView.propTypes = {
+CommonAreaView.propTypes = {
   classes: PropTypes.shape({}).isRequired,
 }
 
-export default withStyles(styles)(TeacherView)
+export default withStyles(styles)(CommonAreaView)

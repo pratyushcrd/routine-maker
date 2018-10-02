@@ -49,7 +49,18 @@ exports.getTeacherFinder = function getTeacherFinder(teachers) {
   }
 }
 
-exports.getSubjectToAssign = function getSubjectToAssign(sectionFinder, teacherFinder, subjects) {
+exports.getCommonAreaFinder = function getCommonAreaFinder(commonAreas) {
+  const map = commonAreas
+    .reduce((acc, commonArea) => {
+      acc[commonArea.name] = commonArea
+      return acc
+    }, {})
+  return function getTeacher({ commonArea }) {
+    return map[commonArea]
+  }
+}
+
+exports.getSubjectToAssign = function getSubjectToAssign(sectionFinder, teacherFinder, commonAreaFinder, subjects) {
   return [0, subjects[0]]
 }
 
@@ -73,13 +84,14 @@ function getNextDay(days) {
   }
 }
 
-exports.getPeriodsAssigner = function getPeriodsAssigner(sectionFinder, teacherFinder, days) {
+exports.getPeriodsAssigner = function (sectionFinder, teacherFinder, commonAreaFinder, days) {
   days.sort(daysSortFn)
   const nextDayFn = getNextDay(days)
 
   return function assignPeriodToSubject(subject) {
     const section = sectionFinder(subject)
     const teacher = teacherFinder(subject)
+    const commonArea = commonAreaFinder(subject)
 
 
     let isAssigned = false
@@ -94,10 +106,18 @@ exports.getPeriodsAssigner = function getPeriodsAssigner(sectionFinder, teacherF
       const periods = Array(day.periods).fill(1).map((a, i) => a + i)
       for (let i = 0, ii = periods.length; i < ii; i += 1) {
         const period = periods[i]
-        if (teacher.routine.isFree(day.day, period) && section.routine.isFree(day.day, period)) {
+        let shouldAddSubject = teacher.routine.isFree(day.day, period) && section.routine.isFree(day.day, period)
+        // take commonArea in consideration too if present
+        if (commonArea && shouldAddSubject) {
+          shouldAddSubject = commonArea.routine.isFree(day.day, period)
+        }
+        if (shouldAddSubject) {
           // assign subject
           teacher.routine.addSubject(day.day, period, subject)
           section.routine.addSubject(day.day, period, subject)
+          if (commonArea) {
+            commonArea.routine.addSubject(day.day, period, subject)
+          }
           // put days details in subject
           subject.assignedDay = day.day
           subject.assignedPeriod = period
@@ -181,6 +201,42 @@ exports.getTeachersRoutine = function getTeachersRoutine(teachers) {
     return {
       teacher: name,
       teacherId: id,
+      routine: sortedRoutine
+    }
+  })
+}
+
+/**
+ * Function to generate list of Common Areas routine
+ * @param {*} commonAreas List of commonAreas with their routine instance
+ */
+exports.getCommonAreasRoutine = function getTeachersRoutine(commonAreas) {
+  return commonAreas.map(commonAreaOb => {
+    const { name } = commonAreaOb
+    const routineMap = commonAreaOb.routine.getFromStore('routineMap')
+    const sortedRoutine = Object.keys(routineMap)
+      .map(day => ({ day }))
+      // sort by day orderr
+      .sort(daysSortFn)
+      .map(({ day }) => {
+        const routineForDay = routineMap[day]
+        const periods = Object.keys(routineForDay)
+          .sort((a, b) => a - b)
+          .map(period => {
+            if (!routineForDay[period]) {
+              return undefined
+            }
+            const { subject } = routineForDay[period]
+            return {
+              subject,
+              className: routineForDay[period].className,
+              section: routineForDay[period].section,
+            }
+          })
+        return [day, periods]
+      })
+    return {
+      commonArea: name,
       routine: sortedRoutine
     }
   })

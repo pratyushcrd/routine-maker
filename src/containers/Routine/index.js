@@ -6,6 +6,7 @@ import { Button } from '@material-ui/core'
 import ClassRoutine from './ClassRoutine'
 import TeacherView from './TeacherView'
 import SectionView from './SectionView'
+import CommonAreaView from './CommonAreaView'
 
 const styles = theme => ({
 })
@@ -61,6 +62,7 @@ class Routine extends React.Component {
       <div>
         <Button onClick={this.select('sections')} variant="text">Sections View</Button>
         <Button onClick={this.select('teachers')} variant="text">Teachers View</Button>
+        <Button onClick={this.select('commonArea')} variant="text">Common Area View</Button>
         {
           data ?
             <div>
@@ -76,6 +78,13 @@ class Routine extends React.Component {
                 <ClassRoutine
                   data={this.state.data.teachersRoutine}
                   ViewComponent={TeacherView}
+                />
+              }
+              {
+                selected === 'commonArea' &&
+                <ClassRoutine
+                  data={this.state.data.commonAreasRoutine}
+                  ViewComponent={CommonAreaView}
                 />
               }
             </div>
