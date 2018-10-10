@@ -77,10 +77,10 @@ function CommonAreaView(props) {
                     }
                     return (<TableCell className={classes.subjectContainer}>
                       <div className={classes.subjectName}>
-                        {subject.subject}
+                        {subject.className}-{subject.section}
                       </div>
                       <div className={classes.teacherName}>
-                        ({subject.className}-{subject.section})
+                        {subject.subject}
                       </div>
                     </TableCell>)
                   })
