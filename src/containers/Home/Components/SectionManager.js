@@ -74,7 +74,7 @@ class Sections extends React.Component {
     super(props)
     const sections = this.props.sections
     this.state = {
-      activeSection: sections[0].section,
+      activeSection: (sections[0] || {}).section || '',
       editSubject: -1,
     }
   }
@@ -125,7 +125,7 @@ class Sections extends React.Component {
     const activeSection = this.state.activeSection
     const subjectMap = getSubjectsBySection(subjects)
     const totalPeriods = this.props.totalPeriods
-    const activeSectionSubjects = subjectMap[activeSection]
+    const activeSectionSubjects = subjectMap[activeSection] || []
     const activeSectionPeriodsPerWeek = getTotalPeriods(activeSectionSubjects)
 
     const teachersMap = this.props.teachersMap
