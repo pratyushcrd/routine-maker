@@ -7,7 +7,8 @@ import SectionManager from './Components/SectionManager'
 import AddClassDialog from './Dialogs/AddClassDialog'
 import ClassSidebar from './Components/ClassSidebar'
 import TeacherArea from './Components/TeacherArea'
-import { ADD_SUBJECT } from '../../constants/action-types';
+import SchoolDetails from './Components/SchoolDetails'
+import { ADD_SUBJECT } from '../../constants/action-types'
 
 function getTeachersMap(arr) {
   return arr.reduce((acc, teacher) => {
@@ -198,6 +199,9 @@ class Home extends React.Component {
     const classes = this.props.classes
 
     const selectClass = this.selectClass
+    const selectSchool = () => this.selectedClass({
+      className: 'school'
+    })
 
     const sections = this.getSections()
     const subjects = this.getSubjects()
@@ -205,6 +209,8 @@ class Home extends React.Component {
     const commonAreas = this.getCommonAreas()
     const teachersMap = getTeachersMap(teachers)
     const totalPeriods = this.getTotalPeriods()
+    const showClass = this.state.selectedClass !== 'school' &&
+      this.props.classList.length
 
     return (
       <Grid container className={classes.home}>
@@ -218,6 +224,7 @@ class Home extends React.Component {
           <ClassSidebar
             activeClass={this.state.selectedClass}
             selectClass={selectClass}
+            selectSchool={selectSchool}
             classesList={this.getClassList()}
             addClass={this.handleClassDialog(true)}
           />
@@ -225,7 +232,7 @@ class Home extends React.Component {
         <Grid item xs={7} className={classes.sectionManagerContainer} >
           <Grid container>
             <Grid item xs={12} className={classes.sectionManager} >
-              <SectionManager
+              { showClass ? <SectionManager
                 activeClass={this.state.selectedClass}
                 sections={sections}
                 subjects={subjects}
@@ -233,7 +240,10 @@ class Home extends React.Component {
                 totalPeriods={totalPeriods}
                 commonAreas={commonAreas}
                 updateSubject={this.updateSubject}
-              />
+              /> : <SchoolDetails
+                commonAreas={commonAreas}
+                days={this.props.days}
+              /> }
             </Grid>
           </Grid>
         </Grid>

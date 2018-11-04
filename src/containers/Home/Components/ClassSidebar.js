@@ -65,12 +65,20 @@ const ClassSideBar = (props) => {
   const activeClass = props.activeClass
   const getClassForListItem = listClassGetter(classes, activeClass)
   const onSelect = detail => () => props.selectClass(detail)
-
+  const selectSchool = props.selectSchool
 
   return (
     <Grid container className={classes.backPaperContainer}>
       <Grid item xs={10} >
         <Paper className={classes.backPaper}>
+
+          <Button
+            color="primary"
+            className={classes.button}
+            onClick={selectSchool}
+          >
+            School Details
+          </Button>
 
           <div className={classes.gap} />
 
@@ -111,6 +119,7 @@ ClassSideBar.propTypes = {
   classes: PropTypes.shape({
   }).isRequired,
   selectClass: PropTypes.func.isRequired,
+  selectSchool: PropTypes.func.isRequired,
   addClass: PropTypes.func.isRequired,
   activeClass: PropTypes.string.isRequired,
 }
