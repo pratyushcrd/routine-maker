@@ -110,6 +110,10 @@ const ClassSideBar = (props) => {
   )
 }
 
+ClassSideBar.defaultProps = {
+  activeClass: '',
+}
+
 ClassSideBar.propTypes = {
   classesList: PropTypes.arrayOf(
     PropTypes.shape({
@@ -121,7 +125,7 @@ ClassSideBar.propTypes = {
   selectClass: PropTypes.func.isRequired,
   selectSchool: PropTypes.func.isRequired,
   addClass: PropTypes.func.isRequired,
-  activeClass: PropTypes.string.isRequired,
+  activeClass: PropTypes.string,
 }
 
 export default withStyles(styles)(ClassSideBar)

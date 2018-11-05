@@ -174,6 +174,17 @@ class Home extends React.Component {
   }
 
   /**
+   * Function to update day's number of periods
+   */
+  updateDays = (day, periods) => {
+    this.props.dispatch({
+      type: 'ADD_DAY',
+      day,
+      periods,
+    })
+  }
+
+  /**
    * Dispatch action to add class
    */
   addClass = ({
@@ -241,6 +252,7 @@ class Home extends React.Component {
                 commonAreas={commonAreas}
                 updateSubject={this.updateSubject}
               /> : <SchoolDetails
+                updateDays={this.updateDays}
                 commonAreas={commonAreas}
                 days={this.props.days}
               /> }

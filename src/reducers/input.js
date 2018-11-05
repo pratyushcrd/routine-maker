@@ -34,8 +34,39 @@ import {
 import { createReducer } from './utils'
 import { days } from '../constants/index'
 
+const initialDays = [
+  {
+    day: 'Sunday',
+    periods: 0
+  },
+  {
+    day: 'Monday',
+    periods: 0
+  },
+  {
+    day: 'Tuesday',
+    periods: 0
+  },
+  {
+    day: 'Wednesday',
+    periods: 0
+  },
+  {
+    day: 'Thursday',
+    periods: 0
+  },
+  {
+    day: 'Friday',
+    periods: 0
+  },
+  {
+    day: 'Saturday',
+    periods: 0
+  }
+]
+
 const initialState = {
-  days: [],
+  days: initialDays,
   teachers: [],
   classList: [],
   sections: [],
