@@ -49,9 +49,8 @@ const styles = theme => ({
 class Home extends React.Component {
   constructor(props) {
     super(props)
-    const firstClass = this.getClassList()[0]
     this.state = {
-      selectedClass: firstClass && firstClass.className,
+      selectedClass: 'school',
       addClassDialogOpen: false,
       addSectionDialogOpen: false,
       displayAddTeacher: false
@@ -210,8 +209,8 @@ class Home extends React.Component {
     const classes = this.props.classes
 
     const selectClass = this.selectClass
-    const selectSchool = () => this.selectedClass({
-      className: 'school'
+    const selectSchool = () => this.setState({
+      selectedClass: 'school'
     })
 
     const sections = this.getSections()
