@@ -98,7 +98,6 @@ class Blank extends React.Component {
                   <Grid item xs={6}>
                     <IconButton
                       aria-label="Increase"
-                      className={classes.button}
                       onClick={this.increasePeriods(day)}
                     >
                       <AddIcon fontSize="small" />
@@ -107,7 +106,6 @@ class Blank extends React.Component {
                   <Grid item xs={6}>
                     <IconButton
                       aria-label="Decrease"
-                      className={classes.button}
                       onClick={this.decreasePeriods(day)}
                     >
                       <RemoveIcon fontSize="small" />

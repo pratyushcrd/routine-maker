@@ -34,7 +34,7 @@ class SchoolDetails extends React.Component {
         School Details
       </Typography>
       <Grid container className={classes.home}>
-        <Grid item xs={7}>
+        <Grid item xs={6}>
           <Typography variant="subheading" className={classes.detailTitle}>
             School Working Days
           </Typography>
