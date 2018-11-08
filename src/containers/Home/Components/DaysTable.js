@@ -25,6 +25,9 @@ const styles = theme => ({
   },
   periodsText: {
     fontWeight: 500,
+  },
+  actionIcon: {
+    fontSize: 20,
   }
 })
 
@@ -83,9 +86,9 @@ class Blank extends React.Component {
         <TableBody>
           {days.map(day => (
             <TableRow key={`days@@${day.day}`}>
-              <TableCell component="th" scope="row">
+              <TableCell scope="row">
                 <Typography color={getTextColor(day.periods)} className={getDayTextClassName(day)}>
-                  {day.day.toUpperCase()}
+                  {day.day}
                 </Typography>
               </TableCell>
               <TableCell numeric>
@@ -100,7 +103,7 @@ class Blank extends React.Component {
                       aria-label="Increase"
                       onClick={this.increasePeriods(day)}
                     >
-                      <AddIcon fontSize="small" />
+                      <AddIcon className={classes.actionIcon} />
                     </IconButton>
                   </Grid>
                   <Grid item xs={6}>
@@ -108,7 +111,7 @@ class Blank extends React.Component {
                       aria-label="Decrease"
                       onClick={this.decreasePeriods(day)}
                     >
-                      <RemoveIcon fontSize="small" />
+                      <RemoveIcon className={classes.actionIcon} />
                     </IconButton>
                   </Grid>
                 </Grid>
