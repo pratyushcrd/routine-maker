@@ -11,6 +11,8 @@ import TableRow from '@material-ui/core/TableRow'
 import IconButton from '@material-ui/core/IconButton'
 import AddIcon from '@material-ui/icons/Add'
 import RemoveIcon from '@material-ui/icons/Remove'
+import MenuItem from '@material-ui/core/MenuItem'
+import Select from '@material-ui/core/Select'
 
 function getTextColor(periods) {
   return periods ? 'default' : 'default'
@@ -28,6 +30,9 @@ const styles = theme => ({
   },
   actionIcon: {
     fontSize: 20,
+  },
+  periodSelect: {
+    borderBottom: '0px solid black !important',
   }
 })
 
@@ -42,16 +47,13 @@ const weekDays = [
 ]
 
 /**
- * Component to render Section Blank
+ *
+ * {day.periods} Component to render Section Blank
  */
 class Blank extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
-  increasePeriods = day => () => {
+  setPeriods = day => (event) => {
     const updateFn = this.props.updateDays
-    updateFn(day.day, day.periods + 1)
+    updateFn(day.day, +event.target.value)
   }
 
   decreasePeriods = day => () => {
@@ -72,15 +74,14 @@ class Blank extends React.Component {
       periods: 0,
     }))
 
-    const getDayTextClassName = day => day.periods ? classes.periodsText : classes.periodsTextInactive
+    const getDayTextClassName = day => (day.periods ? classes.periodsText : classes.periodsTextInactive)
 
     return (
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
             <TableCell>Day</TableCell>
-            <TableCell numeric>Periods</TableCell>
-            <TableCell>Actions</TableCell>
+            <TableCell>Periods</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -91,30 +92,19 @@ class Blank extends React.Component {
                   {day.day}
                 </Typography>
               </TableCell>
-              <TableCell numeric>
-                <Typography color={getTextColor(day.periods)} className={getDayTextClassName(day)}>
-                  {day.periods}
-                </Typography>
-              </TableCell>
-              <TableCell>
-                <Grid container>
-                  <Grid item xs={6}>
-                    <IconButton
-                      aria-label="Increase"
-                      onClick={this.increasePeriods(day)}
-                    >
-                      <AddIcon className={classes.actionIcon} />
-                    </IconButton>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <IconButton
-                      aria-label="Decrease"
-                      onClick={this.decreasePeriods(day)}
-                    >
-                      <RemoveIcon className={classes.actionIcon} />
-                    </IconButton>
-                  </Grid>
-                </Grid>
+              <TableCell scope="row">
+                <Select
+                  value={String(day.periods)}
+                  onChange={this.setPeriods(day)}
+                  className={classes.periodSelect}
+                >
+                  {
+                    Array(11).fill(0)
+                      .map((a, i) => a + i)
+                      .map(String)
+                      .map(num => <MenuItem value={num}>{num}</MenuItem>)
+                  }
+                </Select>
               </TableCell>
             </TableRow>
           ))}
