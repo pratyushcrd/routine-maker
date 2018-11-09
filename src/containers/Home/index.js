@@ -8,7 +8,7 @@ import AddClassDialog from './Dialogs/AddClassDialog'
 import ClassSidebar from './Components/ClassSidebar'
 import TeacherArea from './Components/TeacherArea'
 import SchoolDetails from './Components/SchoolDetails'
-import { ADD_SUBJECT } from '../../constants/action-types'
+import { ADD_SUBJECT, ADD_COMMON_AREA } from '../../constants/action-types'
 
 function getTeachersMap(arr) {
   return arr.reduce((acc, teacher) => {
@@ -172,6 +172,13 @@ class Home extends React.Component {
     })
   }
 
+  addCommonArea = (name) => {
+    this.props.dispatch({
+      type: ADD_COMMON_AREA,
+      name,
+    })
+  }
+
   /**
    * Function to update day's number of periods
    */
@@ -252,6 +259,7 @@ class Home extends React.Component {
                 updateSubject={this.updateSubject}
               /> : <SchoolDetails
                 updateDays={this.updateDays}
+                addCommonArea={this.addCommonArea}
                 commonAreas={commonAreas}
                 days={this.props.days}
               /> }

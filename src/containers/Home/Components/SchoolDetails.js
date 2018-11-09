@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 import DaysTable from './DaysTable'
+import CommonAreas from './CommonAreas'
 
 
 const styles = theme => ({
@@ -28,6 +29,8 @@ class SchoolDetails extends React.Component {
   render() {
     const classes = this.props.classes
     const days = this.props.days
+    const commonAreas = this.props.commonAreas
+    const addCommonArea = this.props.addCommonArea
 
     return (<div>
       <Typography variant="caption">
@@ -42,6 +45,18 @@ class SchoolDetails extends React.Component {
             <DaysTable
               updateDays={this.props.updateDays}
               days={days}
+            />
+          </Paper>
+        </Grid>
+        <Grid item xs={1} />
+        <Grid item xs={5}>
+          <Typography variant="subheading" className={classes.detailTitle}>
+            Common Areas
+          </Typography>
+          <Paper className={classes.detailBox}>
+            <CommonAreas
+              commonAreas={commonAreas}
+              addCommonArea={addCommonArea}
             />
           </Paper>
         </Grid>
