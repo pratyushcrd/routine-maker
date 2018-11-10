@@ -48,9 +48,9 @@ const weekDays = [
 
 /**
  *
- * {day.periods} Component to render Section Blank
+ * {day.periods} Component to render Section DaysTable
  */
-class Blank extends React.Component {
+class DaysTable extends React.Component {
   setPeriods = day => (event) => {
     const updateFn = this.props.updateDays
     updateFn(day.day, +event.target.value)
@@ -102,7 +102,7 @@ class Blank extends React.Component {
                     Array(11).fill(0)
                       .map((a, i) => a + i)
                       .map(String)
-                      .map(num => <MenuItem value={num}>{num}</MenuItem>)
+                      .map(num => <MenuItem value={num} key={`@@${day}-${num}`}>{num}</MenuItem>)
                   }
                 </Select>
               </TableCell>
@@ -114,9 +114,9 @@ class Blank extends React.Component {
   }
 }
 
-Blank.propTypes = {
+DaysTable.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   updateDays: PropTypes.func.isRequired,
 }
 
-export default withStyles(styles)(Blank)
+export default withStyles(styles)(DaysTable)
