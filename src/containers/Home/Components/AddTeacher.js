@@ -48,14 +48,14 @@ class AddTeacher extends React.Component {
     super()
     this.teacherName = React.createRef()
     this.teacherId = React.createRef()
-  }
-
-  state = {
-    teacher: '',
-    tid: '',
-    snackOpen: false,
-    snackVariant: '',
-    snackMessage: '',
+    this.state = {
+      teacher: '',
+      tid: '',
+      snackOpen: false,
+      snackVariant: '',
+      snackMessage: '',
+    }
+    window.a = this
   }
 
   setInputFocus() {
@@ -91,8 +91,6 @@ class AddTeacher extends React.Component {
   }
 
   addTeachers = () => {
-    // set focus to name input element for form input loop
-    this.setInputFocus()
     const tid = this.state.tid
     const teacher = this.state.teacher
     if (!tid || !teacher) {
@@ -119,6 +117,13 @@ class AddTeacher extends React.Component {
       teacher: '',
       tid: '',
     })
+    setTimeout(() => {
+      // Hack to clear names
+      this.teacherId.current.querySelector('input').value = ''
+      this.teacherName.current.querySelector('input').value = ''
+      // set focus to name input element for form input loop
+      this.setInputFocus()
+    }, 500)
   }
 
   render() {

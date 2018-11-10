@@ -37,13 +37,13 @@ const styles = theme => ({
 })
 
 const weekDays = [
-  'Sunday',
   'Monday',
   'Tuesday',
   'Wednesday',
   'Thursday',
   'Friday',
-  'Saturday'
+  'Saturday',
+  'Sunday',
 ]
 
 /**
