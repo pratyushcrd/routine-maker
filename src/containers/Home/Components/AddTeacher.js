@@ -117,13 +117,22 @@ class AddTeacher extends React.Component {
       teacher: '',
       tid: '',
     })
+
+    // Hack to clear names
+    this.teacherId.current.querySelector('input').value = ''
+    this.teacherName.current.querySelector('input').value = ''
+
+    // Show success message
+    this.setState({
+      snackOpen: true,
+      snackMessage: `Successfully added teacher '${teacher}'`,
+      snackVariant: 'success',
+    })
+
     setTimeout(() => {
-      // Hack to clear names
-      this.teacherId.current.querySelector('input').value = ''
-      this.teacherName.current.querySelector('input').value = ''
       // set focus to name input element for form input loop
       this.setInputFocus()
-    }, 500)
+    }, 200)
   }
 
   render() {
@@ -195,7 +204,7 @@ class AddTeacher extends React.Component {
         <Snackbar
           anchorOrigin={{
             vertical: 'bottom',
-            horizontal: 'left',
+            horizontal: 'right',
           }}
           open={this.state.snackOpen}
           autoHideDuration={2500}
