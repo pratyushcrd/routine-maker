@@ -9,6 +9,8 @@ import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 import Snackbar from '@material-ui/core/Snackbar'
 import Chip from '@material-ui/core/Chip'
+import IconButton from '@material-ui/core/IconButton'
+import AddIcon from '@material-ui/icons/Add'
 
 import MySnackbarContentWrapper from '../../common/SnackBarContent'
 
@@ -23,8 +25,10 @@ const styles = theme => ({
   },
   typeBox: {
     marginTop: theme.spacing.unit * 1,
-    marginBottom: theme.spacing.unit * 2.5,
     width: '100%',
+  },
+  titleBox: {
+    marginTop: theme.spacing.unit * 2.5,
   },
   paper: {
     padding: theme.spacing.unit,
@@ -42,10 +46,17 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 0,
   },
   chip: {
-    margin: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    marginTop: theme.spacing.unit,
+  },
+  chipContainer: {
+    marginTop: -theme.spacing.unit,
   },
   sectionHeading: {
     marginBottom: theme.spacing.unit * 2,
+  },
+  iconButton: {
+    marginLeft: theme.spacing.unit * 1,
   },
 })
 
@@ -225,6 +236,15 @@ class AddClass extends React.Component {
 
   render() {
     const { classes } = this.props
+    const chipsSections = this.state.sections.slice()
+
+    if (!chipsSections.length) {
+      chipsSections.push({
+        name: 'No Sections Added',
+        isNull: true,
+      })
+    }
+
     return (
       <Paper className={classes.paper}>
         <Snackbar
@@ -258,9 +278,11 @@ class AddClass extends React.Component {
               className={classes.typeBox}
               margin="none"
             />
-            <Typography variant="caption" xs={6} >
+            <Typography variant="caption" xs={6} className={classes.titleBox}>
               Add Sections
             </Typography>
+          </Grid>
+          <Grid item xs={10}>
             <TextField
               placeholder="Ex. A or B or Alpha"
               value={this.state.sectionInput}
@@ -274,13 +296,16 @@ class AddClass extends React.Component {
               onKeyPress={callIfSeparator(this.addSection)}
             />
           </Grid>
+          <IconButton color="primary" className={classes.iconButton} onClick={this.addSection}>
+            <AddIcon />
+          </IconButton>
 
-          <Grid container spacing={8}>
-            {this.state.sections.map((section, index) => (
+          <Grid container className={classes.chipContainer}>
+            {chipsSections.map((section, index) => (
               <Grid item key={['sectionsgrid', index].join('_')} >
                 <Chip
                   label={section.name}
-                  onDelete={this.removeItem('sections', index)}
+                  onDelete={!section.isNull ? this.removeItem('sections', index) : null}
                   className={classes.chip}
                 />
               </Grid>
@@ -288,7 +313,7 @@ class AddClass extends React.Component {
           </Grid>
 
           <Grid item xs={12}>
-            <Typography variant="caption" xs={6}>
+            <Typography variant="caption" xs={6} className={classes.titleBox}>
               Subjects
             </Typography>
 
@@ -307,7 +332,7 @@ class AddClass extends React.Component {
               />
             </div>
 
-            <Typography variant="caption" xs={6}>
+            <Typography variant="caption" xs={6} className={classes.titleBox}>
               Periods / Week
             </Typography>
 
@@ -359,14 +384,7 @@ class AddClass extends React.Component {
 }
 
 AddClass.propTypes = {
-  classes: PropTypes.shape({
-    paper: PropTypes.string.isRequired,
-    container: PropTypes.string.isRequired,
-    textField: PropTypes.string.isRequired,
-    sectionHeading: PropTypes.string.isRequired,
-    chip: PropTypes.string.isRequired,
-    button: PropTypes.string.isRequired,
-  }).isRequired,
+  classes: PropTypes.shape({}).isRequired,
   classList: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string,
     subjects: PropTypes.arrayOf(PropTypes.shape({})),
