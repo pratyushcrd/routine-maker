@@ -18,7 +18,7 @@ const flattenArray = (a, b) => a.concat(b)
 
 const styles = theme => ({
   submitButton: {
-    marginTop: theme.spacing.unit * -1.5,
+    marginTop: theme.spacing.unit * 3,
     marginBottom: theme.spacing.unit,
     textAlign: 'center',
     minWidth: '100%',
@@ -56,7 +56,7 @@ const styles = theme => ({
     marginBottom: theme.spacing.unit * 2,
   },
   iconButton: {
-    marginLeft: theme.spacing.unit * 1,
+    marginLeft: theme.spacing.unit * 0,
   },
 })
 
@@ -143,11 +143,11 @@ class AddClass extends React.Component {
         }, () => this.subjectInputField.current.querySelector('input').focus())
       }
     } else {
-      if (!inputSub) {
-        this.displayWarning('Enter at least one subject')
+      if (!inputSub && inputPeriodsPerWeek) {
+        this.displayWarning('Enter subject name')
       }
       if (!inputPeriodsPerWeek) {
-        this.displayWarning('Enter periods / week. You can change that for every section later')
+        // this.displayWarning('Enter periods / week. You can change that for every section later')
       }
     }
   }
@@ -282,7 +282,7 @@ class AddClass extends React.Component {
               Add Sections
             </Typography>
           </Grid>
-          <Grid item xs={10}>
+          <Grid item xs={11}>
             <TextField
               placeholder="Ex. A or B or Alpha"
               value={this.state.sectionInput}
@@ -296,9 +296,11 @@ class AddClass extends React.Component {
               onKeyPress={callIfSeparator(this.addSection)}
             />
           </Grid>
-          <IconButton color="primary" className={classes.iconButton} onClick={this.addSection}>
-            <AddIcon />
-          </IconButton>
+          <Grid item xs={1}>
+            <IconButton color="primary" className={classes.iconButton} onClick={this.addSection}>
+              <AddIcon />
+            </IconButton>
+          </Grid>
 
           <Grid container className={classes.chipContainer}>
             {chipsSections.map((section, index) => (
@@ -314,9 +316,11 @@ class AddClass extends React.Component {
 
           <Grid item xs={12}>
             <Typography variant="caption" xs={6} className={classes.titleBox}>
-              Subjects
+              Add Subjects
             </Typography>
+          </Grid>
 
+          <Grid item xs={5}>
             <div ref={this.subjectInputField}>
               <TextField
                 placeholder={'subject'}
@@ -332,14 +336,12 @@ class AddClass extends React.Component {
               />
             </div>
 
-            <Typography variant="caption" xs={6} className={classes.titleBox}>
-              Periods / Week
-            </Typography>
-
-
+          </Grid>
+          <Grid item xs={1} />
+          <Grid item xs={5}>
             <div ref={this.periodsPerWeekInputField}>
               <TextField
-                placeholder={`Periods / Week of ${this.state.subjectInput || 'subject'}`}
+                placeholder={'Periods / week'}
                 value={this.state.periodsPerWeek}
                 onChange={this.handleChange('periodsPerWeek')}
                 type="number"
@@ -349,34 +351,50 @@ class AddClass extends React.Component {
                 }}
                 margin="normal"
                 onKeyPress={callIfSeparator(this.addSubject)}
+                onBlur={this.addSubject}
               />
             </div>
-
+          </Grid>
+          <Grid item xs={1}>
+            <IconButton color="primary" className={classes.iconButton} onClick={this.addSection}>
+              <AddIcon />
+            </IconButton>
           </Grid>
 
-          <Grid container spacing={8}>
+          <Grid container spacing={8} className={classes.chipContainer}>
             {this.state.subjects.map((subject, index) => (
               <Grid item key={['subjectsgrid', index].join('_')} >
                 <Chip
-                  label={`${subject.name} / ${subject.periodsPerWeek}`}
+                  label={`${subject.name} - ${subject.periodsPerWeek}`}
                   onDelete={this.removeItem('subjects', index)}
                   className={classes.chip}
                 />
               </Grid>
             ))}
+            {/* Chip to alert if no subjects is added */}
+            {!this.state.subjects.length ? (
+              <Grid item>
+                <Chip
+                  label="No subjects added"
+                  className={classes.chip}
+                />
+              </Grid>
+            ) : ''}
           </Grid>
 
           <br />
-          <Button
-            variant="contained"
-            mini
-            color="primary"
-            aria-label="add"
-            onClick={this.validateAndSaveClass}
-            className={classes.submitButton}
-          >
-          Add
-          </Button>
+          <Grid item xs={12}>
+            <Button
+              variant="contained"
+              mini
+              color="primary"
+              aria-label="add"
+              onClick={this.validateAndSaveClass}
+              className={classes.submitButton}
+            >
+            Add
+            </Button>
+          </Grid>
         </Grid>
       </Paper>
     )
