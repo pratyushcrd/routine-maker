@@ -87,7 +87,7 @@ class Sections extends React.Component {
       const newSetState = {
         editSubject: -1
       }
-      if (nextProps.activeClass !== curState.activeClass) {
+      if (nextProps.activeClass !== this.props.activeClass) {
         newSetState.activeSection = this.props.sections[0].section
       }
       return newSetState
