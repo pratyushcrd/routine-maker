@@ -8,9 +8,11 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 import Snackbar from '@material-ui/core/Snackbar'
+import Popover from '@material-ui/core/Popover'
 import Chip from '@material-ui/core/Chip'
 import IconButton from '@material-ui/core/IconButton'
 import AddIcon from '@material-ui/icons/Add'
+import InfoIcon from '@material-ui/icons/Info'
 
 import MySnackbarContentWrapper from '../../common/SnackBarContent'
 
@@ -58,6 +60,13 @@ const styles = theme => ({
   iconButton: {
     marginLeft: theme.spacing.unit * 0,
   },
+  popover: {
+    pointerEvents: 'none',
+    width: '22%',
+    display: 'block',
+    marginLeft: 30,
+    marginTop: -6,
+  },
 })
 
 const inputSeperators = {
@@ -95,6 +104,7 @@ class AddClass extends React.Component {
       snackVariant: '',
       snackMessage: '',
       periodsPerWeek: '',
+      anchorEl: '',
     }
   }
 
@@ -234,9 +244,19 @@ class AddClass extends React.Component {
     })
   }
 
+  handlePopoverOpen = event => {
+    this.setState({ anchorEl: event.currentTarget })
+  };
+
+  handlePopoverClose = () => {
+    this.setState({ anchorEl: null })
+  }
+
   render() {
     const { classes } = this.props
     const chipsSections = this.state.sections.slice()
+    const { anchorEl } = this.state
+    const popoverOpen = Boolean(anchorEl)
 
     if (!chipsSections.length) {
       chipsSections.push({
@@ -271,7 +291,7 @@ class AddClass extends React.Component {
               Class name
             </Typography>
             <TextField
-              placeholder="Ex. 1 or 2 or 10"
+              placeholder="ex. 1 or 2 or 10"
               value={this.state.className}
               onChange={this.handleChange('className')}
               type="text"
@@ -284,7 +304,7 @@ class AddClass extends React.Component {
           </Grid>
           <Grid item xs={11}>
             <TextField
-              placeholder="Ex. A or B or Alpha"
+              placeholder="ex. A or B or Alpha"
               value={this.state.sectionInput}
               onChange={this.handleChange('sectionInput')}
               type="text"
@@ -316,14 +336,47 @@ class AddClass extends React.Component {
 
           <Grid item xs={12}>
             <Typography variant="caption" xs={6} className={classes.titleBox}>
-              Add Subjects
+              Add subjects and its "periods per week"
+              <IconButton
+                size="small"
+              >
+                <InfoIcon
+                  aria-owns={popoverOpen ? 'mouse-over-popover' : undefined}
+                  aria-haspopup="true"
+                  onMouseEnter={this.handlePopoverOpen}
+                  onMouseLeave={this.handlePopoverClose}
+                />
+              </IconButton>
+              <Popover
+                id="mouse-over-popover"
+                className={classes.popover}
+                classes={{
+                  paper: classes.paper,
+                }}
+                open={popoverOpen}
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'left',
+                }}
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'left',
+                }}
+                onClose={this.handlePopoverClose}
+                disableRestoreFocus
+              >
+                <Typography>Periods per week signifies the number</Typography>
+                <Typography>of periods you want to assign for a</Typography>
+                <Typography>particular subject in one week.</Typography>
+              </Popover>
             </Typography>
           </Grid>
 
-          <Grid item xs={5}>
+          <Grid item xs={6}>
             <div ref={this.subjectInputField}>
               <TextField
-                placeholder={'subject'}
+                placeholder={'ex. Maths or PT'}
                 value={this.state.subjectInput}
                 onChange={this.handleChange('subjectInput')}
                 type="text"
@@ -338,10 +391,10 @@ class AddClass extends React.Component {
 
           </Grid>
           <Grid item xs={1} />
-          <Grid item xs={5}>
+          <Grid item xs={4}>
             <div ref={this.periodsPerWeekInputField}>
               <TextField
-                placeholder={'Periods / week'}
+                placeholder={'ex. 6 or 7'}
                 value={this.state.periodsPerWeek}
                 onChange={this.handleChange('periodsPerWeek')}
                 type="number"
@@ -356,7 +409,7 @@ class AddClass extends React.Component {
             </div>
           </Grid>
           <Grid item xs={1}>
-            <IconButton color="primary" className={classes.iconButton} onClick={this.addSection}>
+            <IconButton color="primary" className={classes.iconButton} onClick={this.addSubject}>
               <AddIcon />
             </IconButton>
           </Grid>
