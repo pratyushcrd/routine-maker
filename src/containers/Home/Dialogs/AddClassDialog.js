@@ -40,8 +40,8 @@ function AddClassDialog(props) {
     >
       <div style={getModalStyle()} className={props.classes.paper}>
         <Grid container>
-          <Grid item xs={3} />
-          <Grid item xs={6} >
+          <Grid item xs={4} />
+          <Grid item xs={4} >
             <AddClass
               classList={props.classList}
               addClass={combineFn(props.addClass, props.onClose)}

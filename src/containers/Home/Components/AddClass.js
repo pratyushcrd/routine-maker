@@ -15,11 +15,16 @@ import MySnackbarContentWrapper from '../../common/SnackBarContent'
 const flattenArray = (a, b) => a.concat(b)
 
 const styles = theme => ({
-  button: {
-    marginTop: theme.spacing.unit * 2,
+  submitButton: {
+    marginTop: theme.spacing.unit * -1.5,
     marginBottom: theme.spacing.unit,
     textAlign: 'center',
     minWidth: '100%',
+  },
+  typeBox: {
+    marginTop: theme.spacing.unit * 1,
+    marginBottom: theme.spacing.unit * 2.5,
+    width: '100%',
   },
   paper: {
     padding: theme.spacing.unit,
@@ -27,24 +32,20 @@ const styles = theme => ({
     color: theme.palette.text.secondary,
     whiteSpace: 'nowrap',
     marginBottom: theme.spacing.unit,
-  },
-  textField: {
-    textAlign: 'start',
     width: '100%',
   },
   container: {
     width: '90%',
     marginLeft: '3%',
   },
-  sectionHeading: {
-    marginTop: theme.spacing.unit * 2,
-    marginBottom: -theme.spacing.unit,
-  },
   sectionsGrid: {
     marginTop: theme.spacing.unit * 0,
   },
   chip: {
     margin: theme.spacing.unit,
+  },
+  sectionHeading: {
+    marginBottom: theme.spacing.unit * 2,
   },
 })
 
@@ -241,43 +242,40 @@ class AddClass extends React.Component {
             message={this.state.snackMessage || ''}
           />
         </Snackbar>
-        <div className={classes.container}>
-          <Typography variant="caption" align="left" gutterBottom className={classes.textField}>
-          Add class details
-          </Typography>
-          { /* A new line if class name is present */ }
-          { this.state.className && <br /> }
-          <TextField
-            label="class name"
-            value={this.state.className}
-            onChange={this.handleChange('className')}
-            type="text"
-            className={classes.textField}
-            margin="none"
-          />
-          <Grid container spacing={24} className={classes.sectionsGrid}>
-            <Grid item xs={6}>
-              <Typography variant="caption" xs={6} className={classes.sectionHeading} >
-                Section(s)
-              </Typography>
-            </Grid>
+        <Grid container className={classes.container}>
+          <Grid item xs={12}>
+            <Typography variant="subheading" align="left" gutterBottom className={classes.sectionHeading} >
+            Add class details
+            </Typography>
+            <Typography variant="caption" xs={6}>
+              Class name
+            </Typography>
+            <TextField
+              placeholder="Ex. 1 or 2 or 10"
+              value={this.state.className}
+              onChange={this.handleChange('className')}
+              type="text"
+              className={classes.typeBox}
+              margin="none"
+            />
+            <Typography variant="caption" xs={6} >
+              Add Sections
+            </Typography>
+            <TextField
+              placeholder="Ex. A or B or Alpha"
+              value={this.state.sectionInput}
+              onChange={this.handleChange('sectionInput')}
+              type="text"
+              className={classes.typeBox}
+              InputLabelProps={{
+                shrink: true,
+              }}
+              margin="normal"
+              onKeyPress={callIfSeparator(this.addSection)}
+            />
           </Grid>
 
-          <TextField
-            placeholder={'section '}
-            value={this.state.sectionInput}
-            onChange={this.handleChange('sectionInput')}
-            type="text"
-            className={classes.textField}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            margin="normal"
-            onKeyPress={callIfSeparator(this.addSection)}
-          />
-
           <Grid container spacing={8}>
-
             {this.state.sections.map((section, index) => (
               <Grid item key={['sectionsgrid', index].join('_')} >
                 <Chip
@@ -287,53 +285,51 @@ class AddClass extends React.Component {
                 />
               </Grid>
             ))}
-
-          </Grid>
-          <Grid container spacing={24} className={classes.sectionsGrid}>
-            <Grid item xs={6}>
-              <Typography variant="caption" xs={6} className={classes.sectionHeading} >
-                Subjects
-              </Typography>
-            </Grid>
           </Grid>
 
-          <div ref={this.subjectInputField}>
-            <TextField
-              placeholder={'subject'}
-              value={this.state.subjectInput}
-              onChange={this.handleChange('subjectInput')}
-              type="text"
-              className={classes.textField}
-              InputLabelProps={{
-                shrink: true,
-              }}
-              margin="normal"
-              onKeyPress={callIfSeparator(this.highlightPeriodsPerWeek)}
-            />
-          </div>
-          <Grid container spacing={24} className={classes.sectionsGrid}>
-            <Grid item xs={6}>
-              <Typography variant="caption" xs={6} className={classes.sectionHeading} >
-                Periods / Week
-              </Typography>
-            </Grid>
+          <Grid item xs={12}>
+            <Typography variant="caption" xs={6}>
+              Subjects
+            </Typography>
+
+            <div ref={this.subjectInputField}>
+              <TextField
+                placeholder={'subject'}
+                value={this.state.subjectInput}
+                onChange={this.handleChange('subjectInput')}
+                type="text"
+                className={classes.typeBox}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                margin="normal"
+                onKeyPress={callIfSeparator(this.highlightPeriodsPerWeek)}
+              />
+            </div>
+
+            <Typography variant="caption" xs={6}>
+              Periods / Week
+            </Typography>
+
+
+            <div ref={this.periodsPerWeekInputField}>
+              <TextField
+                placeholder={`Periods / Week of ${this.state.subjectInput || 'subject'}`}
+                value={this.state.periodsPerWeek}
+                onChange={this.handleChange('periodsPerWeek')}
+                type="number"
+                className={classes.typeBox}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                margin="normal"
+                onKeyPress={callIfSeparator(this.addSubject)}
+              />
+            </div>
+
           </Grid>
-          <div ref={this.periodsPerWeekInputField}>
-            <TextField
-              placeholder={`Periods / Week of ${this.state.subjectInput || 'subject'}`}
-              value={this.state.periodsPerWeek}
-              onChange={this.handleChange('periodsPerWeek')}
-              type="number"
-              className={classes.textField}
-              InputLabelProps={{
-                shrink: true,
-              }}
-              margin="normal"
-              onKeyPress={callIfSeparator(this.addSubject)}
-            />
-          </div>
+
           <Grid container spacing={8}>
-
             {this.state.subjects.map((subject, index) => (
               <Grid item key={['subjectsgrid', index].join('_')} >
                 <Chip
@@ -343,22 +339,20 @@ class AddClass extends React.Component {
                 />
               </Grid>
             ))}
-
           </Grid>
+
           <br />
-          <div>
-            <Button
-              variant="contained"
-              mini
-              color="primary"
-              aria-label="add"
-              onClick={this.validateAndSaveClass}
-              className={classes.button}
-            >
-            Add
-            </Button>
-          </div>
-        </div>
+          <Button
+            variant="contained"
+            mini
+            color="primary"
+            aria-label="add"
+            onClick={this.validateAndSaveClass}
+            className={classes.submitButton}
+          >
+          Add
+          </Button>
+        </Grid>
       </Paper>
     )
   }
@@ -369,7 +363,6 @@ AddClass.propTypes = {
     paper: PropTypes.string.isRequired,
     container: PropTypes.string.isRequired,
     textField: PropTypes.string.isRequired,
-    sectionsGrid: PropTypes.string.isRequired,
     sectionHeading: PropTypes.string.isRequired,
     chip: PropTypes.string.isRequired,
     button: PropTypes.string.isRequired,
