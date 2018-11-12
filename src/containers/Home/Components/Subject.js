@@ -78,7 +78,7 @@ class Subject extends React.Component {
     const teacherNameText = teacher ? teacher.name : 'No teacher assigned'
     const periodsPerWeekText = String(+periodsPerWeek || 0)
     const teacherPeriodsText = teacher ?
-      `has ${+teacher.periodsPerWeek || 0} periods assigned`
+      `has ${+teacher.periodsAssigned || 0} periods assigned`
       :
       'No details found'
 
