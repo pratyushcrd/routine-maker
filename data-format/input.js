@@ -19,338 +19,286 @@ module.exports = {
     {
       day: 'Friday',
       periods: 8
+    },
+    {
+      day: 'Saturday',
+      periods: 0
+    },
+    {
+      day: 'Sunday',
+      periods: 0
     }
   ],
   teachers: [
     {
-      name: 'Suresh Deshpandey Choudhary',
-      id: 'sd121'
+      name: 'Surendar Singh',
+      id: 'th7'
     },
     {
-      name: 'Zakira',
-      id: 'zk21'
+      name: 'Mahesh Yadav',
+      id: 'th6'
     },
     {
-      name: 'Hima Das',
-      id: 'hm23'
+      name: 'Suresh Pal',
+      id: 'th5'
     },
     {
-      name: 'Mahesh Kumar',
-      id: 'mh23'
+      name: 'Nazima',
+      id: 'th4'
+    },
+    {
+      name: 'Poonam',
+      id: 'th3'
+    },
+    {
+      name: 'Ruchi',
+      id: 'th2'
+    },
+    {
+      name: 'Pratibha',
+      id: 'th1'
     }
   ],
   classList: [
     {
-      className: '1',
-    },
-    {
-      className: '9'
+      className: '6'
     }
   ],
   sections: [
     {
-      className: '9',
+      className: '6',
       section: 'A'
     },
     {
-      className: '9',
+      className: '6',
       section: 'B'
     },
     {
-      className: '9',
+      className: '6',
       section: 'C'
-    },
-    {
-      className: '1',
-      section: 'A'
-    },
-    {
-      className: '1',
-      section: 'B'
-    },
-    {
-      className: '1',
-      section: 'C'
-    },
-    {
-      className: '1',
-      section: 'D'
     }
   ],
   subjects: [
     {
-      className: '9',
-      section: 'A',
-      subject: 'English',
-      periodsPerWeek: 8,
-      id: '@@9_A_english',
-      classLength: 1,
-      commonArea: null
-    },
-    {
-      className: '9',
-      section: 'A',
-      subject: 'Hindi',
-      periodsPerWeek: 8,
-      id: '@@9_A_hindi',
-      classLength: 1,
-      commonArea: null
-    },
-    {
-      className: '9',
-      section: 'A',
-      subject: 'Maths',
-      periodsPerWeek: 8,
-      id: '@@9_A_maths',
-      classLength: 1,
-      commonArea: null
-    },
-    {
-      className: '9',
-      section: 'B',
-      subject: 'English',
-      periodsPerWeek: 8,
-      id: '@@9_B_english',
-      classLength: 1,
-      commonArea: null
-    },
-    {
-      className: '9',
-      section: 'B',
-      subject: 'Hindi',
-      periodsPerWeek: 8,
-      id: '@@9_B_hindi',
-      classLength: 1,
-      commonArea: null
-    },
-    {
-      className: '9',
-      section: 'B',
-      subject: 'Maths',
-      periodsPerWeek: 8,
-      id: '@@9_B_maths',
-      classLength: 1,
-      commonArea: null
-    },
-    {
-      className: '9',
-      section: 'C',
-      subject: 'English',
-      periodsPerWeek: 8,
-      id: '@@9_C_english',
-      classLength: 1,
-      commonArea: null
-    },
-    {
-      className: '9',
-      section: 'C',
-      subject: 'Hindi',
-      periodsPerWeek: 8,
-      id: '@@9_C_hindi',
-      classLength: 1,
-      commonArea: null
-    },
-    {
-      className: '9',
-      section: 'C',
-      subject: 'Maths',
-      periodsPerWeek: 8,
-      id: '@@9_C_maths',
-      classLength: 1,
-      commonArea: null
-    },
-    {
-      className: '1',
+      className: '6',
       section: 'A',
       subject: 'English',
       periodsPerWeek: 6,
-      id: '@@1_A_english',
+      id: '@@6_A_english',
       classLength: 1,
-      commonArea: null,
-      teacherId: 'sd121'
+      commonArea: 'Junior Library',
+      teacherId: 'th7'
     },
     {
-      className: '1',
+      className: '6',
       section: 'A',
       subject: 'Hindi',
+      periodsPerWeek: 6,
+      id: '@@6_A_hindi',
+      classLength: 1,
+      commonArea: 'Junior Library',
+      teacherId: 'th6'
+    },
+    {
+      className: '6',
+      section: 'A',
+      subject: 'Maths',
+      periodsPerWeek: 6,
+      id: '@@6_A_maths',
+      classLength: 1,
+      commonArea: null,
+      teacherId: 'th5'
+    },
+    {
+      className: '6',
+      section: 'A',
+      subject: 'Science',
+      periodsPerWeek: 6,
+      id: '@@6_A_science',
+      classLength: 1,
+      commonArea: null,
+      teacherId: 'th4'
+    },
+    {
+      className: '6',
+      section: 'A',
+      subject: 'Pt',
       periodsPerWeek: 4,
-      id: '@@1_A_hindi',
+      id: '@@6_A_pt',
       classLength: 1,
       commonArea: null,
-      teacherId: 'hm23'
+      teacherId: 'th3'
     },
     {
-      className: '1',
+      className: '6',
       section: 'A',
+      subject: 'SST',
+      periodsPerWeek: 6,
+      id: '@@6_A_sst',
+      classLength: 1,
+      commonArea: null,
+      teacherId: 'th7'
+    },
+    {
+      className: '6',
+      section: 'A',
+      subject: 'Physics',
+      periodsPerWeek: 6,
+      id: '@@6_A_physics',
+      classLength: 1,
+      commonArea: null,
+      teacherId: 'th6'
+    },
+    {
+      className: '6',
+      section: 'B',
+      subject: 'English',
+      periodsPerWeek: 6,
+      id: '@@6_B_english',
+      classLength: 1,
+      commonArea: null,
+      teacherId: 'th6'
+    },
+    {
+      className: '6',
+      section: 'B',
+      subject: 'Hindi',
+      periodsPerWeek: 6,
+      id: '@@6_B_hindi',
+      classLength: 1,
+      commonArea: null,
+      teacherId: 'th1'
+    },
+    {
+      className: '6',
+      section: 'B',
       subject: 'Maths',
-      periodsPerWeek: 10,
-      id: '@@1_A_maths',
+      periodsPerWeek: 6,
+      id: '@@6_B_maths',
       classLength: 1,
       commonArea: null,
-      teacherId: 'mh23'
+      teacherId: 'th1'
     },
     {
-      className: '1',
-      section: 'A',
+      className: '6',
+      section: 'B',
       subject: 'Science',
-      periodsPerWeek: 9,
-      id: '@@1_A_science',
+      periodsPerWeek: 6,
+      id: '@@6_B_science',
       classLength: 1,
       commonArea: null,
-      teacherId: 'zk21'
+      teacherId: 'th2'
     },
     {
-      className: '1',
-      section: 'A',
-      subject: 'Geography',
+      className: '6',
+      section: 'B',
+      subject: 'Pt',
       periodsPerWeek: 4,
-      id: '@@1_A_geography',
+      id: '@@6_B_pt',
       classLength: 1,
       commonArea: null,
-      teacherId: 'mh23'
+      teacherId: 'th5'
     },
     {
-      className: '1',
+      className: '6',
       section: 'B',
-      subject: 'English',
-      periodsPerWeek: 8,
-      id: '@@1_B_english',
+      subject: 'SST',
+      periodsPerWeek: 6,
+      id: '@@6_B_sst',
       classLength: 1,
-      commonArea: null
+      commonArea: null,
+      teacherId: 'th1'
     },
     {
-      className: '1',
+      className: '6',
       section: 'B',
-      subject: 'Hindi',
-      periodsPerWeek: 8,
-      id: '@@1_B_hindi',
+      subject: 'Physics',
+      periodsPerWeek: 6,
+      id: '@@6_B_physics',
       classLength: 1,
-      commonArea: null
+      commonArea: null,
+      teacherId: 'th2'
     },
     {
-      className: '1',
-      section: 'B',
-      subject: 'Maths',
-      periodsPerWeek: 8,
-      id: '@@1_B_maths',
-      classLength: 1,
-      commonArea: null
-    },
-    {
-      className: '1',
-      section: 'B',
-      subject: 'Science',
-      periodsPerWeek: 8,
-      id: '@@1_B_science',
-      classLength: 1,
-      commonArea: null
-    },
-    {
-      className: '1',
-      section: 'B',
-      subject: 'Geography',
-      periodsPerWeek: 8,
-      id: '@@1_B_geography',
-      classLength: 1,
-      commonArea: null
-    },
-    {
-      className: '1',
+      className: '6',
       section: 'C',
       subject: 'English',
-      periodsPerWeek: 8,
-      id: '@@1_C_english',
+      periodsPerWeek: 6,
+      id: '@@6_C_english',
       classLength: 1,
-      commonArea: null
+      commonArea: null,
+      teacherId: 'th5'
     },
     {
-      className: '1',
+      className: '6',
       section: 'C',
       subject: 'Hindi',
-      periodsPerWeek: 8,
-      id: '@@1_C_hindi',
+      periodsPerWeek: 6,
+      id: '@@6_C_hindi',
       classLength: 1,
-      commonArea: null
+      commonArea: null,
+      teacherId: 'th6'
     },
     {
-      className: '1',
+      className: '6',
       section: 'C',
       subject: 'Maths',
-      periodsPerWeek: 8,
-      id: '@@1_C_maths',
+      periodsPerWeek: 6,
+      id: '@@6_C_maths',
       classLength: 1,
-      commonArea: null
+      commonArea: null,
+      teacherId: 'th2'
     },
     {
-      className: '1',
+      className: '6',
       section: 'C',
       subject: 'Science',
-      periodsPerWeek: 8,
-      id: '@@1_C_science',
+      periodsPerWeek: 6,
+      id: '@@6_C_science',
       classLength: 1,
-      commonArea: null
+      commonArea: null,
+      teacherId: 'th1'
     },
     {
-      className: '1',
+      className: '6',
       section: 'C',
-      subject: 'Geography',
-      periodsPerWeek: 8,
-      id: '@@1_C_geography',
+      subject: 'Pt',
+      periodsPerWeek: 4,
+      id: '@@6_C_pt',
       classLength: 1,
-      commonArea: null
+      commonArea: null,
+      teacherId: 'th5'
     },
     {
-      className: '1',
-      section: 'D',
-      subject: 'English',
-      periodsPerWeek: 8,
-      id: '@@1_D_english',
+      className: '6',
+      section: 'C',
+      subject: 'SST',
+      periodsPerWeek: 6,
+      id: '@@6_C_sst',
       classLength: 1,
-      commonArea: null
+      commonArea: null,
+      teacherId: 'th3'
     },
     {
-      className: '1',
-      section: 'D',
-      subject: 'Hindi',
-      periodsPerWeek: 8,
-      id: '@@1_D_hindi',
+      className: '6',
+      section: 'C',
+      subject: 'Physics',
+      periodsPerWeek: 6,
+      id: '@@6_C_physics',
       classLength: 1,
-      commonArea: null
-    },
-    {
-      className: '1',
-      section: 'D',
-      subject: 'Maths',
-      periodsPerWeek: 8,
-      id: '@@1_D_maths',
-      classLength: 1,
-      commonArea: null
-    },
-    {
-      className: '1',
-      section: 'D',
-      subject: 'Science',
-      periodsPerWeek: 8,
-      id: '@@1_D_science',
-      classLength: 1,
-      commonArea: null
-    },
-    {
-      className: '1',
-      section: 'D',
-      subject: 'Geography',
-      periodsPerWeek: 8,
-      id: '@@1_D_geography',
-      classLength: 1,
-      commonArea: null
+      commonArea: null,
+      teacherId: 'th4'
     }
   ],
   commonAreas: [
     {
-      name: "Senior's Library"
+      name: 'Junior Library'
     },
     {
-      name: "Junior's Library"
+      name: 'Ground'
+    },
+    {
+      name: 'Library'
     }
   ]
 }
