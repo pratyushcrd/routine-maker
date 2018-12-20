@@ -111,7 +111,6 @@ const handlers = {
     }, ...state.days].sort((a, b) => days.indexOf(a.day) - days.indexOf(b.day)))
   }),
   [ADD_CLASS]: (state, action) => {
-    debugger
     const classList = [...state.classList]
     if (!state.classList.some(className => className.className === action.className)) {
       classList.push({ className: action.className })
