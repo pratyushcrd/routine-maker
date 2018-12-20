@@ -162,7 +162,7 @@ class Home extends React.Component {
    */
   handleClassDialog = (val) => () => {
     this.setState({
-      addClassDialogOpen: !!val
+      addClassDialogOpen: val
     })
   }
 
@@ -236,6 +236,7 @@ class Home extends React.Component {
           onClose={this.handleClassDialog(false)}
           addClass={this.addClass}
           classList={this.getClassList()}
+          sections={sections}
         />
         <Grid item xs={2} >
           <ClassSidebar
@@ -257,6 +258,7 @@ class Home extends React.Component {
                 totalPeriods={totalPeriods}
                 commonAreas={commonAreas}
                 updateSubject={this.updateSubject}
+                addSection={this.handleClassDialog(this.state.selectedClass)}
               /> : <SchoolDetails
                 updateDays={this.updateDays}
                 addCommonArea={this.addCommonArea}

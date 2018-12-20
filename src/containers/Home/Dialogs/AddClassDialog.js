@@ -35,7 +35,7 @@ function AddClassDialog(props) {
     <Modal
       aria-labelledby="simple-modal-title"
       aria-describedby="simple-modal-description"
-      open={props.open}
+      open={!!props.open}
       onClose={props.onClose}
     >
       <div style={getModalStyle()} className={props.classes.paper}>
@@ -43,7 +43,9 @@ function AddClassDialog(props) {
           <Grid item xs={4} />
           <Grid item xs={4} >
             <AddClass
+              isAddSection={(props.open !== 'school' && typeof props.open !== 'boolean') && props.open}
               classList={props.classList}
+              sections={props.sections}
               addClass={combineFn(props.addClass, props.onClose)}
             />
           </Grid>
@@ -62,6 +64,8 @@ AddClassDialog.propTypes = {
   addClass: PropTypes.func.isRequired,
   classList: PropTypes.arrayOf(PropTypes.shape({
   })).isRequired,
+  sections: PropTypes.arrayOf(PropTypes.shape({
+  })).isRequired
 }
 
 export default withStyles(styles)(AddClassDialog)

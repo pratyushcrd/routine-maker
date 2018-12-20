@@ -5,10 +5,12 @@ import { withStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
 import Button from '@material-ui/core/Button'
 import Collapse from '@material-ui/core/Collapse'
+import AddIcon from '@material-ui/icons/Add'
 
 import SectionDetails from './SectionDetails'
 import Subject from './Subject'
 import EditSubject from './EditSubject'
+import { IconButton } from '@material-ui/core'
 
 function getSubjectsBySection(subjects) {
   return subjects
@@ -83,7 +85,7 @@ class Sections extends React.Component {
    * Set active section to first when class is changed
    */
   componentWillReceiveProps = (nextProps) => {
-    this.setState(curState => {
+    this.setState(() => {
       const newSetState = {
         editSubject: -1
       }
@@ -147,6 +149,13 @@ class Sections extends React.Component {
               Section {section.section}
             </Button>
           ))}
+          <Button
+            variant={'contained'}
+            onClick={this.props.addSection}
+            className={sectionBtnClass}
+          >
+            Add Section
+          </Button>
         </Grid>
         <Grid item xs={6} className={classes.classDetailsGrid} >
           <Typography variant="subheading" className={classes.header}>
@@ -233,6 +242,7 @@ Sections.propTypes = {
     name: PropTypes.string.isRequired,
   })).isRequired,
   updateSubject: PropTypes.func.isRequired,
+  addSection: PropTypes.func.isRequired
 }
 
 export default withStyles(styles)(Sections)
