@@ -140,6 +140,14 @@ class AddClass extends React.Component {
   addSubject = () => {
     const inputSub = this.state.subjectInput.trim()
     const inputPeriodsPerWeek = Number(this.state.periodsPerWeek.trim())
+    const periodsAvailable = (this.props.totalPeriods -
+      inputPeriodsPerWeek - this.state.subjects.reduce(
+      (sum, sub) => sum + sub.periodsPerWeek, 0
+    ))
+    if (periodsAvailable < 0) {
+      this.displayWarning(`Can not assign '${inputPeriodsPerWeek}' periods per week for '${inputSub}'. ${periodsAvailable + inputPeriodsPerWeek} remaining.`)
+      return
+    }
     if (inputSub && inputPeriodsPerWeek) {
       if (this.state.subjects.some(sub => sub.name === inputSub)) {
         this.displayWarning(`Subject '${inputSub.toUpperCase()}' is added more than once. Please remove extras.`)
@@ -483,6 +491,8 @@ AddClass.propTypes = {
   ]).isRequired,
   sections: PropTypes.arrayOf(PropTypes.shape({
   })).isRequired,
+  totalPeriods: PropTypes.number.isRequired,
+
 }
 
 export default withStyles(styles)(AddClass)

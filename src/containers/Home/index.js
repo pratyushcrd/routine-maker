@@ -237,6 +237,7 @@ class Home extends React.Component {
           addClass={this.addClass}
           classList={this.getClassList()}
           sections={sections}
+          totalPeriods={totalPeriods}
         />
         <Grid item xs={2} >
           <ClassSidebar
@@ -245,6 +246,7 @@ class Home extends React.Component {
             selectSchool={selectSchool}
             classesList={this.getClassList()}
             addClass={this.handleClassDialog(true)}
+            totalPeriods={totalPeriods}
           />
         </Grid>
         <Grid item xs={7} className={classes.sectionManagerContainer} >

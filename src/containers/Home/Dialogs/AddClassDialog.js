@@ -47,6 +47,7 @@ function AddClassDialog(props) {
               classList={props.classList}
               sections={props.sections}
               addClass={combineFn(props.addClass, props.onClose)}
+              totalPeriods={props.totalPeriods}
             />
           </Grid>
         </Grid>
@@ -65,7 +66,8 @@ AddClassDialog.propTypes = {
   classList: PropTypes.arrayOf(PropTypes.shape({
   })).isRequired,
   sections: PropTypes.arrayOf(PropTypes.shape({
-  })).isRequired
+  })).isRequired,
+  totalPeriods: PropTypes.number.isRequired,
 }
 
 export default withStyles(styles)(AddClassDialog)
