@@ -27,6 +27,7 @@ function joinClasses(...params) {
 
 function getTotalPeriods(subjects) {
   return subjects
+    .filter(sub => sub.teacherId)
     .map(subject => +subject.periodsPerWeek || 0)
     .reduce((a, b) => a + b, 0)
 }
