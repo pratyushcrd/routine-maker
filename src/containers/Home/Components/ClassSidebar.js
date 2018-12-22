@@ -81,16 +81,16 @@ const ClassSideBar = (props) => {
           </Button>
 
           <div className={classes.gap} />
-
-          <Button
-            variant="contained"
-            color="primary"
-            className={classes.button}
-            onClick={props.addClass}
-          >
-            Add Class
-          </Button>
-
+          {props.totalPeriods > 0 && (
+            <Button
+              variant="contained"
+              color="primary"
+              className={classes.button}
+              onClick={props.addClass}
+            >
+              Add Class
+            </Button>
+          )}
           <div className={classes.gap} />
 
           {classesList.map(detail => (
@@ -126,6 +126,7 @@ ClassSideBar.propTypes = {
   selectSchool: PropTypes.func.isRequired,
   addClass: PropTypes.func.isRequired,
   activeClass: PropTypes.string,
+  totalPeriods: PropTypes.number.isRequired,
 }
 
 export default withStyles(styles)(ClassSideBar)

@@ -90,12 +90,12 @@ function callIfSeparator(callback) {
  * Component to render Add View for classes
  */
 class AddClass extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.subjectInputField = React.createRef()
     this.periodsPerWeekInputField = React.createRef()
     this.state = {
-      className: '',
+      className: props.isAddSection || '',
       subjectInput: '',
       sectionInput: '',
       sections: [],
@@ -146,6 +146,14 @@ class AddClass extends React.Component {
   addSubject = () => {
     const inputSub = this.state.subjectInput.trim()
     const inputPeriodsPerWeek = Number(this.state.periodsPerWeek.trim())
+    const periodsAvailable = (this.props.totalPeriods -
+      inputPeriodsPerWeek - this.state.subjects.reduce(
+      (sum, sub) => sum + sub.periodsPerWeek, 0
+    ))
+    if (periodsAvailable < 0) {
+      this.displayWarning(`Can not assign '${inputPeriodsPerWeek}' periods per week for '${inputSub}'. ${periodsAvailable + inputPeriodsPerWeek} remaining.`)
+      return
+    }
     if (inputSub && inputPeriodsPerWeek) {
       if (this.state.subjects.some(sub => sub.name === inputSub)) {
         this.displayWarning(`Subject '${inputSub.toUpperCase()}' is added more than once. Please remove extras.`)
@@ -195,27 +203,37 @@ class AddClass extends React.Component {
   }
 
   validateAndSaveClass = () => {
-    if (!this.state.className.trim()) {
+    const { className, subjects, sections } = this.state
+    if (!className.trim()) {
       this.displayWarning('Class name is mandatory')
       return
     }
-    if (this.state.subjects.length < 1) {
+    if (subjects.length < 1) {
       this.displayWarning('Enter at least one subject')
       return
     }
-    if (this.state.sections.length < 1) {
+    if (sections.length < 1) {
       this.displayWarning('Enter at least one section')
+      return
+    }
+    const duplicateSection = this.props.sections.find(
+      section => section.className === className && sections.some(
+        inputSection => inputSection.name === section.section
+      )
+    )
+    if (duplicateSection) {
+      this.displayWarning(`"${duplicateSection.className} - ${duplicateSection.section}" is already present`)
       return
     }
     this.updateClassAndSection()
   }
 
   updateClassAndSection = () => {
-    if (this.props.classList.some((cls) => cls.className === this.state.className)) {
+    if (!this.props.isAddSection && this.props.classList.some(
+      (cls) => cls.className === this.state.className)) {
       this.displayWarning(`Class: '${this.state.className}' is already present`)
       return
     }
-
     const className = this.state.className.trim()
 
     // get all sections in proper format
@@ -259,11 +277,10 @@ class AddClass extends React.Component {
   }
 
   render() {
-    const { classes } = this.props
+    const { classes, isAddSection } = this.props
     const chipsSections = this.state.sections.slice()
     const { anchorEl } = this.state
     const popoverOpen = Boolean(anchorEl)
-
     if (!chipsSections.length) {
       chipsSections.push({
         name: 'No Sections Added',
@@ -291,21 +308,27 @@ class AddClass extends React.Component {
         <Grid container className={classes.container}>
           <Grid item xs={12}>
             <Typography variant="subheading" align="left" gutterBottom className={classes.sectionHeading} >
-            Add class details
+              {isAddSection ? `Add section for class "${isAddSection}"` : 'Add class details'}
             </Typography>
-            <Typography variant="caption" xs={6}>
-              Class name
-            </Typography>
-            <TextField
-              placeholder="ex. 1 or 2 or 10"
-              value={this.state.className}
-              onChange={this.handleChange('className')}
-              type="text"
-              className={classes.typeBox}
-              margin="none"
-            />
+            {!isAddSection ?
+              (<React.Fragment>
+                <Typography variant="caption" xs={6}>
+                  Class name
+                </Typography>
+                <TextField
+                  placeholder="ex. 1 or 2 or 10"
+                  value={this.state.className}
+                  onChange={this.handleChange('className')}
+                  type="text"
+                  className={classes.typeBox}
+                  margin="none"
+                />
+              </React.Fragment>)
+              :
+              null
+            }
             <Typography variant="caption" xs={6} className={classes.titleBox}>
-              Add Sections
+              Add {isAddSection ? ' more ' : ''} Sections
             </Typography>
           </Grid>
           <Grid item xs={11}>
@@ -468,6 +491,14 @@ AddClass.propTypes = {
     sections: PropTypes.arrayOf(PropTypes.shape({})),
   })).isRequired,
   addClass: PropTypes.func.isRequired,
+  isAddSection: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+  ]).isRequired,
+  sections: PropTypes.arrayOf(PropTypes.shape({
+  })).isRequired,
+  totalPeriods: PropTypes.number.isRequired,
+
 }
 
 export default withStyles(styles)(AddClass)

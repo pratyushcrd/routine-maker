@@ -110,22 +110,26 @@ const handlers = {
       periods: action.periods
     }, ...state.days].sort((a, b) => days.indexOf(a.day) - days.indexOf(b.day)))
   }),
-  [ADD_CLASS]: (state, action) => ({
-    classList: [{
-      className: action.className
-    }, ...state.classList],
-    sections: state.sections.concat(action.sections),
-    subjects: state.subjects.concat(action.subjects.map(sub =>
-      ({
-        ...sub,
-        id: `@@${sub.className}_${sub.section}_${sub.subject.toLowerCase()}`,
-        classLength: sub.classLength || 1,
-        commonArea: sub.commonArea || null,
-        periodsPerWeek: sub.periodsPerWeek || 0,
-        teacherId: sub.teacherId || null,
-      })
-    ))
-  }),
+  [ADD_CLASS]: (state, action) => {
+    const classList = [...state.classList]
+    if (!state.classList.some(className => className.className === action.className)) {
+      classList.push({ className: action.className })
+    }
+    return ({
+      classList,
+      sections: state.sections.concat(action.sections),
+      subjects: state.subjects.concat(action.subjects.map(sub =>
+        ({
+          ...sub,
+          id: `@@${sub.className}_${sub.section}_${sub.subject.toLowerCase()}`,
+          classLength: sub.classLength || 1,
+          commonArea: sub.commonArea || null,
+          periodsPerWeek: sub.periodsPerWeek || 0,
+          teacherId: sub.teacherId || null,
+        })
+      ))
+    })
+  },
   [ADD_SECTION]: (state, action) => ({
     sections: [{
       className: action.className,
