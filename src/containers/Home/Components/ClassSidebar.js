@@ -67,6 +67,7 @@ const ClassSideBar = (props) => {
   const getClassForListItem = listClassGetter(classes, activeClass)
   const onSelect = detail => () => props.selectClass(detail)
   const selectSchool = props.selectSchool
+  const incompleteMap = props.incompleteMap
 
   return (
     <Grid container className={classes.backPaperContainer}>
@@ -102,7 +103,7 @@ const ClassSideBar = (props) => {
               onClick={onSelect(detail)}
             >
               {`Class ${detail.className}`}
-              <IncompleteIndicator type="class" count={idx + 2} />
+              <IncompleteIndicator type="class" count={incompleteMap.byClass(detail.className)} />
             </Button>
           ))}
 
@@ -129,6 +130,7 @@ ClassSideBar.propTypes = {
   addClass: PropTypes.func.isRequired,
   activeClass: PropTypes.string,
   totalPeriods: PropTypes.number.isRequired,
+  incompleteMap: PropTypes.shape({}).isRequired,
 }
 
 export default withStyles(styles)(ClassSideBar)

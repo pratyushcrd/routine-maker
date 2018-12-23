@@ -8,9 +8,7 @@ import Divider from '@material-ui/core/Divider'
 import Grid from '@material-ui/core/Grid'
 import CardActions from '@material-ui/core/CardActions'
 import Button from '@material-ui/core/Button'
-import IconButton from '@material-ui/core/IconButton'
-import EditIcon from '@material-ui/icons/Edit'
-
+import IncompleteIndicator from './IncompleteIndicator'
 
 const styles = theme => ({
   noPadding: {
@@ -81,15 +79,24 @@ class Subject extends React.Component {
       `has ${+teacher.periodsAssigned || 0} periods assigned`
       :
       'No details found'
+    const incompleteMap = this.props.incompleteMap
 
     return (
       <Card className={classes.card}>
         <CardContent className={classes.cardContent}>
           <Grid container spacing={8}>
             <Grid item xs={9}>
-              <Typography variant="title" className={classes.subjectName}>
-                {subjectName}
-              </Typography>
+              <Grid container>
+                <Grid item>
+                  <Typography variant="title" className={classes.subjectName}>
+                    {subjectName}
+                  </Typography>
+                </Grid>
+                <IncompleteIndicator
+                  type="subject"
+                  count={incompleteMap.bySubject(subject)}
+                />
+              </Grid>
             </Grid>
             <Grid item xs={3}>
               <Typography className={classes.textRight}>
@@ -170,6 +177,7 @@ Subject.propTypes = {
   subject: PropTypes.shape({}).isRequired,
   teachersMap: PropTypes.shape({}).isRequired,
   toggleEdit: PropTypes.func.isRequired,
+  incompleteMap: PropTypes.shape({}).isRequired,
 }
 
 export default withStyles(styles)(Subject)

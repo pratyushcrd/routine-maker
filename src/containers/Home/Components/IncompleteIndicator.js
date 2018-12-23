@@ -8,8 +8,8 @@ import Typography from '@material-ui/core/Typography'
 const styles = theme => ({
   complete: {
     backgroundColor: 'green',
-    height: 6,
-    width: 6,
+    height: 4,
+    width: 4,
     float: 'right',
     borderRadius: 3,
     marginLeft: 4,
@@ -17,8 +17,8 @@ const styles = theme => ({
   },
   incomplete: {
     backgroundColor: 'red',
-    height: 6,
-    width: 6,
+    height: 4,
+    width: 4,
     float: 'right',
     borderRadius: 3,
     marginLeft: 4,
@@ -40,7 +40,7 @@ function calculateMessage(type, count) {
     return ''
   }
   if (type === 'class') {
-    return `${count} sections have incomplete details`
+    return `${count} subjects have incomplete details`
   } else if (type === 'section') {
     return `${count} subjects have no teachers assigned`
   } else if (type === 'subject') {
@@ -95,7 +95,7 @@ class IncompleteIndicator extends React.Component {
         />
         <Popover
           anchorEl={this.state.anchorEl}
-          open={this.state.open}
+          open={this.state.open && message}
           anchorOrigin={{
             vertical: 'top',
             horizontal: 'left',
