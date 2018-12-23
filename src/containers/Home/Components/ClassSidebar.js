@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 import Paper from '@material-ui/core/Paper'
 import PropTypes from 'prop-types'
+import IncompleteIndicator from './IncompleteIndicator'
 
 const styles = theme => console.log(theme) || ({
   button: {
@@ -93,7 +94,7 @@ const ClassSideBar = (props) => {
           )}
           <div className={classes.gap} />
 
-          {classesList.map(detail => (
+          {classesList.map((detail, idx) => (
             <Button
               key={`@@homechips#${detail.className}`}
               color="primary"
@@ -101,6 +102,7 @@ const ClassSideBar = (props) => {
               onClick={onSelect(detail)}
             >
               {`Class ${detail.className}`}
+              <IncompleteIndicator type="class" count={idx + 2} />
             </Button>
           ))}
 
