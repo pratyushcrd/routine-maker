@@ -8,8 +8,8 @@ import Typography from '@material-ui/core/Typography'
 const styles = theme => ({
   complete: {
     backgroundColor: 'green',
-    height: 4,
-    width: 4,
+    height: 6,
+    width: 6,
     float: 'right',
     borderRadius: 3,
     marginLeft: 4,
@@ -17,8 +17,8 @@ const styles = theme => ({
   },
   incomplete: {
     backgroundColor: 'red',
-    height: 4,
-    width: 4,
+    height: 6,
+    width: 6,
     float: 'right',
     borderRadius: 3,
     marginLeft: 4,
