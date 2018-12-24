@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography'
 
 const styles = theme => ({
   complete: {
-    backgroundColor: 'green',
+    backgroundColor: theme.palette.primary.light,
     height: 6,
     width: 6,
     float: 'right',
@@ -16,7 +16,7 @@ const styles = theme => ({
     padding: 2,
   },
   incomplete: {
-    backgroundColor: 'red',
+    backgroundColor: theme.palette.secondary.light,
     height: 6,
     width: 6,
     float: 'right',
@@ -58,7 +58,6 @@ class IncompleteIndicator extends React.Component {
    * Toggle popover
    */
   popoverOpen = (event) => {
-    console.log('open')
     this.setState({
       open: true,
       anchorEl: event.currentTarget,
@@ -68,7 +67,6 @@ class IncompleteIndicator extends React.Component {
    * Toggle popover
    */
   popoverClose = () => {
-    console.log('close')
     if (!this.state.open) {
       return
     }
@@ -95,7 +93,7 @@ class IncompleteIndicator extends React.Component {
         />
         <Popover
           anchorEl={this.state.anchorEl}
-          open={this.state.open && message}
+          open={!!(this.state.open && message)}
           anchorOrigin={{
             vertical: 'top',
             horizontal: 'left',
@@ -117,7 +115,6 @@ class IncompleteIndicator extends React.Component {
 
 IncompleteIndicator.defaultProps = {
   count: 0,
-  type: PropTypes.number,
 }
 
 IncompleteIndicator.propTypes = {
