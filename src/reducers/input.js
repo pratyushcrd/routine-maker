@@ -34,8 +34,39 @@ import {
 import { createReducer } from './utils'
 import { days } from '../constants/index'
 
+const initialDays = [
+  {
+    day: 'Sunday',
+    periods: 0
+  },
+  {
+    day: 'Monday',
+    periods: 0
+  },
+  {
+    day: 'Tuesday',
+    periods: 0
+  },
+  {
+    day: 'Wednesday',
+    periods: 0
+  },
+  {
+    day: 'Thursday',
+    periods: 0
+  },
+  {
+    day: 'Friday',
+    periods: 0
+  },
+  {
+    day: 'Saturday',
+    periods: 0
+  }
+]
+
 const initialState = {
-  days: [],
+  days: initialDays,
   teachers: [],
   classList: [],
   sections: [],
@@ -66,7 +97,6 @@ function uniqueBy(conditionsOb, array) {
   return Object.keys(map)
     .map(key => map[key])
 }
-
 const handlers = {
   [ADD_TEACHER]: (state, action) => ({
     teachers: [{
@@ -80,9 +110,26 @@ const handlers = {
       periods: action.periods
     }, ...state.days].sort((a, b) => days.indexOf(a.day) - days.indexOf(b.day)))
   }),
-  [ADD_CLASS]: (state, action) => ({
-    classList: [action.className, ...state.classList]
-  }),
+  [ADD_CLASS]: (state, action) => {
+    const classList = [...state.classList]
+    if (!state.classList.some(className => className.className === action.className)) {
+      classList.push({ className: action.className })
+    }
+    return ({
+      classList,
+      sections: state.sections.concat(action.sections),
+      subjects: state.subjects.concat(action.subjects.map(sub =>
+        ({
+          ...sub,
+          id: `@@${sub.className}_${sub.section}_${sub.subject.toLowerCase()}`,
+          classLength: sub.classLength || 1,
+          commonArea: sub.commonArea || null,
+          periodsPerWeek: sub.periodsPerWeek || 0,
+          teacherId: sub.teacherId || null,
+        })
+      ))
+    })
+  },
   [ADD_SECTION]: (state, action) => ({
     sections: [{
       className: action.className,
@@ -91,11 +138,15 @@ const handlers = {
     }, ...state.sections]
   }),
   [ADD_SUBJECT]: (state, action) => ({
-    subjects: [{
-      className: action.className,
-      subject: action.subject,
-      periodsPerWeek: action.periodsPerWeek,
-    }, ...state.subjects]
+    subjects: state.subjects.map((subject) => (subject.id === action.id ? ({
+      ...subject,
+      id: `@@${subject.className}_${subject.section}_${action.name.toLowerCase()}`,
+      classLength: action.classLength || 1,
+      commonArea: action.commonArea || null,
+      periodsPerWeek: action.periodsPerWeek || 0,
+      teacherId: action.teacherId || null,
+      subject: action.name
+    }) : subject))
   }),
   [ADD_COMMON_AREA]: (state, action) => ({
     commonAreas: [{
@@ -122,12 +173,14 @@ const handlers = {
     }))
   }),
   [EDIT_SUBJECT]: (state, action) => ({
-    subjects: state.sections.map(subjectInfo => ({
-      ...subjectInfo,
-      periodsPerWeek: (action.className === subjectInfo.className) &&
-        (action.subject === subjectInfo.subject) ?
-        action.periodsPerWeek : subjectInfo.periodsPerWeek
-    }))
+    subjects: state.subjects.map(sub => (sub.id === action.id ?
+      {
+        className: action.className,
+        id: `@@${action.className}_${action.section}_${action.subject.toLowerCase()}`,
+        classLength: action.classLength || 1,
+        commonArea: action.commonArea || null,
+        periodsPerWeek: action.periodsPerWeek || 0
+      } : sub))
   }),
   [DELETE_DAY]: (state, action) => ({
     days: state.days.filter(day => action.day !== day.day)

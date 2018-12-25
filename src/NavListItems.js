@@ -7,6 +7,8 @@ import ListItemText from '@material-ui/core/ListItemText'
 import DaysIcon from '@material-ui/icons/Today'
 import PersonIcon from '@material-ui/icons/Person'
 import ClassIcon from '@material-ui/icons/AccountBalance'
+import NaturePeople from '@material-ui/icons/NaturePeople'
+import InsertEmoticon from '@material-ui/icons/InsertEmoticon'
 import Divider from '@material-ui/core/Divider'
 import { setScreen } from './actions/app'
 
@@ -37,11 +39,17 @@ const navListItems = (props) => (
     <Divider />
     <ListItem button onClick={changeScreen(props, 3)}>
       <ListItemIcon>
-        <ClassIcon />
+        <NaturePeople />
       </ListItemIcon>
       <ListItemText primary="Common Areas" />
     </ListItem>
     <Divider />
+    <ListItem button onClick={changeScreen(props, 4)}>
+      <ListItemIcon>
+        <InsertEmoticon />
+      </ListItemIcon>
+      <ListItemText primary="Application" />
+    </ListItem>
   </div>
 )
 

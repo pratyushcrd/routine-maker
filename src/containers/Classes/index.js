@@ -2,6 +2,7 @@ import React from 'react'
 import { connect, } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
+import PropTypes from 'prop-types'
 import ShowClasses from './ShowClasses'
 import AddClass from './AddClass'
 
@@ -20,22 +21,36 @@ const styles = theme => ({
   },
 })
 
-function Classes() {
-  return (
-    <div>
-      <Grid container spacing={24}>
-        <Grid item xs={8}>
-          <ShowClasses />
+class Classes extends React.Component {
+
+  addClass = ({
+    className, sections = [], subjects = []
+  }) => this.props.dispatch({
+    type: 'ADD_CLASS',
+    className,
+    sections,
+    subjects,
+  })
+
+
+  render() {
+    return (
+      <div>
+        <Grid container spacing={24}>
+          <Grid item xs={8}>
+            <ShowClasses />
+          </Grid>
+          <Grid item xs={4}>
+            <AddClass addClass={this.addClass} />
+          </Grid>
         </Grid>
-        <Grid item xs={4}>
-          <AddClass />
-        </Grid>
-      </Grid>
-    </div>
-  )
+      </div>
+    )
+  }
 }
 
 Classes.propTypes = {
+  dispatch: PropTypes.func.isRequired,
 }
 
 
