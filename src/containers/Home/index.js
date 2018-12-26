@@ -2,6 +2,7 @@ import React from 'react'
 import { connect, } from 'react-redux'
 import Grid from '@material-ui/core/Grid'
 import { withStyles } from '@material-ui/core/styles'
+import Paper from '@material-ui/core/Paper'
 import PropTypes from 'prop-types'
 import SectionManager from './Components/SectionManager'
 import AddClassDialog from './Dialogs/AddClassDialog'
@@ -19,8 +20,8 @@ function getTeachersMap(arr) {
 
 const styles = theme => ({
   home: {
-    height: 'calc(100vh - 38px)',
-    maxHeight: 'calc(100vh - 38px)',
+    height: 'calc(91vh)',
+    maxHeight: 'calc(91vh)',
     overflow: 'hidden',
     padding: '0 !important',
     '&::-webkit-scrollbar': {
@@ -28,17 +29,43 @@ const styles = theme => ({
     },
   },
   sectionManagerContainer: {
-    overflowY: 'scroll',
+    overflowY: 'auto',
     overflowX: 'hidden',
     paddingRight: '1px',
-    paddingBottom: '70px',
     '&::-webkit-scrollbar': {
-      display: 'none',
+    },
+  },
+  teacherAreaContainer: {
+    overflowY: 'auto',
+    overflowX: 'hidden',
+    paddingRight: '1px',
+    '&::-webkit-scrollbar': {
+    },
+  },
+  classSideBarContainer: {
+    overflowY: 'auto',
+    overflowX: 'hidden',
+    paddingRight: '1px',
+    '&::-webkit-scrollbar': {
     },
   },
   sectionManager: {
     paddingTop: `${theme.spacing.unit * 2}px`,
     paddingLeft: '1%',
+  },
+  backPaperLeft: {
+    minHeight: '100%',
+    padding: theme.spacing.unit * 0,
+    paddingTop: theme.spacing.unit * 1.5,
+    boxShadow: 'none',
+    borderRight: 'groove rgba(0, 0, 0, 0.12)',
+  },
+  backPaperRight: {
+    minHeight: '100%',
+    padding: theme.spacing.unit * 0,
+    paddingTop: theme.spacing.unit * 1.5,
+    boxShadow: 'none',
+    borderLeft: 'groove rgba(0, 0, 0, 0.12)'
   },
   button: {
     margin: theme.spacing.unit,
@@ -239,19 +266,22 @@ class Home extends React.Component {
           sections={sections}
           totalPeriods={totalPeriods}
         />
-        <Grid item xs={2} >
-          <ClassSidebar
-            activeClass={this.state.selectedClass}
-            selectClass={selectClass}
-            selectSchool={selectSchool}
-            classesList={this.getClassList()}
-            addClass={this.handleClassDialog(true)}
-            totalPeriods={totalPeriods}
-          />
+        <Grid item xs={2} className={classes.classSideBarContainer}>
+          <Paper className={classes.backPaperLeft}>
+            <ClassSidebar
+              activeClass={this.state.selectedClass}
+              selectClass={selectClass}
+              selectSchool={selectSchool}
+              classesList={this.getClassList()}
+              addClass={this.handleClassDialog(true)}
+              totalPeriods={totalPeriods}
+            />
+          </Paper>
         </Grid>
-        <Grid item xs={7} className={classes.sectionManagerContainer} >
+        <Grid item xs={8} className={classes.sectionManagerContainer} >
           <Grid container>
-            <Grid item xs={12} className={classes.sectionManager} >
+            <Grid item xs={1} />
+            <Grid item xs={10} className={classes.sectionManager} >
               { showClass ? <SectionManager
                 activeClass={this.state.selectedClass}
                 sections={sections}
@@ -270,15 +300,17 @@ class Home extends React.Component {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={3} >
-          <TeacherArea
-            teachers={teachers}
-            teachersMap={teachersMap}
-            toogleDisplayAddTeacher={this.toogleDisplayAddTeacher}
-            displayAddTeacher={this.state.displayAddTeacher}
-            addTeacherFunc={this.addTeacher}
-            totalPeriods={totalPeriods}
-          />
+        <Grid item xs={2} className={classes.teacherAreaContainer}>
+          <Paper className={classes.backPaperRight}>
+            <TeacherArea
+              teachers={teachers}
+              teachersMap={teachersMap}
+              toogleDisplayAddTeacher={this.toogleDisplayAddTeacher}
+              displayAddTeacher={this.state.displayAddTeacher}
+              addTeacherFunc={this.addTeacher}
+              totalPeriods={totalPeriods}
+            />
+          </Paper>
         </Grid>
       </Grid>
     )
