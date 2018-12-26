@@ -113,7 +113,7 @@ class MiniDrawer extends React.Component {
             <IconButton
               color="inherit"
               aria-label="open drawer"
-              // onClick={this.handleDrawerOpen}
+              onClick={this.handleDrawerOpen}
               className={classNames(classes.menuButton, this.state.open && classes.hide)}
             >
               <MenuIcon />

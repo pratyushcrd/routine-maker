@@ -22,7 +22,7 @@ const styles = theme => console.log(theme) || ({
   },
   viewRoutineButton: {
     position: 'absolute',
-    bottom: theme.spacing.unit * 3,
+    bottom: theme.spacing.unit * 6,
     left: theme.spacing.unit * 4,
   },
   listButton: {
@@ -119,7 +119,7 @@ const ClassSideBar = (props) => {
           <Button
             variant="outlined"
             color="primary"
-            disabled={!!incompleteMap.total}
+            disabled={!!(incompleteMap.total() || (props.totalPeriods === 0) || !classesList.length)}
             className={[classes.button, classes.viewRoutineButton].join(' ')}
             onClick={navigateToRoutine}
           >
