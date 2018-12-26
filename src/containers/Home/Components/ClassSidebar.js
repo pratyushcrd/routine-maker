@@ -2,7 +2,6 @@ import React from 'react'
 import Grid from '@material-ui/core/Grid'
 import { withStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
-import Paper from '@material-ui/core/Paper'
 import PropTypes from 'prop-types'
 import IncompleteIndicator from './IncompleteIndicator'
 
@@ -10,7 +9,7 @@ function navigateToRoutine() {
   window.location = '/routine'
 }
 
-const styles = theme => console.log(theme) || ({
+const styles = theme => ({
   button: {
     paddingLeft: theme.spacing.unit * 3,
     paddingRight: theme.spacing.unit * 3,
@@ -43,12 +42,6 @@ const styles = theme => console.log(theme) || ({
     width: '100%',
   },
   backPaperContainer: {
-    height: '100%',
-  },
-  backPaper: {
-    height: '100%',
-    padding: theme.spacing.unit * 0,
-    paddingTop: theme.spacing.unit * 1.5,
   },
   createIcon: {
     marginLeft: theme.spacing.unit * 0.75,
@@ -80,53 +73,50 @@ const ClassSideBar = (props) => {
 
   return (
     <Grid container className={classes.backPaperContainer}>
-      <Grid item xs={10} >
-        <Paper className={classes.backPaper}>
+      <Grid item xs={12} >
 
+        <Button
+          color="primary"
+          className={classes.button}
+          onClick={selectSchool}
+        >
+          School Details
+        </Button>
+
+        <div className={classes.gap} />
+        {props.totalPeriods > 0 && (
           <Button
+            variant="contained"
             color="primary"
             className={classes.button}
-            onClick={selectSchool}
+            onClick={props.addClass}
           >
-            School Details
+            Add Class
           </Button>
+        )}
+        <div className={classes.gap} />
 
-          <div className={classes.gap} />
-          {props.totalPeriods > 0 && (
-            <Button
-              variant="contained"
-              color="primary"
-              className={classes.button}
-              onClick={props.addClass}
-            >
-              Add Class
-            </Button>
-          )}
-          <div className={classes.gap} />
-
-          {classesList.map((detail, idx) => (
-            <Button
-              key={`@@homechips#${detail.className}`}
-              color="primary"
-              className={getClassForListItem(detail)}
-              onClick={onSelect(detail)}
-            >
-              {`Class ${detail.className}`}
-              <IncompleteIndicator type="class" count={incompleteMap.byClass(detail.className)} />
-            </Button>
-          ))}
-
+        {classesList.map((detail) => (
           <Button
-            variant="outlined"
+            key={`@@homechips#${detail.className}`}
             color="primary"
-            disabled={!!(incompleteMap.total() || (props.totalPeriods === 0) || !classesList.length)}
-            className={[classes.button, classes.viewRoutineButton].join(' ')}
-            onClick={navigateToRoutine}
+            className={getClassForListItem(detail)}
+            onClick={onSelect(detail)}
           >
-            View Routine
+            {`Class ${detail.className}`}
+            <IncompleteIndicator type="class" count={incompleteMap.byClass(detail.className)} />
           </Button>
+        ))}
 
-        </Paper>
+        <Button
+          variant="outlined"
+          color="primary"
+          disabled={!!(incompleteMap.total() || (props.totalPeriods === 0) || !classesList.length)}
+          className={[classes.button, classes.viewRoutineButton].join(' ')}
+          onClick={navigateToRoutine}
+        >
+          View Routine
+        </Button>
       </Grid>
     </Grid>
   )

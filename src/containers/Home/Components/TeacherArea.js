@@ -1,7 +1,6 @@
 import React from 'react'
 import Grid from '@material-ui/core/Grid'
 import { withStyles } from '@material-ui/core/styles'
-import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import List from '@material-ui/core/List'
 import Divider from '@material-ui/core/Divider'
@@ -18,14 +17,6 @@ const styles = theme => ({
     marginLeft: theme.spacing.unit * 1.5,
     marginTop: theme.spacing.unit,
     marginBottom: -theme.spacing.unit,
-  },
-  backPaperContainer: {
-    height: '100%',
-  },
-  backPaper: {
-    height: '100%',
-    // padding: theme.spacing.unit * 0,
-    marginBottom: theme.spacing.unit * 2.5,
   },
   displayAddTeacherBtn: {
     color: theme.palette.text.secondary,
@@ -53,50 +44,43 @@ const TeacherArea = (props) => {
       justify={'flex-start'}
       className={classes.backPaperContainer}
     >
-      <Grid
-        item
-        xs={2}
-      />
 
       <Grid
         item
-        xs={10}
+        xs={12}
         className={classes.backPaper}
       >
+        <Typography variant="subheading" className={classes.header}>
+          Teachers
+          <IconButton component="span" className={classes.displayAddTeacherBtn} onClick={props.toogleDisplayAddTeacher}>
+            <GroupAdd />
+          </IconButton>
+        </Typography>
+        <List>
+          <Divider />
+          <AddTeacher
+            show={props.displayAddTeacher}
+            addTeacherFunc={props.addTeacherFunc}
+            teachers={teachers}
+          />
 
-        <Paper className={classes.backPaper}>
-          <Typography variant="subheading" className={classes.header}>
-            Teachers
-            <IconButton component="span" className={classes.displayAddTeacherBtn} onClick={props.toogleDisplayAddTeacher}>
-              <GroupAdd />
-            </IconButton>
-          </Typography>
-          <List>
-            <Divider />
-            <AddTeacher
-              show={props.displayAddTeacher}
-              addTeacherFunc={props.addTeacherFunc}
-              teachers={teachers}
-            />
-
-            {
-              teachers.map(teacher => (
-                <div key={['@@teacher-', teacher.id]}>
-                  <TeacherCard
-                    teacher={teacher}
-                    maxPeriods={totalPeriods}
-                    totalPeriods={totalPeriods}
-                  />
-                </div>
-              ))
-            }
-            {
-              teachers.length ? '' : <Typography variant="body1" className={classes.infoText}>
-                Click <GroupAdd className={classes.infoIcon} viewBox="0 -4 24 24" /> icon to add teacher
-              </Typography>
-            }
-          </List>
-        </Paper>
+          {
+            teachers.map(teacher => (
+              <div key={['@@teacher-', teacher.id]}>
+                <TeacherCard
+                  teacher={teacher}
+                  maxPeriods={totalPeriods}
+                  totalPeriods={totalPeriods}
+                />
+              </div>
+            ))
+          }
+          {
+            teachers.length ? '' : <Typography variant="body1" className={classes.infoText}>
+              Click <GroupAdd className={classes.infoIcon} viewBox="0 -4 24 24" /> icon to add teacher
+            </Typography>
+          }
+        </List>
       </Grid>
 
     </Grid>
