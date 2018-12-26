@@ -7,6 +7,8 @@ import Paper from '@material-ui/core/Paper'
 import DaysTable from './DaysTable'
 import CommonAreas from './CommonAreas'
 
+import Info from '@material-ui/icons/Info'
+import Tooltip from '@material-ui/core/Tooltip'
 
 const styles = theme => ({
   detailBox: {
@@ -15,7 +17,11 @@ const styles = theme => ({
   },
   detailTitle: {
     marginTop: theme.spacing.unit * 2,
-  }
+  },
+  infoIcon: {
+    fontSize: 18,
+    color: theme.palette.text.secondary,
+  },
 })
 
 /**
@@ -40,6 +46,9 @@ class SchoolDetails extends React.Component {
         <Grid item xs={6}>
           <Typography variant="subheading" className={classes.detailTitle}>
             School Working Days
+            <Tooltip title="Assign school working days and their respective number of periods">
+              <Info className={classes.infoIcon} viewBox="0 0 24 24" />
+            </Tooltip>
           </Typography>
           <Paper className={classes.detailBox}>
             <DaysTable
@@ -52,6 +61,9 @@ class SchoolDetails extends React.Component {
         <Grid item xs={5}>
           <Typography variant="subheading" className={classes.detailTitle}>
             Common Areas
+            <Tooltip title="Common Areas may include ground, library, labs to be taken into account while making routine">
+              <Info className={classes.infoIcon} viewBox="0 0 24 24" />
+            </Tooltip>
           </Typography>
           <Paper className={classes.detailBox}>
             <CommonAreas
