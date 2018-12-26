@@ -2,12 +2,12 @@ import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
 import Grid from '@material-ui/core/Grid'
-import Popover from '@material-ui/core/Popover'
+import Tooltip from '@material-ui/core/Tooltip'
 import Typography from '@material-ui/core/Typography'
 
 const styles = theme => ({
   complete: {
-    backgroundColor: theme.palette.primary.light,
+    // backgroundColor: theme.palette.primary.light,
     height: 6,
     width: 6,
     float: 'right',
@@ -40,9 +40,9 @@ function calculateMessage(type, count) {
     return ''
   }
   if (type === 'class') {
-    return `${count} subjects have incomplete details`
+    return 'Few subjects have incomplete details'
   } else if (type === 'section') {
-    return `${count} subjects have no teachers assigned`
+    return 'Few subjects have no teachers assigned'
   } else if (type === 'subject') {
     return 'No teacher is yet assigned to the subject'
   }
@@ -54,29 +54,6 @@ function calculateMessage(type, count) {
 class IncompleteIndicator extends React.Component {
   state = { open: false }
 
-  /**
-   * Toggle popover
-   */
-  popoverOpen = (event) => {
-    this.setState({
-      open: true,
-      anchorEl: event.currentTarget,
-    })
-  }
-  /**
-   * Toggle popover
-   */
-  popoverClose = () => {
-    if (!this.state.open) {
-      return
-    }
-    setTimeout(() => {
-      this.setState({
-        open: false,
-      })
-    }, 1000)
-  }
-
   render() {
     const classes = this.props.classes
     const count = this.props.count
@@ -86,27 +63,13 @@ class IncompleteIndicator extends React.Component {
 
     return (
       <Grid item>
-        <div
-          className={count ? classes.incomplete : classes.complete}
-          onMouseEnter={this.popoverOpen}
-          onMouseLeave={this.popoverClose}
-        />
-        <Popover
-          anchorEl={this.state.anchorEl}
-          open={!!(this.state.open && message)}
-          anchorOrigin={{
-            vertical: 'top',
-            horizontal: 'left',
-          }}
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'left',
-          }}
-        >
-          <Typography className={classes.popover}>
-            {message}
-          </Typography>
-        </Popover>
+        <Tooltip disableFocusListener title={message}>
+          <div
+            className={count ? classes.incomplete : classes.complete}
+            onMouseEnter={this.popoverOpen}
+            onMouseLeave={this.popoverClose}
+          />
+        </Tooltip>
       </Grid>
     )
   }

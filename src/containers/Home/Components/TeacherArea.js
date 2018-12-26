@@ -29,6 +29,14 @@ const styles = theme => ({
   },
   displayAddTeacherBtn: {
     color: theme.palette.text.secondary,
+  },
+  infoText: {
+    color: theme.palette.text.secondary,
+    marginLeft: theme.spacing.unit * 1,
+    marginTop: theme.spacing.unit * 1,
+  },
+  infoIcon: {
+    fontSize: 18,
   }
 })
 
@@ -81,6 +89,11 @@ const TeacherArea = (props) => {
                   />
                 </div>
               ))
+            }
+            {
+              teachers.length ? '' : <Typography variant="body1" className={classes.infoText}>
+                Click <GroupAdd className={classes.infoIcon} viewBox="0 -4 24 24" /> icon to add teacher
+              </Typography>
             }
           </List>
         </Paper>
