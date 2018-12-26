@@ -6,6 +6,10 @@ import Paper from '@material-ui/core/Paper'
 import PropTypes from 'prop-types'
 import IncompleteIndicator from './IncompleteIndicator'
 
+function navigateToRoutine() {
+  window.location = '/routine'
+}
+
 const styles = theme => console.log(theme) || ({
   button: {
     paddingLeft: theme.spacing.unit * 3,
@@ -15,6 +19,11 @@ const styles = theme => console.log(theme) || ({
     display: 'block',
     fontWeight: 700,
     textTransform: 'none',
+  },
+  viewRoutineButton: {
+    position: 'absolute',
+    bottom: theme.spacing.unit * 3,
+    left: theme.spacing.unit * 4,
   },
   listButton: {
     width: '100%',
@@ -106,6 +115,16 @@ const ClassSideBar = (props) => {
               <IncompleteIndicator type="class" count={incompleteMap.byClass(detail.className)} />
             </Button>
           ))}
+
+          <Button
+            variant="outlined"
+            color="primary"
+            disabled={!!incompleteMap.total}
+            className={[classes.button, classes.viewRoutineButton].join(' ')}
+            onClick={navigateToRoutine}
+          >
+            View Routine
+          </Button>
 
         </Paper>
       </Grid>
