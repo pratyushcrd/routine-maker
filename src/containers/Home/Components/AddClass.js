@@ -116,8 +116,14 @@ class AddClass extends React.Component {
    * Handle change in inputs
    */
   handleChange = name => event => {
-    const value = event.target.value
+    let value = event.target.value
       .replace(/^\s+/, '')
+
+    // Periods per week should be minimum 1
+    if (name === 'periodsPerWeek') {
+      value = value && String(Math.max(+value, 1))
+    }
+
     const lastLetter = value.substr(-1)
     // if last key entered is a separator
     if (!inputSeperators[lastLetter]) {

@@ -5,12 +5,11 @@ import { withStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
 import Button from '@material-ui/core/Button'
 import Collapse from '@material-ui/core/Collapse'
-import AddIcon from '@material-ui/icons/Add'
 
 import SectionDetails from './SectionDetails'
 import Subject from './Subject'
 import EditSubject from './EditSubject'
-import { IconButton } from '@material-ui/core'
+import IncompleteIndicator from './IncompleteIndicator'
 
 function getSubjectsBySection(subjects) {
   return subjects
@@ -27,6 +26,7 @@ function joinClasses(...params) {
 
 function getTotalPeriods(subjects) {
   return subjects
+    .filter(sub => sub.teacherId)
     .map(subject => +subject.periodsPerWeek || 0)
     .reduce((a, b) => a + b, 0)
 }
@@ -133,6 +133,8 @@ class Sections extends React.Component {
     const teachersMap = this.props.teachersMap
     const commonAreas = this.props.commonAreas
 
+    const incompleteMap = this.props.incompleteMap
+
     return (
       <Grid container spacing={24} >
         <Grid item xs={12} >
@@ -147,6 +149,7 @@ class Sections extends React.Component {
               className={this.isActive(section.section) ? sectionBtnClassActive : sectionBtnClass}
             >
               Section {section.section}
+              <IncompleteIndicator type="section" count={incompleteMap.bySection(section)} />
             </Button>
           ))}
           <Button
@@ -193,6 +196,7 @@ class Sections extends React.Component {
                   subject={subject}
                   teachersMap={teachersMap}
                   toggleEdit={this.toggleEditSubject(subject.subject)}
+                  incompleteMap={incompleteMap}
                 />
               </Collapse>
               <Collapse
@@ -242,7 +246,8 @@ Sections.propTypes = {
     name: PropTypes.string.isRequired,
   })).isRequired,
   updateSubject: PropTypes.func.isRequired,
-  addSection: PropTypes.func.isRequired
+  addSection: PropTypes.func.isRequired,
+  incompleteMap: PropTypes.shape({}).isRequired,
 }
 
 export default withStyles(styles)(Sections)

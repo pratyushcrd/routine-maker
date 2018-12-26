@@ -72,10 +72,7 @@ const TeacherCard = (props) => {
           <Grid container>
             <Grid item xs={4}>
               <Typography className={classes.periodsText}>
-                {
-                  `${periodsAssigned || 'No'} `
-                }
-                periods
+                {`${periodsAssigned || 'No'} `} of {maxPeriods} periods
               </Typography>
             </Grid>
             <Grid item xs={6} className={classes.progressItem}>

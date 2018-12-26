@@ -3,6 +3,7 @@ import Grid from '@material-ui/core/Grid'
 import { withStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 import PropTypes from 'prop-types'
+import IncompleteIndicator from './IncompleteIndicator'
 
 const styles = theme => ({
   button: {
@@ -59,6 +60,7 @@ const ClassSideBar = (props) => {
   const getClassForListItem = listClassGetter(classes, activeClass)
   const onSelect = detail => () => props.selectClass(detail)
   const selectSchool = props.selectSchool
+  const incompleteMap = props.incompleteMap
 
   return (
     <Grid container className={classes.backPaperContainer}>
@@ -85,7 +87,7 @@ const ClassSideBar = (props) => {
         )}
         <div className={classes.gap} />
 
-        {classesList.map(detail => (
+        {classesList.map((detail) => (
           <Button
             key={`@@homechips#${detail.className}`}
             color="primary"
@@ -93,6 +95,7 @@ const ClassSideBar = (props) => {
             onClick={onSelect(detail)}
           >
             {`Class ${detail.className}`}
+            <IncompleteIndicator type="class" count={incompleteMap.byClass(detail.className)} />
           </Button>
         ))}
 
@@ -118,6 +121,7 @@ ClassSideBar.propTypes = {
   addClass: PropTypes.func.isRequired,
   activeClass: PropTypes.string,
   totalPeriods: PropTypes.number.isRequired,
+  incompleteMap: PropTypes.shape({}).isRequired,
 }
 
 export default withStyles(styles)(ClassSideBar)

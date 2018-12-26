@@ -1,15 +1,17 @@
 const Component = require('../Component')
 
-const generateDaysMap = days => days.reduce((acc, { day, periods }) => {
-  acc[day] = Array(periods)
-    .fill(1)
-    .map((a, i) => a + i)
-    .reduce((pAcc, val) => {
-      pAcc[val] = null
-      return pAcc
-    }, {})
-  return acc
-}, {})
+const generateDaysMap = days => days
+  .filter(({ periods }) => periods)
+  .reduce((acc, { day, periods }) => {
+    acc[day] = Array(periods)
+      .fill(1)
+      .map((a, i) => a + i)
+      .reduce((pAcc, val) => {
+        pAcc[val] = null
+        return pAcc
+      }, {})
+    return acc
+  }, {})
 
 /**
  * An Entity to hold routine

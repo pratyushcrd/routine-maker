@@ -18,6 +18,34 @@ function getTeachersMap(arr) {
   }, {})
 }
 
+const getKey = (...params) => params.join('__')
+
+function getIncompleteMap(subjects) {
+  const incompleteSubjects = subjects.filter(sub => !sub.teacherId)
+  const sectionsIncomplete = {}
+  const subjectsIncomplete = {}
+  const classesIncomplete = {}
+  const total = incompleteSubjects.length
+
+  incompleteSubjects.forEach(sub => {
+    const { className, section, subject } = sub
+    const sectionKey = getKey(className, section)
+    const subjectKey = getKey(className, section, subject)
+
+    classesIncomplete[className] = (classesIncomplete[className] || 0) + 1
+    sectionsIncomplete[sectionKey] = (sectionsIncomplete[sectionKey] || 0) + 1
+    subjectsIncomplete[subjectKey] = 1
+  })
+
+  return {
+    total: () => total,
+    byClass: className => classesIncomplete[className] || 0,
+    bySection: section => sectionsIncomplete[getKey(section.className, section.section)] || 0,
+    bySubject: ({ className, section, subject }) =>
+      subjectsIncomplete[getKey(className, section, subject)] || 0
+  }
+}
+
 const styles = theme => ({
   home: {
     height: 'calc(91vh)',
@@ -256,6 +284,8 @@ class Home extends React.Component {
     const showClass = this.state.selectedClass !== 'school' &&
       this.props.classList.length
 
+    const incompleteMap = getIncompleteMap(this.props.subjects)
+
     return (
       <Grid container className={classes.home}>
         <AddClassDialog
@@ -275,6 +305,7 @@ class Home extends React.Component {
               classesList={this.getClassList()}
               addClass={this.handleClassDialog(true)}
               totalPeriods={totalPeriods}
+              incompleteMap={incompleteMap}
             />
           </Paper>
         </Grid>
@@ -291,6 +322,7 @@ class Home extends React.Component {
                 commonAreas={commonAreas}
                 updateSubject={this.updateSubject}
                 addSection={this.handleClassDialog(this.state.selectedClass)}
+                incompleteMap={incompleteMap}
               /> : <SchoolDetails
                 updateDays={this.updateDays}
                 addCommonArea={this.addCommonArea}
