@@ -60,11 +60,10 @@ class Subject extends React.Component {
   }
 
   render() {
-    const classes = this.props.classes
-    const subject = this.props.subject
-    const teachersMap = this.props.teachersMap
-    const toggleEdit = this.props.toggleEdit
-
+    const { classes, subject, teachersMap, toggleEdit, deleteSubject } = this.props
+    if (!subject) {
+      return null
+    }
     const periodsPerWeek = subject.periodsPerWeek
     const subjectName = subject.subject
     const commonArea = subject.commonArea || 'N/A'
@@ -80,7 +79,6 @@ class Subject extends React.Component {
       :
       'No details found'
     const incompleteMap = this.props.incompleteMap
-
     return (
       <Card className={classes.card}>
         <CardContent className={classes.cardContent}>
@@ -164,7 +162,10 @@ class Subject extends React.Component {
             <EditIcon />
           </IconButton> */}
           <Button size="small" color="primary" onClick={toggleEdit}>
-            Edit Details
+            Edit
+          </Button>
+          <Button size="small" color="primary" onClick={() => deleteSubject(subject.id)}>
+            Delete
           </Button>
         </CardActions>
       </Card>
@@ -178,6 +179,7 @@ Subject.propTypes = {
   teachersMap: PropTypes.shape({}).isRequired,
   toggleEdit: PropTypes.func.isRequired,
   incompleteMap: PropTypes.shape({}).isRequired,
+  deleteSubject: PropTypes.func.isRequired,
 }
 
 export default withStyles(styles)(Subject)

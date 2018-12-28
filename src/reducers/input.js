@@ -196,8 +196,7 @@ const handlers = {
       (action.section !== section.section))
   }),
   [DELETE_SUBJECT]: (state, action) => ({
-    subjects: state.subjects.filter(subjectInfo => (action.className !== subjectInfo.className) &&
-      (action.subject !== subjectInfo.subject))
+    subjects: state.subjects.filter(subjectInfo => action.subjectId !== subjectInfo.id)
   }),
   [UPDATE_CLASS_SECTION]: (state, action) => {
     const classIndex = state.classList.findIndex(x => x.className === action.className)

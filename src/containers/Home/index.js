@@ -266,6 +266,13 @@ class Home extends React.Component {
     })
   }
 
+  deleteSubject = (subjectId) => {
+    this.props.dispatch({
+      type: 'DELETE_SUBJECT',
+      subjectId
+    })
+  }
+
   render() {
     console.log(this.props)
     const classes = this.props.classes
@@ -278,6 +285,7 @@ class Home extends React.Component {
     const sections = this.getSections()
     const subjects = this.getSubjects()
     const teachers = this.getTeachers()
+
     const commonAreas = this.getCommonAreas()
     const teachersMap = getTeachersMap(teachers)
     const totalPeriods = this.getTotalPeriods()
@@ -323,6 +331,7 @@ class Home extends React.Component {
                 updateSubject={this.updateSubject}
                 addSection={this.handleClassDialog(this.state.selectedClass)}
                 incompleteMap={incompleteMap}
+                deleteSubject={this.deleteSubject}
               /> : <SchoolDetails
                 updateDays={this.updateDays}
                 addCommonArea={this.addCommonArea}

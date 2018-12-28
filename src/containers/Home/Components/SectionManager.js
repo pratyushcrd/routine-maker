@@ -197,6 +197,7 @@ class Sections extends React.Component {
                   teachersMap={teachersMap}
                   toggleEdit={this.toggleEditSubject(subject.subject)}
                   incompleteMap={incompleteMap}
+                  deleteSubject={this.props.deleteSubject}
                 />
               </Collapse>
               <Collapse
@@ -248,6 +249,7 @@ Sections.propTypes = {
   updateSubject: PropTypes.func.isRequired,
   addSection: PropTypes.func.isRequired,
   incompleteMap: PropTypes.shape({}).isRequired,
+  deleteSubject: PropTypes.func.isRequired,
 }
 
 export default withStyles(styles)(Sections)
