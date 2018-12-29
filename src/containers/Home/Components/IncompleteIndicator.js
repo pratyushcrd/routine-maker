@@ -4,25 +4,23 @@ import PropTypes from 'prop-types'
 import Grid from '@material-ui/core/Grid'
 import Tooltip from '@material-ui/core/Tooltip'
 import Typography from '@material-ui/core/Typography'
+import WarningIcon from '@material-ui/icons/Warning'
 
 const styles = theme => ({
   complete: {
-    // backgroundColor: theme.palette.primary.light,
-    height: 6,
-    width: 6,
+    color: theme.palette.primary.light,
     float: 'right',
-    borderRadius: 3,
-    marginLeft: 4,
-    padding: 2,
+    // fontSize: 14,
+    display: 'none',
   },
   incomplete: {
-    backgroundColor: theme.palette.secondary.light,
-    height: 6,
-    width: 6,
+    color: theme.palette.secondary.light,
     float: 'right',
-    borderRadius: 3,
-    marginLeft: 4,
-    padding: 2,
+    // fontSize: 14,
+  },
+  icon: {
+    fontSize: 18,
+    marginLeft: theme.spacing.unit * 0.5,
   },
   popover: {
     padding: 4,
@@ -63,12 +61,21 @@ class IncompleteIndicator extends React.Component {
 
     return (
       <Grid item>
-        <Tooltip disableFocusListener title={message}>
+        <Tooltip
+          disableFocusListener
+          title={(
+            <Typography variant="caption" style={{ color: 'white' }}>
+              {message}
+            </Typography>
+          )}
+        >
           <div
             className={count ? classes.incomplete : classes.complete}
             onMouseEnter={this.popoverOpen}
             onMouseLeave={this.popoverClose}
-          />
+          >
+            <WarningIcon className={classes.icon} />
+          </div>
         </Tooltip>
       </Grid>
     )
