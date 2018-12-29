@@ -22,7 +22,7 @@ const styles = theme => ({
   viewRoutineButton: {
     position: 'absolute',
     bottom: theme.spacing.unit * 6,
-    left: theme.spacing.unit * 4,
+    left: theme.spacing.unit * 6.5,
   },
   listButton: {
     width: '100%',
