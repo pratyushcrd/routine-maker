@@ -51,7 +51,7 @@ const styles = theme => ({
     width: '100%',
   },
   deleteCommonArea: {
-    paddingRight: '10px !important',
+    paddingRight: `${theme.spacing.unit * 3}px !important`,
     textAlign: 'right !important'
   },
 })
