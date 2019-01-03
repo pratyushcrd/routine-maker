@@ -19,9 +19,13 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 2,
   },
   infoIcon: {
-    fontSize: 18,
-    color: theme.palette.text.secondary,
+    fontSize: 20,
+    color: theme.palette.primary.main,
   },
+  tooltipContainer: {
+    paddingTop: 17,
+    marginLeft: 4,
+  }
 })
 
 /**
@@ -41,12 +45,25 @@ class SchoolDetails extends React.Component {
       </Typography>
       <Grid container className={classes.home}>
         <Grid item xs={6}>
-          <Typography variant="subheading" className={classes.detailTitle}>
-            School Working Days
-            <Tooltip title="Assign school working days and their respective number of periods">
-              <Info className={classes.infoIcon} viewBox="0 0 24 24" />
-            </Tooltip>
-          </Typography>
+          <Grid container>
+            <Grid item>
+              <Typography variant="subheading" className={classes.detailTitle}>
+                School Working Days
+              </Typography>
+            </Grid>
+            <Grid item className={classes.tooltipContainer}>
+              <Tooltip
+                title={(
+                  <Typography variant="caption" style={{ color: 'white' }}>
+                    Working school days and number of periods in each day
+                  </Typography>
+                )}
+              >
+                <Info className={classes.infoIcon} viewBox="0 0 24 24" />
+              </Tooltip>
+            </Grid>
+          </Grid>
+
           <Paper className={classes.detailBox}>
             <DaysTable
               updateDays={this.props.updateDays}
@@ -56,12 +73,25 @@ class SchoolDetails extends React.Component {
         </Grid>
         <Grid item xs={1} />
         <Grid item xs={5}>
-          <Typography variant="subheading" className={classes.detailTitle}>
-            Common Areas
-            <Tooltip title="Common Areas may include ground, library, labs to be taken into account while making routine">
-              <Info className={classes.infoIcon} viewBox="0 0 24 24" />
-            </Tooltip>
-          </Typography>
+          <Grid container>
+            <Grid item>
+              <Typography variant="subheading" className={classes.detailTitle}>
+                Common Areas
+              </Typography>
+            </Grid>
+            <Grid item className={classes.tooltipContainer}>
+              <Tooltip
+                title={(
+                  <Typography variant="caption" style={{ color: 'white' }}>
+                    Common Areas may include Play-Grounds, Libraries, Labs etc.
+                  </Typography>
+                )}
+              >
+                <Info className={classes.infoIcon} viewBox="0 0 24 24" />
+              </Tooltip>
+            </Grid>
+          </Grid>
+          
           <Paper className={classes.detailBox}>
             <CommonAreas
               commonAreas={commonAreas}
