@@ -28,9 +28,6 @@ const styles = theme => ({
  * Component to render Section SchoolDetails
  */
 class SchoolDetails extends React.Component {
-  constructor(props) {
-    super(props)
-  }
 
   render() {
     const classes = this.props.classes
@@ -69,6 +66,7 @@ class SchoolDetails extends React.Component {
             <CommonAreas
               commonAreas={commonAreas}
               addCommonArea={addCommonArea}
+              deleteCommonArea={this.props.deleteCommonArea}
             />
           </Paper>
         </Grid>
@@ -80,6 +78,8 @@ class SchoolDetails extends React.Component {
 SchoolDetails.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   updateDays: PropTypes.func.isRequired,
+  addCommonArea: PropTypes.func.isRequired,
+  deleteCommonArea: PropTypes.func.isRequired,
 }
 
 export default withStyles(styles)(SchoolDetails)

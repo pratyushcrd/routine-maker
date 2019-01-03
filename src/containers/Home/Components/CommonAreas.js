@@ -7,15 +7,13 @@ import TextField from '@material-ui/core/TextField'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
-import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import IconButton from '@material-ui/core/IconButton'
 import FormControl from '@material-ui/core/FormControl'
 import Snackbar from '@material-ui/core/Snackbar'
-import MySnackbarContentWrapper from '../../common/SnackBarContent'
-
-import Button from '@material-ui/core/Button'
 import AddIcon from '@material-ui/icons/Add'
+import ClearIcon from '@material-ui/icons/Clear'
+import MySnackbarContentWrapper from '../../common/SnackBarContent'
 
 function onKeyPress(key, cb, prevDef) {
   return function (event) {
@@ -51,7 +49,11 @@ const styles = theme => ({
   },
   formControl: {
     width: '100%',
-  }
+  },
+  deleteCommonArea: {
+    paddingRight: '10px !important',
+    textAlign: 'right !important'
+  },
 })
 
 /**
@@ -108,7 +110,6 @@ class CommonAreas extends React.Component {
   render() {
     const classes = this.props.classes
     const commonAreas = this.props.commonAreas
-    const addCommonArea = this.props.addCommonArea
 
     return (
       <div>
@@ -157,11 +158,12 @@ class CommonAreas extends React.Component {
                 <TableCell scope="row">
                   {commonArea.name}
                 </TableCell>
-                <TableCell>
+                <TableCell className={classes.deleteCommonArea}>
                   <IconButton
-                    aria-label="Decrease"
-                    // onClick={}
-                  />
+                    onClick={() => this.props.deleteCommonArea(commonArea.name)}
+                  >
+                    <ClearIcon />
+                  </IconButton>
                 </TableCell>
               </TableRow>
             ))}
@@ -182,6 +184,8 @@ class CommonAreas extends React.Component {
 
 CommonAreas.propTypes = {
   classes: PropTypes.shape({}).isRequired,
+  addCommonArea: PropTypes.func.isRequired,
+  deleteCommonArea: PropTypes.func.isRequired,
 }
 
 export default withStyles(styles)(CommonAreas)

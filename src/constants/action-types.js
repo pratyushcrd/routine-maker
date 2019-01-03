@@ -24,7 +24,7 @@ export const DELETE_SECTION = 'DELETE_SECTION'
 export const DELETE_SUBJECT = 'DELETE_SUBJECT'
 export const DELETE_COMMON_AREA = 'DELETE_COMMON_AREA'
 
-// 
+//
 
 // screen navigation
 export const NEXT_SCREEN = 'NEXT_SCREEN'

@@ -269,7 +269,14 @@ class Home extends React.Component {
   deleteSubject = (subjectId) => {
     this.props.dispatch({
       type: 'DELETE_SUBJECT',
-      subjectId
+      subjectId,
+    })
+  }
+
+  deleteCommonArea = (commonAreaName) => {
+    this.props.dispatch({
+      type: 'DELETE_COMMON_AREA',
+      commonAreaName,
     })
   }
 
@@ -335,6 +342,7 @@ class Home extends React.Component {
               /> : <SchoolDetails
                 updateDays={this.updateDays}
                 addCommonArea={this.addCommonArea}
+                deleteCommonArea={this.deleteCommonArea}
                 commonAreas={commonAreas}
                 days={this.props.days}
               /> }
