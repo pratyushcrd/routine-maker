@@ -29,6 +29,7 @@ import {
   DELETE_CLASS,
   DELETE_SECTION,
   DELETE_SUBJECT,
+  DELETE_COMMON_AREA,
   UPDATE_CLASS_SECTION,
 } from 'constants/action-types'
 import { createReducer } from './utils'
@@ -197,6 +198,9 @@ const handlers = {
   }),
   [DELETE_SUBJECT]: (state, action) => ({
     subjects: state.subjects.filter(subjectInfo => action.subjectId !== subjectInfo.id)
+  }),
+  [DELETE_COMMON_AREA]: (state, action) => ({
+    commonAreas: state.commonAreas.filter(commonArea => action.commonAreaName.toLowerCase() !== commonArea.name.toLowerCase())
   }),
   [UPDATE_CLASS_SECTION]: (state, action) => {
     const classIndex = state.classList.findIndex(x => x.className === action.className)
