@@ -4,11 +4,11 @@ import PropTypes from 'prop-types'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
+import HelpIcon from '@material-ui/icons/Help'
+import Tooltip from '@material-ui/core/Tooltip'
+
 import DaysTable from './DaysTable'
 import CommonAreas from './CommonAreas'
-
-import Info from '@material-ui/icons/Info'
-import Tooltip from '@material-ui/core/Tooltip'
 
 const styles = theme => ({
   detailBox: {
@@ -55,11 +55,11 @@ class SchoolDetails extends React.Component {
               <Tooltip
                 title={(
                   <Typography variant="caption" style={{ color: 'white' }}>
-                    Working school days and number of periods in each day
+                    School working days and number of periods in each day.
                   </Typography>
                 )}
               >
-                <Info className={classes.infoIcon} viewBox="0 0 24 24" />
+                <HelpIcon className={classes.infoIcon} viewBox="0 0 24 24" />
               </Tooltip>
             </Grid>
           </Grid>
@@ -82,12 +82,17 @@ class SchoolDetails extends React.Component {
             <Grid item className={classes.tooltipContainer}>
               <Tooltip
                 title={(
-                  <Typography variant="caption" style={{ color: 'white' }}>
-                    Common Areas may include Play-Grounds, Libraries, Labs etc.
-                  </Typography>
+                  <div>
+                    <Typography variant="caption" style={{ color: 'white' }}>
+                      Common Areas may include Play-Grounds, Libraries, Labs etc.
+                    </Typography>
+                    <Typography variant="caption" style={{ color: 'white' }}>
+                      Routine for Common Areas are generated separately.
+                    </Typography>
+                  </div>
                 )}
               >
-                <Info className={classes.infoIcon} viewBox="0 0 24 24" />
+                <HelpIcon className={classes.infoIcon} viewBox="0 0 24 24" />
               </Tooltip>
             </Grid>
           </Grid>
